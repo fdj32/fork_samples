@@ -1,0 +1,21 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Ignore IDEA project configuration directory
+.idea
+
+# Ignore vault.log(.yyyy-MM-dd.x.gz) files
+vault.log*
+
+# Ignore src/main/resources/static directory
+src/main/resources/static
+
+# Ignore src/main/resources/templates directory
+src/main/resources/templates
+.classpath 
+.project 
+.settings 
+bin 

@@ -1,0 +1,22 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+
+spring:
+  datasource:
+    schema: classpath*:h2/schema.sql
+    data: classpath*:h2/data.sql
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  jpa:
+    show-sql: true
+  jackson:
+    serialization:
+      indent_output: true

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Please Login</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .d-flex {
+            display: -ms-flexbox !important;
+            display: flex !important;
+        }
+
+        .justify-content-center {
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+        }
+
+        form {
+            width: 200px;
+            margin-top: 200px;
+            border: 1px solid silver;
+            border-radius: 0.2rem;
+            padding: 19px 49px;
+        }
+
+        input {
+            width: 178px;
+            height: 2rem;
+            margin: 10px 0px;
+            padding: 3px 10px;
+            font-size: 20px;
+            border: 1px solid silver;
+            border-radius: 0.2rem;
+        }
+
+        button {
+            width: 200px;
+            height: 2.5rem;
+            margin: 10px 0px;
+            color: white;
+            background-color: #007bff;
+            border-color: white;
+            border-width: 1px;
+            border-radius: 0.2rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center">
+
+    <form action="/login" method="post">
+        <h3>Please Login</h3>
+        <input name="username" placeholder="Username" type="text" />
+        <input name="password" placeholder="Password" type="password" />
+        <button type="submit">Login</button>
+    </form>
+
+</body>
+
+</html>
