@@ -34,3 +34,4 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 # docker logs dev_vault
 # Unseal Key: oF3aLSaiM3WAusTm/zSevHvgC84YV/ReYNi0IeTlnMw=
 # Root Token: s.3OfQ0FlooukDuL46DkL6J7qa
+# application.yml spring.cloud.vault.token
