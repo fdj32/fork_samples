@@ -13,9 +13,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  cloud:
+    vault:
+      host: 127.0.0.1
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: s.3OfQ0FlooukDuL46DkL6J7qa
 
 server:
-  port: 8086
+  port: 8080
 # ===================================================================
 # Application specific properties
 # ===================================================================

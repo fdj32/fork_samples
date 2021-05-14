@@ -1,8 +1,0 @@
-spring:
-  cloud:
-    vault:
-      host: 10.119.33.191
-      port: 8300
-      scheme: http
-      authentication: TOKEN
-      token: s.WtHfRrNiSt0fnguW35GMc7bO

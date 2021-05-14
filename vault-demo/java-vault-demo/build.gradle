@@ -50,10 +50,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
-bootJar {
-	classifier = 'snapshot'
-	excludes = ["*.jar"]
-}
+//bootJar {
+//	classifier = 'snapshot'
+//	excludes = ["*.jar"]
+//}
 
 configurations.all {
     exclude group: 'com.fasterxml.jackson.datatype'
