@@ -15,7 +15,7 @@ spring:
       ddl-auto: none
   cloud:
     vault:
-      host: 127.0.0.1
+      host: 10.110.122.174
       port: 8200
       scheme: http
       authentication: TOKEN
