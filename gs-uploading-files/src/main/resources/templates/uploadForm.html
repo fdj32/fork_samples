@@ -1,24 +1,64 @@
 <html xmlns:th="https://www.thymeleaf.org">
-<body>
+<head>
+<title>Upload files</title>
+<style type="text/css">
+body {
+	font-size: 30px;
+}
+
+.divFile {
+	margin: 10em 20%;
+}
+
+.divButton {
+	margin: 10em 20%;
+}
+
+.btnFile {
+	width: 60em;
+	height: 10em;
+}
+
+.btnSubmit {
+	width: 20em;
+	height: 10em;
+	font-size: 30px;
+}
+</style>
+<script type="text/javascript">
+	function randomRGBValue() {
+		return Math.floor(Math.random() * 64) + 192;
+	}
+	function randomColor() {
+		return "rgb(" + randomRGBValue() + "," + randomRGBValue() + ","
+				+ randomRGBValue() + ")";
+	}
+	function onload() {
+		document.body.style.backgroundColor = randomColor();
+	}
+</script>
+</head>
+<body onload="onload()">
 
 	<div th:if="${message}">
-		<h2 th:text="${message}"/>
+		<h2 th:text="${message}"></h2>
 	</div>
 
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/">
-			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-			</table>
+			<div class="divFile">
+				<input type="file" name="file" class="btnFile" />
+			</div>
+			<div class="divButton">
+				<input class="btnSubmit" type="submit" value="Upload" />
+			</div>
 		</form>
 	</div>
 
 	<div>
 		<ul>
-			<li th:each="file : ${files}">
-				<a th:href="${file}" th:text="${file}" />
-			</li>
+			<li th:each="file : ${files}"><a th:href="${file}"
+				th:text="${file}"></a></li>
 		</ul>
 	</div>
 
