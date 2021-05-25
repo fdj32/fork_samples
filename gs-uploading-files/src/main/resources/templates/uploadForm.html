@@ -52,9 +52,17 @@ body {
 	function chooseFile() {
 		document.getElementById("btnFileHide").click();
 	}
-	function checkInput(form){
-		var file = form.elements["file"].value;
-		if (0 == file.length)
+	function listSelectFiles() {
+		var files = document.forms[0].elements["file"].files;
+		var lis = "";
+		for (var i = 0; i < files.length; i++) {
+			lis += "<li>" + files[i].name + "</li>";
+		}
+		document.getElementById("olFiles").innerHTML = lis;
+	}
+	function checkInput(){
+		var files = document.forms[0].elements["file"].files;
+		if (0 == files.length)
 			return false;
 	}
 </script>
@@ -66,10 +74,11 @@ body {
 	</div>
 
 	<div>
-		<form method="POST" enctype="multipart/form-data" action="/" onsubmit="return checkInput(this)">
+		<form method="POST" enctype="multipart/form-data" action="/" onsubmit="return checkInput()">
 			<div class="divFile">
-				<input type="file" name="file" multiple="multiple" id="btnFileHide"/>
-				<button id="btnFileShow" onclick="chooseFile()">Choose Files</button>
+				<input type="file" name="file" multiple="multiple" id="btnFileHide" onchange="listSelectFiles()"/>
+				<button type="button" id="btnFileShow" onclick="chooseFile()">Choose Files</button>
+				<ol id="olFiles"></ol>
 			</div>
 			<div class="divButton">
 				<input class="btnSubmit" type="submit" value="Upload" />
