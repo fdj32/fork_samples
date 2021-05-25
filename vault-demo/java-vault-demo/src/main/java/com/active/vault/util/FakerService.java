@@ -1,22 +1,22 @@
 package com.active.vault.util;
 
-import com.active.vault.App;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.active.vault.entity.Customer;
 import com.active.vault.entity.SecurityQuestionAnswer;
 import com.active.vault.repository.CustomerRepository;
 import com.active.vault.repository.SecurityQuestionAnswerRepository;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class FakerService {
