@@ -14,15 +14,28 @@ body {
 	margin: 10em 20%;
 }
 
-.btnFile {
-	width: 60em;
+#btnFileHide {
+	opacity:0;
+	width: 0;
+}
+
+#btnFileShow {
+	background: #288cdd;
+    border: none;
+	width: 20em;
 	height: 10em;
+    line-height: 40px;
+    font-size: 30px;
+    color: #fde;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .btnSubmit {
 	width: 20em;
 	height: 10em;
 	font-size: 30px;
+	border-radius: 20px;
 }
 </style>
 <script type="text/javascript">
@@ -36,6 +49,14 @@ body {
 	function onload() {
 		document.body.style.backgroundColor = randomColor();
 	}
+	function chooseFile() {
+		document.getElementById("btnFileHide").click();
+	}
+	function checkInput(form){
+		var file = form.elements["file"].value;
+		if (0 == file.length)
+			return false;
+	}
 </script>
 </head>
 <body onload="onload()">
@@ -45,9 +66,10 @@ body {
 	</div>
 
 	<div>
-		<form method="POST" enctype="multipart/form-data" action="/">
+		<form method="POST" enctype="multipart/form-data" action="/" onsubmit="return checkInput(this)">
 			<div class="divFile">
-				<input type="file" name="file" multiple="multiple" class="btnFile" />
+				<input type="file" name="file" multiple="multiple" id="btnFileHide"/>
+				<button id="btnFileShow" onclick="chooseFile()">Choose Files</button>
 			</div>
 			<div class="divButton">
 				<input class="btnSubmit" type="submit" value="Upload" />
