@@ -1,6 +1,8 @@
 package io.github.fdj32.job;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -28,6 +30,7 @@ public class CustomerJob {
 	public void insert() {
 		LOG.info("insert");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		List<Customer> list = new ArrayList<>();
 		IntStream.range(0, 1000).forEach(i -> {
 			Faker faker = new Faker();
 			Name fakeName = faker.name();
@@ -38,7 +41,8 @@ public class CustomerJob {
 			String birth = sdf.format(faker.date().birthday());
 			String weight = String.format("%.1f", (60 + 10 * Math.random()));
 			String email = fname + "." + lname + "@" + faker.internet().emailAddress().split("@")[1];
-			customerRepository.save(new Customer(name, pwd, fname, lname, birth, weight, email));
+			list.add(new Customer(name, pwd, fname, lname, birth, weight, email));
 		});
+		customerRepository.saveAll(list);
 	}
 }
