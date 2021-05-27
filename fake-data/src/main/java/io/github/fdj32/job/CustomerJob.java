@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,24 +27,26 @@ public class CustomerJob {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Scheduled(fixedRate = 3000)
+	@Async
+	@Scheduled(fixedRate = 100)
 	public void insertBatch() {
 		LOG.info("insertBatch");
 
 		List<Customer> list = new ArrayList<>();
-		IntStream.range(0, 1000).forEach(i -> {
+		IntStream.range(0, 100).forEach(i -> {
 			list.add(genCust());
 		});
 		customerRepository.saveAll(list);
 	}
 
-	@Scheduled(fixedRate = 1000)
+	@Async
+	@Scheduled(fixedRate = 10)
 	public void insertSingle() {
-		LOG.info("insertSingle");
 		customerRepository.save(genCust());
 	}
 
-	@Scheduled(fixedRate = 10000)
+	@Async
+	@Scheduled(fixedDelay = 1000)
 	public void count() {
 		LOG.info("count: {}", customerRepository.count());
 	}
