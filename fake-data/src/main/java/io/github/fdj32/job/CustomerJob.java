@@ -27,22 +27,38 @@ public class CustomerJob {
 	private CustomerRepository customerRepository;
 
 	@Scheduled(fixedRate = 3000)
-	public void insert() {
-		LOG.info("insert");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public void insertBatch() {
+		LOG.info("insertBatch");
+
 		List<Customer> list = new ArrayList<>();
 		IntStream.range(0, 1000).forEach(i -> {
-			Faker faker = new Faker();
-			Name fakeName = faker.name();
-			String fname = fakeName.firstName();
-			String lname = fakeName.lastName();
-			String name = fname + lname;
-			String pwd = UUID.randomUUID().toString().substring(0, 8);
-			String birth = sdf.format(faker.date().birthday());
-			String weight = String.format("%.1f", (60 + 10 * Math.random()));
-			String email = fname + "." + lname + "@" + faker.internet().emailAddress().split("@")[1];
-			list.add(new Customer(name, pwd, fname, lname, birth, weight, email));
+			list.add(genCust());
 		});
 		customerRepository.saveAll(list);
+	}
+
+	@Scheduled(fixedRate = 1000)
+	public void insertSingle() {
+		LOG.info("insertSingle");
+		customerRepository.save(genCust());
+	}
+
+	@Scheduled(fixedRate = 10000)
+	public void count() {
+		LOG.info("count: {}", customerRepository.count());
+	}
+
+	private Customer genCust() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Faker faker = new Faker();
+		Name fakeName = faker.name();
+		String fname = fakeName.firstName();
+		String lname = fakeName.lastName();
+		String name = fname + " " + lname;
+		String pwd = UUID.randomUUID().toString().substring(0, 8);
+		String birth = sdf.format(faker.date().birthday());
+		String weight = String.format("%.1f", (60 + 10 * Math.random()));
+		String email = fname + "." + lname + "@" + faker.internet().emailAddress().split("@")[1];
+		return new Customer(name, pwd, fname, lname, birth, weight, email);
 	}
 }
