@@ -61,7 +61,7 @@ tasklist | grep postgres
 taskkill /f /im postgres
 ```
 #### Backup from Master to Replica
-Just stop master, then copy data folder to replica. And replace some settings in postgresql.conf. But remember to remove postmaster.opts and postmaster.pid.
+Just stop master, then copy data folder to replica. And replace some settings in **postgresql.conf**. But remember to remove **postmaster.opts** and **postmaster.pid**.
 #### Start Replica DB
 ```
 C:/Users/nfeng/tools/RunHiddenConsole C:/Users/nfeng/tools/pgsql2/bin/pg_ctl -D C:/Users/nfeng/tools/pgsql2/data -l C:/Users/nfeng/pgsql2.log start
@@ -87,7 +87,11 @@ Type: root
 | archive_cleanup_command | '' | 'C:/Users/nfeng/tools/pgsql2/bin/pg_archivecleanup C:/Users/nfeng/tools/archivedir %r' | '' |
 | primary_conninfo | '' | 'host=127.0.0.1 port=5432 user=root password=root' | '' |
 
-### Put file standby.signal in Replica data/
+Create archive Directory:
+```
+mkdir C:/Users/nfeng/tools/archivedir
+```
+### Put file *standby.signal* in Replica data/
 ```
 touch C:/Users/nfeng/tools/pgsql2/data/standby.signal
 ```
