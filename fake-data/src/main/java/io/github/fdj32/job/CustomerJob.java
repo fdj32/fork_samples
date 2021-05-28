@@ -28,7 +28,7 @@ public class CustomerJob {
 	private CustomerRepository customerRepository;
 
 	@Async
-	@Scheduled(fixedRate = 100)
+	@Scheduled(fixedDelay = 1000)
 	public void insertBatch() {
 		LOG.info("insertBatch");
 
@@ -40,7 +40,7 @@ public class CustomerJob {
 	}
 
 	@Async
-	@Scheduled(fixedRate = 10)
+	@Scheduled(fixedDelay = 10)
 	public void insertSingle() {
 		customerRepository.save(genCust());
 	}
