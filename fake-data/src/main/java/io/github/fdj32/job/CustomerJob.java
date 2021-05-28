@@ -23,6 +23,7 @@ import io.github.fdj32.repository.CustomerRepository;
 public class CustomerJob {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerJob.class);
+	private static final boolean USE_FAKER = false;
 
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -33,7 +34,7 @@ public class CustomerJob {
 		LOG.info("insertBatch");
 
 		List<Customer> list = new ArrayList<>();
-		IntStream.range(0, 100).forEach(i -> {
+		IntStream.range(0, 10000).forEach(i -> {
 			list.add(genCust());
 		});
 		customerRepository.saveAll(list);
@@ -52,6 +53,11 @@ public class CustomerJob {
 	}
 
 	private Customer genCust() {
+		return USE_FAKER ? fakeCust()
+				: new Customer("Tom Hanks", "P@ssw01d", "Tom", "Hanks", "1951-06-20", "84.9", "Tom.Hanks@gmail.com");
+	}
+
+	private Customer fakeCust() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Faker faker = new Faker();
 		Name fakeName = faker.name();
