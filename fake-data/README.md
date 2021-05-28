@@ -116,3 +116,22 @@ select count(1) from customer;
 select * from customer order by id desc limit 10;
 
 ```
+## 级联复制
+pgsql(5432) -> pgsql2(15432) -> pgsql3(25432)
+
+Copy pgsql1 to pgsql2, include bin/ data/ lib/ share/
+
+| Field\Server | Master pgsql 5432 | Replica pgsql2 15432 | Replica pgsql3 25432 | Default |
+| --- | --- | --- | --- | --- |
+| port | 5432 | 15432 | 25432 | 5432 |
+| archive_mode | on | on | off | off |
+| archive_command | 'copy %p C:/Users/nfeng/tools/archivedir/%f' | 'copy %p C:/Users/nfeng/tools/archivedir2/%f' | '' | '' |
+| restore_command | '' | 'copy C:/Users/nfeng/tools/archivedir/%f %p' | 'copy C:/Users/nfeng/tools/archivedir2/%f %p' | '' |
+| archive_cleanup_command | '' | 'C:/Users/nfeng/tools/pgsql2/bin/pg_archivecleanup C:/Users/nfeng/tools/archivedir %r' | 'C:/Users/nfeng/tools/pgsql3/bin/pg_archivecleanup C:/Users/nfeng/tools/archivedir2 %r' | '' |
+| primary_conninfo | '' | 'host=127.0.0.1 port=5432 user=root password=root' | 'host=127.0.0.1 port=5432 user=root password=root' | '' |
+
+Create archive Directory:
+```
+mkdir C:/Users/nfeng/tools/archivedir2
+```
+### Put file *standby.signal* in Replica pgsql1 & pgsql2 data/
