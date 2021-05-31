@@ -336,3 +336,32 @@ mysql> select * from customer order by id desc limit 10;
 10 rows in set (0.00 sec)
 ```
 The replication speed is slower than PostgreSQL on my machine with default settings.
+# Use the same binary folder
+```
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave-data --server-id=2 --port=13306 --mysqlx-port=33061 --read-only
+
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysql -P13306 -uroot -p
+```
+
+# Multi-Slave and Cascading Replication
+- Copy slave data folder [failed]
+```
+cp -r C:/Users/nfeng/mysql-slave-data C:/Users/nfeng/mysql-slave2-data
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave2-data --server-id=3 --port=23306 --mysqlx-port=33062 --read-only
+```
+Log has errors.
+```
+2021-05-31T08:18:39.518917Z 0 [System] [MY-010116] [Server] C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld (mysqld 8.0.25) starting as process 11924
+2021-05-31T08:18:39.546843Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-05-31T08:18:40.546816Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2021-05-31T08:18:40.751660Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33062
+2021-05-31T08:18:40.804575Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2021-05-31T08:18:40.836766Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2021-05-31T08:18:40.921634Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2021-05-31T08:18:40.927246Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2021-05-31T08:18:40.999592Z 0 [Warning] [MY-010604] [Repl] Neither --relay-log nor --relay-log-index were used; so replication may break when this MySQL server acts as a slave and has his hostname changed!! Please use '--relay-log=XIA24971W-relay-bin' to avoid this problem.
+2021-05-31T08:18:41.043512Z 5 [Warning] [MY-010897] [Repl] Storing MySQL user name or password information in the master info repository is not secure and is therefore not recommended. Please consider using the USER and PASSWORD connection options for START SLAVE; see the 'START SLAVE Syntax' in the MySQL Manual for more information.
+2021-05-31T08:18:41.052791Z 0 [System] [MY-010931] [Server] C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld: ready for connections. Version: '8.0.25'  socket: ''  port: 23306  MySQL Community Server - GPL.
+2021-05-31T08:18:41.055436Z 5 [ERROR] [MY-010584] [Repl] Slave I/O for channel '': error connecting to master 'slave@localhost:3306' - retry-time: 60 retries: 1 message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection. Error_code: MY-002061
+2021-05-31T08:19:41.072323Z 5 [ERROR] [MY-010584] [Repl] Slave I/O for channel '': error connecting to master 'slave@localhost:3306' - retry-time: 60 retries: 2 message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection. Error_code: MY-002061
+```
