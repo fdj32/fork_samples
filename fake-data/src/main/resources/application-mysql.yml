@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/fake
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
