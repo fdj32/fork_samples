@@ -348,6 +348,7 @@ C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysql -P13306 -uroot -p
 ```
 cp -r C:/Users/nfeng/mysql-slave-data C:/Users/nfeng/mysql-slave2-data
 C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave2-data --server-id=3 --port=23306 --mysqlx-port=33062 --read-only
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysql -P23306 -uroot -p
 ```
 Log has errors.
 ```
@@ -364,4 +365,91 @@ Log has errors.
 2021-05-31T08:18:41.052791Z 0 [System] [MY-010931] [Server] C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld: ready for connections. Version: '8.0.25'  socket: ''  port: 23306  MySQL Community Server - GPL.
 2021-05-31T08:18:41.055436Z 5 [ERROR] [MY-010584] [Repl] Slave I/O for channel '': error connecting to master 'slave@localhost:3306' - retry-time: 60 retries: 1 message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection. Error_code: MY-002061
 2021-05-31T08:19:41.072323Z 5 [ERROR] [MY-010584] [Repl] Slave I/O for channel '': error connecting to master 'slave@localhost:3306' - retry-time: 60 retries: 2 message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection. Error_code: MY-002061
+
+
+CHANGE MASTER TO MASTER_HOST='localhost', MASTER_PORT=3306, MASTER_USER='slave', MASTER_PASSWORD='slave', MASTER_LOG_FILE='binlog.000005', MASTER_LOG_POS=156;
+
+mysql> CHANGE MASTER TO MASTER_HOST='localhost', MASTER_PORT=3306, MASTER_USER='slave', MASTER_PASSWORD='slave', MASTER_LOG_FILE='binlog.000005', MASTER_LOG_POS=156;
+ERROR 3021 (HY000): This operation cannot be performed with a running slave io thread; run STOP SLAVE IO_THREAD FOR CHANNEL '' first.
+mysql> STOP SLAVE IO_THREAD FOR CHANNEL '';
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> CHANGE MASTER TO MASTER_HOST='localhost', MASTER_PORT=3306, MASTER_USER='slave', MASTER_PASSWORD='slave', MASTER_LOG_FILE='binlog.000005', MASTER_LOG_POS=156;
+Query OK, 0 rows affected, 8 warnings (0.02 sec)
+
+mysql>
+
+2021-05-31T08:27:03.151539Z 10 [System] [MY-010597] [Repl] 'CHANGE MASTER TO FOR CHANNEL '' executed'. Previous state master_host='localhost', master_port= 3306, master_log_file='binlog.000002', master_log_pos= 80853073, master_bind=''. New state master_host='localhost', master_port= 3306, master_log_file='binlog.000005', master_log_pos= 156, master_bind=''.
+
 ```
+
+```
+auto.cnf need to change server-uuid ?
+[auto]
+server-uuid=67201892-51a1-4b0e-afe1-9f870838a661
+
+
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave-data --server-id=2 --port=13306 --mysqlx-port=33061 --read-only
+
+2021-05-31T08:43:39.194366Z 0 [System] [MY-010116] [Server] C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld (mysqld 8.0.25) starting as process 6116
+2021-05-31T08:43:39.221724Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-05-31T08:43:40.139311Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2021-05-31T08:43:40.331684Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33061
+2021-05-31T08:43:40.383493Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2021-05-31T08:43:40.401587Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2021-05-31T08:43:40.476026Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2021-05-31T08:43:40.477775Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2021-05-31T08:43:40.522796Z 0 [System] [MY-010931] [Server] C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld: ready for connections. Version: '8.0.25'  socket: ''  port: 13306  MySQL Community Server - GPL.
+
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysql -uroot -p
+
+SHOW MASTER STATUS;
++---------------+----------+--------------+------------------+-------------------+
+| File          | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++---------------+----------+--------------+------------------+-------------------+
+| binlog.000007 |      156 |              |                  |                   |
++---------------+----------+--------------+------------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysql -P13306 -uroot -p
+
+CHANGE MASTER TO MASTER_HOST='localhost', MASTER_PORT=3306, MASTER_USER='slave', MASTER_PASSWORD='slave', MASTER_LOG_FILE='binlog.000007', MASTER_LOG_POS=156;
+
+START SLAVE;
+
+SHOW SLAVE STATUS\G
+
+select * from customer order by id desc limit 10;
+
+
+2021-05-31T08:47:57.953149Z 9 [Warning] [MY-010897] [Repl] Storing MySQL user name or password information in the master info repository is not secure and is therefore not recommended. Please consider using the USER and PASSWORD connection options for START SLAVE; see the 'START SLAVE Syntax' in the MySQL Manual for more information.
+2021-05-31T08:47:57.966813Z 9 [ERROR] [MY-010584] [Repl] Slave I/O for channel '': error connecting to master 'slave@localhost:3306' - retry-time: 60 retries: 1 message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection. Error_code: MY-002061
+2021-05-31T08:48:57.975975Z 9 [ERROR] [MY-010584] [Repl] Slave I/O for channel '': error connecting to master 'slave@localhost:3306' - retry-time: 60 retries: 2 message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection. Error_code: MY-002061
+
+
+SET SQL_LOG_BIN=0;
+alter USER 'slave'@'localhost' IDENTIFIED WITH sha256_password BY 'slave';
+GRANT REPLICATION SLAVE ON *.* TO 'slave'@'localhost';
+SET SQL_LOG_BIN=1;
+
+
+mysql> SET SQL_LOG_BIN=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> alter USER 'slave'@'localhost' IDENTIFIED WITH sha256_password BY 'slave';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'slave'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SET SQL_LOG_BIN=1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+```
+
+https://www.cnblogs.com/liuqw/p/11759705.html  
+
