@@ -449,6 +449,9 @@ mysql> SET SQL_LOG_BIN=1;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql>
+
+2021-05-31T08:53:54.289850Z 8 [Warning] [MY-013360] [Server] Plugin mysql_native_password reported: ''sha256_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'
+2021-05-31T08:53:58.056118Z 25 [Warning] [MY-013360] [Server] Plugin sha256_password reported: ''sha256_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'
 ```
 
 https://www.cnblogs.com/liuqw/p/11759705.html  
