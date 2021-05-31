@@ -151,6 +151,20 @@ Bye
 
 C:/Users/nfeng/mysql-slave/mysql-8.0.25-winx64/bin/mysql -P13306 -uroot -p
 Type: root
+
+C:\Users\nfeng>netstat -an | grep 3306
+  TCP    0.0.0.0:3306           0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:13306          0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:33060          0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:33061          0.0.0.0:0              LISTENING
+  TCP    [::]:3306              [::]:0                 LISTENING
+  TCP    [::]:13306             [::]:0                 LISTENING
+  TCP    [::]:33060             [::]:0                 LISTENING
+  TCP    [::]:33061             [::]:0                 LISTENING
+  TCP    [::1]:3306             [::1]:60691            ESTABLISHED
+  TCP    [::1]:60691            [::1]:3306             ESTABLISHED
+
+C:\Users\nfeng>
 ```
 ## 4. Restart Slave with --read-only
 ```
