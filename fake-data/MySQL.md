@@ -456,3 +456,35 @@ mysql>
 
 https://www.cnblogs.com/liuqw/p/11759705.html  
 
+# [Setting Up Replication Using GTIDs](https://dev.mysql.com/doc/refman/8.0/en/replication-gtids-howto.html)
+
+## Master
+```
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-master-data --gtid_mode=ON --enforce-gtid-consistency=ON
+```
+## Slave
+```
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave-data --server-id=2 --port=13306 --mysqlx-port=33061 --read-only --gtid_mode=ON --enforce-gtid-consistency=ON --skip-slave-start
+
+CHANGE MASTER TO MASTER_HOST = 'localhost', MASTER_PORT = 3306, MASTER_USER = 'slave', MASTER_PASSWORD = 'slave', MASTER_AUTO_POSITION = 1;
+START SLAVE;
+
+OR
+
+CHANGE REPLICATION SOURCE TO SOURCE_HOST = 'localhost', SOURCE_PORT = 3306, SOURCE_USER = 'slave', SOURCE_PASSWORD = 'slave', SOURCE_AUTO_POSITION = 1;
+START REPLICA;
+
+```
+## Verify
+```
+C:/Users/nfeng//mysql-8.0.25-winx64/bin/mysql -uroot -p
+root
+
+C:/Users/nfeng//mysql-8.0.25-winx64/bin/mysql -P13306 -uroot -p
+root
+
+show databases;
+use fake;
+show tables;
+select * from customer order by id desc limit 5;
+```
