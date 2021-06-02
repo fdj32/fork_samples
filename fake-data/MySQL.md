@@ -506,3 +506,32 @@ Query OK, 0 rows affected (0.01 sec)
 
 mysql>
 ```
+## Cascading Replication
+3306->13306->33306
+   |->23306->43306
+
+### Steps
+- 1. From previous multi slave 3306 (server-id=1) -> [13306 (server-id=2), 23306 (server-id=3)]
+- 2. Add two more servers replicated from 2, 3; 2->4, 3->5; copy data from master, remove HOSTNAME.err, HOSTNAME.pid, replace auto.cnf with a new uuid value, start server with new options, change replication source, start replica.
+
+--server-id=4 --port=33306 --mysqlx-port=33063  
+SOURCE_PORT = 13306
+```
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave3-data --server-id=4 --port=33306 --mysqlx-port=33063 --read-only --gtid_mode=ON --enforce-gtid-consistency=ON --skip-slave-start
+
+C:/Users/nfeng//mysql-8.0.25-winx64/bin/mysql -P33306 -uroot -p
+
+CHANGE REPLICATION SOURCE TO SOURCE_HOST = 'localhost', SOURCE_PORT = 13306, SOURCE_USER = 'slave', SOURCE_PASSWORD = 'slave', SOURCE_AUTO_POSITION = 1;
+START REPLICA;
+```
+--server-id=5 --port=43306 --mysqlx-port=33064  
+SOURCE_PORT = 23306
+```
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave4-data --server-id=5 --port=43306 --mysqlx-port=33064 --read-only --gtid_mode=ON --enforce-gtid-consistency=ON --skip-slave-start
+
+C:/Users/nfeng//mysql-8.0.25-winx64/bin/mysql -P43306 -uroot -p
+
+CHANGE REPLICATION SOURCE TO SOURCE_HOST = 'localhost', SOURCE_PORT = 23306, SOURCE_USER = 'slave', SOURCE_PASSWORD = 'slave', SOURCE_AUTO_POSITION = 1;
+START REPLICA;
+
+```
