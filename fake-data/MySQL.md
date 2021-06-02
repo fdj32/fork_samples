@@ -488,3 +488,21 @@ use fake;
 show tables;
 select * from customer order by id desc limit 5;
 ```
+## Multi slave
+```
+C:/Users/nfeng/mysql-8.0.25-winx64/bin/mysqld -h C:/Users/nfeng/mysql-slave2-data --server-id=3 --port=23306 --mysqlx-port=33062 --read-only --gtid_mode=ON --enforce-gtid-consistency=ON --skip-slave-start
+
+C:/Users/nfeng//mysql-8.0.25-winx64/bin/mysql -P23306 -uroot -p
+root
+
+CHANGE REPLICATION SOURCE TO SOURCE_HOST = 'localhost', SOURCE_PORT = 3306, SOURCE_USER = 'slave', SOURCE_PASSWORD = 'slave', SOURCE_AUTO_POSITION = 1;
+START REPLICA;
+
+mysql> CHANGE REPLICATION SOURCE TO SOURCE_HOST = 'localhost', SOURCE_PORT = 3306, SOURCE_USER = 'slave', SOURCE_PASSWORD = 'slave', SOURCE_AUTO_POSITION = 1;
+Query OK, 0 rows affected, 1 warning (0.14 sec)
+
+mysql> START REPLICA;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+```
