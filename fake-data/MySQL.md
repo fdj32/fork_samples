@@ -56,6 +56,14 @@ Query OK, 0 rows affected (0.03 sec)
 ```
 ## 2. Create A New User For Slave
 - Create slave user on master
+> Notice
+> 
+> CREATE USER "slave"@"localhost" IDENTIFIED WITH caching_sha2_password BY "slave";
+```
+mysql> CREATE USER "slave"@"localhost" IDENTIFIED WITH caching_sha2_password BY "slave";
+Query OK, 0 rows affected (0.02 sec)
+```
+caching_sha2_password is used to replace sha256_password and plain text.
 ```
 CREATE USER "slave"@"localhost" IDENTIFIED BY "slave";
 GRANT REPLICATION SLAVE ON *.* TO "slave"@"localhost";
