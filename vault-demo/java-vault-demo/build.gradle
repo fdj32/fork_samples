@@ -14,7 +14,7 @@ plugins {
     id 'application'
 
     // apply plugin: 'org.springframework.boot'
-    id 'org.springframework.boot' version '2.5.0'
+    id 'org.springframework.boot' version '2.7.0'
 
     // https://plugins.gradle.org/plugin/io.spring.dependency-management
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -42,9 +42,9 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-vault-config:3.0.2'
 
     implementation 'com.github.javafaker:javafaker:1.0.2'
-    implementation 'com.h2database:h2:1.4.200'
+    implementation 'com.h2database:h2:2.1.212'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-    implementation 'org.yaml:snakeyaml:1.29'
+    implementation 'org.yaml:snakeyaml:1.30'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13.2'
