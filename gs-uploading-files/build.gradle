@@ -25,6 +25,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
+configurations.all {
+    exclude group: 'org.apache.logging.log4j'
+    exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+}
+
 startScripts {
 	dependsOn(bootJar)
 }

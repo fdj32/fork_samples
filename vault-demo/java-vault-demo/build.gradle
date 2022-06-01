@@ -71,6 +71,8 @@ configurations.all {
     exclude group: 'org.glassfish.jaxb'
     exclude group: 'org.javassist'
     exclude group: 'org.jvnet.staxex'
+    exclude group: 'org.apache.logging.log4j'
+    exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
 }
 
 application {
