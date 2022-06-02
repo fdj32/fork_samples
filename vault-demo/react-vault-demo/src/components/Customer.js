@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RootUrl } from './config';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { Card, CardHeader, CardBody, Button, Table, Row, Col, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Card, CardHeader, CardBody, Button, Table, Row, Col, Input, InputGroup, InputGroupText } from 'reactstrap';
 import SecurityQuestionAnswer from './SecurityQuestionAnswer';
 
 export default class Customer extends Component {
@@ -124,17 +124,13 @@ export default class Customer extends Component {
                 <Col md={2}>
                     <InputGroup>
                         <Input type="number" className="form-control" name="weightMin" placeholder="Weight Min" onChange={this.handleChange} />
-                        <InputGroupAddon addonType="append">
-                            <InputGroupText>kg</InputGroupText>
-                        </InputGroupAddon>
+                        <InputGroupText>kg</InputGroupText>
                     </InputGroup>
                 </Col>
                 <Col md={2}>
                     <InputGroup>
                         <Input type="number" className="form-control" name="weightMax" placeholder="Weight Max" onChange={this.handleChange} />
-                        <InputGroupAddon addonType="append">
-                            <InputGroupText>kg</InputGroupText>
-                        </InputGroupAddon>
+                        <InputGroupText>kg</InputGroupText>
                     </InputGroup>
                 </Col>
             </Row>
