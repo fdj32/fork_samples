@@ -7,8 +7,8 @@
 plugins {
 	id 'java'
 	id 'application'
-	id 'org.springframework.boot' version '2.7.1'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 java {
@@ -28,6 +28,7 @@ dependencies {
 configurations.all {
     exclude group: 'org.apache.logging.log4j'
     exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+	exclude group: 'log4j'
 }
 
 startScripts {
