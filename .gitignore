@@ -24,3 +24,6 @@ cppreference/w/c/chrono/strftime
 cppreference/w/c/chrono/gmtime
 cppreference/w/c/chrono/gmtime.dSYM/Contents/Info.plist
 cppreference/w/c/chrono/gmtime.dSYM/Contents/Resources/DWARF/gmtime
+cppreference/w/c/chrono/localtime
+cppreference/w/c/chrono/localtime.dSYM/Contents/Info.plist
+cppreference/w/c/chrono/localtime.dSYM/Contents/Resources/DWARF/localtime
