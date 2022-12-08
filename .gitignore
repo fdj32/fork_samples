@@ -29,3 +29,15 @@ cppreference/w/c/chrono/localtime.dSYM/Contents/Resources/DWARF/localtime
 cppreference/w/c/chrono/mktime
 cppreference/w/c/chrono/mktime.dSYM/Contents/Info.plist
 cppreference/w/c/chrono/mktime.dSYM/Contents/Resources/DWARF/mktime
+cppreference/w/c/chrono/clock_t.dSYM/Contents/Info.plist
+cppreference/w/c/chrono/clock_t.dSYM/Contents/Resources/DWARF/clock_t
+cppreference/w/c/chrono/time_t.dSYM/Contents/Info.plist
+cppreference/w/c/chrono/time_t.dSYM/Contents/Resources/DWARF/time_t
+cppreference/w/c/chrono/timespec.dSYM/Contents/Info.plist
+cppreference/w/c/chrono/timespec.dSYM/Contents/Resources/DWARF/timespec
+cppreference/w/c/chrono/tm.dSYM/Contents/Info.plist
+cppreference/w/c/chrono/tm.dSYM/Contents/Resources/DWARF/tm
+cppreference/w/c/chrono/tm
+cppreference/w/c/chrono/time_t
+cppreference/w/c/chrono/timespec
+cppreference/w/c/chrono/clock_t
