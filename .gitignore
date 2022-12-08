@@ -12,7 +12,6 @@ cppreference/w/c/chrono/asctime
 cppreference/w/c/chrono/asctime.dSYM/Contents/Info.plist
 cppreference/w/c/chrono/asctime.dSYM/Contents/Resources/DWARF/asctime
 cppreference/w/c/chrono/ctime.dSYM/Contents/Info.plist
-.gitignore
 cppreference/w/c/chrono/ctime.dSYM/Contents/Resources/DWARF/ctime
 cppreference/w/c/chrono/strftime.dSYM/Contents/Info.plist
 cppreference/w/c/chrono/strftime.dSYM/Contents/Resources/DWARF/strftime
@@ -27,3 +26,6 @@ cppreference/w/c/chrono/gmtime.dSYM/Contents/Resources/DWARF/gmtime
 cppreference/w/c/chrono/localtime
 cppreference/w/c/chrono/localtime.dSYM/Contents/Info.plist
 cppreference/w/c/chrono/localtime.dSYM/Contents/Resources/DWARF/localtime
+cppreference/w/c/chrono/mktime
+cppreference/w/c/chrono/mktime.dSYM/Contents/Info.plist
+cppreference/w/c/chrono/mktime.dSYM/Contents/Resources/DWARF/mktime
