@@ -41,3 +41,9 @@ cppreference/w/c/chrono/tm
 cppreference/w/c/chrono/time_t
 cppreference/w/c/chrono/timespec
 cppreference/w/c/chrono/clock_t
+
+cppreference/w/c/chrono/*.exe
+cppreference/w/c/chrono/*.ilk
+cppreference/w/c/chrono/*.obj
+cppreference/w/c/chrono/*.pdb
+cppreference/w/c/chrono/*.pdb
