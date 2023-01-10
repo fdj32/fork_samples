@@ -4,6 +4,7 @@
         "locale.h": "c",
         "_locale.h": "c",
         "cdefs.h": "c",
-        "_types.h": "c"
+        "_types.h": "c",
+        "stat.h": "c"
     }
 }
