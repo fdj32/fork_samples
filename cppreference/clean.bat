@@ -81,3 +81,8 @@ rm ./w/c/thread/*.exe
 rm ./w/c/thread/*.ilk
 rm ./w/c/thread/*.obj
 rm ./w/c/thread/*.pdb
+
+rm ./w/c/variadic/*.exe
+rm ./w/c/variadic/*.ilk
+rm ./w/c/variadic/*.obj
+rm ./w/c/variadic/*.pdb

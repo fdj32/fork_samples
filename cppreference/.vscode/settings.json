@@ -16,6 +16,8 @@
         "sstream": "c",
         "wctype.h": "c",
         "iosfwd": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "iterator": "c",
+        "xutility": "c"
     }
 }
