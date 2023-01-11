@@ -5,6 +5,8 @@
         "_locale.h": "c",
         "cdefs.h": "c",
         "_types.h": "c",
-        "stat.h": "c"
+        "stat.h": "c",
+        "tgmath.h": "c",
+        "complex.h": "c"
     }
 }

@@ -23,7 +23,7 @@ cppreference/w/c/*/*.exe
 cppreference/w/c/*/*.ilk
 cppreference/w/c/*/*.obj
 cppreference/w/c/*/*.pdb
-cppreference/w/c/*/*.pdb
+cppreference/w/c/*/*/*.pdb
 
 cppreference/w/c/io/redir.txt
 cppreference/w/c/io/test.bin
