@@ -13,6 +13,11 @@ rm ./w/c/chrono/*.ilk
 rm ./w/c/chrono/*.obj
 rm ./w/c/chrono/*.pdb
 
+rm ./w/c/error/*.exe
+rm ./w/c/error/*.ilk
+rm ./w/c/error/*.obj
+rm ./w/c/error/*.pdb
+
 rm ./w/c/io/*.exe
 rm ./w/c/io/*.ilk
 rm ./w/c/io/*.obj
