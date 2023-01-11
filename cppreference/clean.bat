@@ -62,6 +62,11 @@ rm ./w/c/numeric/tgmath/*.ilk
 rm ./w/c/numeric/tgmath/*.obj
 rm ./w/c/numeric/tgmath/*.pdb
 
+rm ./w/c/program/*.exe
+rm ./w/c/program/*.ilk
+rm ./w/c/program/*.obj
+rm ./w/c/program/*.pdb
+
 rm ./w/c/string/byte/*.exe
 rm ./w/c/string/byte/*.ilk
 rm ./w/c/string/byte/*.obj
