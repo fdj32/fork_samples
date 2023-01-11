@@ -7,6 +7,8 @@
         "_types.h": "c",
         "stat.h": "c",
         "tgmath.h": "c",
-        "complex.h": "c"
+        "complex.h": "c",
+        "stdio.h": "c",
+        "math.h": "c"
     }
 }
