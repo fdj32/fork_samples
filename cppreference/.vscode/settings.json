@@ -14,6 +14,8 @@
         "errno.h": "c",
         "wchar.h": "c",
         "sstream": "c",
-        "wctype.h": "c"
+        "wctype.h": "c",
+        "iosfwd": "c",
+        "string.h": "c"
     }
 }
