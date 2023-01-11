@@ -27,6 +27,11 @@ rm ./w/c/locale/*.ilk
 rm ./w/c/locale/*.obj
 rm ./w/c/locale/*.pdb
 
+rm ./w/c/memory/*.exe
+rm ./w/c/memory/*.ilk
+rm ./w/c/memory/*.obj
+rm ./w/c/memory/*.pdb
+
 rm ./w/c/numeric/complex/*.exe
 rm ./w/c/numeric/complex/*.ilk
 rm ./w/c/numeric/complex/*.obj
