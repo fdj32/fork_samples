@@ -27,6 +27,11 @@ rm ./w/c/io/*.bin
 rm ./w/c/io/*.dat
 rm ./w/c/io/*.txt
 
+rm ./w/c/language/*.exe
+rm ./w/c/language/*.ilk
+rm ./w/c/language/*.obj
+rm ./w/c/language/*.pdb
+
 rm ./w/c/locale/*.exe
 rm ./w/c/locale/*.ilk
 rm ./w/c/locale/*.obj
@@ -61,6 +66,11 @@ rm ./w/c/numeric/tgmath/*.exe
 rm ./w/c/numeric/tgmath/*.ilk
 rm ./w/c/numeric/tgmath/*.obj
 rm ./w/c/numeric/tgmath/*.pdb
+
+rm ./w/c/preprocessor/*.exe
+rm ./w/c/preprocessor/*.ilk
+rm ./w/c/preprocessor/*.obj
+rm ./w/c/preprocessor/*.pdb
 
 rm ./w/c/program/*.exe
 rm ./w/c/program/*.ilk
