@@ -87,6 +87,11 @@ rm ./w/c/thread/*.ilk
 rm ./w/c/thread/*.obj
 rm ./w/c/thread/*.pdb
 
+rm ./w/c/types/*.exe
+rm ./w/c/types/*.ilk
+rm ./w/c/types/*.obj
+rm ./w/c/types/*.pdb
+
 rm ./w/c/variadic/*.exe
 rm ./w/c/variadic/*.ilk
 rm ./w/c/variadic/*.obj
