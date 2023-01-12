@@ -18,6 +18,7 @@
         "iosfwd": "c",
         "string.h": "c",
         "iterator": "c",
-        "xutility": "c"
+        "xutility": "c",
+        "cwchar": "cpp"
     }
 }
