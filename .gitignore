@@ -30,6 +30,11 @@ cppreference/w/*/*/*/*.ilk
 cppreference/w/*/*/*/*.obj
 cppreference/w/*/*/*/*.pdb
 
+cppreference/w/*/*/*/*/*.exe
+cppreference/w/*/*/*/*/*.ilk
+cppreference/w/*/*/*/*/*.obj
+cppreference/w/*/*/*/*/*.pdb
+
 cppreference/w/c/io/redir.txt
 cppreference/w/c/io/test.bin
 cppreference/w/c/io/file.bin
@@ -37,3 +42,4 @@ cppreference/w/c/io/input.txt
 cppreference/w/c/io/fgetwc.dat
 cppreference/w/c/io/file.txt
 cppreference/w/c/io/to.txt
+cppreference/w/cpp/thread/thread/id/hash.exe
