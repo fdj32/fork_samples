@@ -1,6 +1,7 @@
 go/gobyexample.com/*/*.exe
 
-cppreference/w/c/chrono/*.dSYM
+cppreference/w/*/*/*.dSYM
+cppreference/w/*/*/*/*.dSYM
 
 cppreference/w/c/chrono/asctime
 cppreference/w/c/chrono/clock_t
@@ -19,15 +20,15 @@ cppreference/w/c/chrono/timespec
 cppreference/w/c/chrono/tm
 cppreference/w/c/chrono/wcsftime
 
-cppreference/w/c/*/*.exe
-cppreference/w/c/*/*.ilk
-cppreference/w/c/*/*.obj
-cppreference/w/c/*/*.pdb
+cppreference/w/*/*/*.exe
+cppreference/w/*/*/*.ilk
+cppreference/w/*/*/*.obj
+cppreference/w/*/*/*.pdb
 
-cppreference/w/c/*/*/*.exe
-cppreference/w/c/*/*/*.ilk
-cppreference/w/c/*/*/*.obj
-cppreference/w/c/*/*/*.pdb
+cppreference/w/*/*/*/*.exe
+cppreference/w/*/*/*/*.ilk
+cppreference/w/*/*/*/*.obj
+cppreference/w/*/*/*/*.pdb
 
 cppreference/w/c/io/redir.txt
 cppreference/w/c/io/test.bin
@@ -36,4 +37,3 @@ cppreference/w/c/io/input.txt
 cppreference/w/c/io/fgetwc.dat
 cppreference/w/c/io/file.txt
 cppreference/w/c/io/to.txt
-
