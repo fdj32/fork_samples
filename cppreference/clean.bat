@@ -106,3 +106,34 @@ rm ./w/c/variadic/*.exe
 rm ./w/c/variadic/*.ilk
 rm ./w/c/variadic/*.obj
 rm ./w/c/variadic/*.pdb
+
+
+rm ./w/cpp/experimental/reflect/*.exe
+rm ./w/cpp/experimental/reflect/*.ilk
+rm ./w/cpp/experimental/reflect/*.obj
+rm ./w/cpp/experimental/reflect/*.pdb
+
+rm ./w/cpp/feature_test/*.exe
+rm ./w/cpp/feature_test/*.ilk
+rm ./w/cpp/feature_test/*.obj
+rm ./w/cpp/feature_test/*.pdb
+
+rm ./w/cpp/thread/*.exe
+rm ./w/cpp/thread/*.ilk
+rm ./w/cpp/thread/*.obj
+rm ./w/cpp/thread/*.pdb
+
+rm ./w/cpp/thread/thread/*.exe
+rm ./w/cpp/thread/thread/*.ilk
+rm ./w/cpp/thread/thread/*.obj
+rm ./w/cpp/thread/thread/*.pdb
+
+rm ./w/cpp/thread/thread/id/*.exe
+rm ./w/cpp/thread/thread/id/*.ilk
+rm ./w/cpp/thread/thread/id/*.obj
+rm ./w/cpp/thread/thread/id/*.pdb
+
+rm ./w/cpp/thread/jthread/*.exe
+rm ./w/cpp/thread/jthread/*.ilk
+rm ./w/cpp/thread/jthread/*.obj
+rm ./w/cpp/thread/jthread/*.pdb
