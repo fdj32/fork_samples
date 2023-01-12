@@ -20,6 +20,7 @@
         "iterator": "c",
         "xutility": "c",
         "cwchar": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "chrono": "cpp"
     }
 }
