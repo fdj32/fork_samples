@@ -19,6 +19,7 @@
         "string.h": "c",
         "iterator": "c",
         "xutility": "c",
-        "cwchar": "cpp"
+        "cwchar": "cpp",
+        "thread": "cpp"
     }
 }
