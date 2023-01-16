@@ -24,6 +24,16 @@
         "stop_token": "cpp",
         "cstdint": "cpp",
         "type_traits": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "future": "cpp",
+        "array": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "forward_list": "cpp",
+        "xlocinfo": "cpp",
+        "xstring": "cpp"
     }
 }
