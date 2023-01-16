@@ -20,6 +20,10 @@
         "iterator": "c",
         "xutility": "c",
         "cwchar": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "stop_token": "cpp",
+        "cstdint": "cpp",
+        "type_traits": "cpp",
+        "iostream": "cpp"
     }
 }
