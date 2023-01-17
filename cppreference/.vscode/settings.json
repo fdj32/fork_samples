@@ -53,6 +53,11 @@
         "span": "cpp",
         "numeric": "cpp",
         "forward_list": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "filesystem": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "fstream": "cpp",
+        "cstddef": "cpp"
     }
 }
