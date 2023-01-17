@@ -58,6 +58,10 @@
         "cstdio": "cpp",
         "cstdlib": "cpp",
         "fstream": "cpp",
-        "cstddef": "cpp"
+        "cstddef": "cpp",
+        "clocale": "cpp",
+        "xlocale": "cpp",
+        "xloctime": "cpp",
+        "xiosbase": "cpp"
     }
 }
