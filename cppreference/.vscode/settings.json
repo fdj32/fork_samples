@@ -111,6 +111,8 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "valarray": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "cerrno": "cpp",
+        "cfloat": "cpp"
     }
 }
