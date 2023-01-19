@@ -109,6 +109,7 @@
         "xlocmon": "cpp",
         "xlocnum": "cpp",
         "xtr1common": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "valarray": "cpp"
     }
 }
