@@ -110,6 +110,7 @@
         "xlocnum": "cpp",
         "xtr1common": "cpp",
         "xtree": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "cfenv": "cpp"
     }
 }
