@@ -94,6 +94,7 @@
         "cassert": "cpp",
         "utility": "cpp",
         "queue": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "cerrno": "cpp"
     }
 }
