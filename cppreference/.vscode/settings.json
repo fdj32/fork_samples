@@ -92,6 +92,8 @@
         "algorithm": "cpp",
         "iterator": "cpp",
         "cassert": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "queue": "cpp",
+        "functional": "cpp"
     }
 }
