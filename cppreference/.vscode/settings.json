@@ -91,6 +91,7 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "iterator": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "utility": "cpp"
     }
 }
