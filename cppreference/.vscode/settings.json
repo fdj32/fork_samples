@@ -102,6 +102,7 @@
         "coroutine": "cpp",
         "csignal": "cpp",
         "any": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "scoped_allocator": "cpp"
     }
 }
