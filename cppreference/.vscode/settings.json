@@ -95,6 +95,11 @@
         "utility": "cpp",
         "queue": "cpp",
         "functional": "cpp",
-        "cerrno": "cpp"
+        "cerrno": "cpp",
+        "memory_resource": "cpp",
+        "filesystem": "cpp",
+        "cinttypes": "cpp",
+        "coroutine": "cpp",
+        "csignal": "cpp"
     }
 }
