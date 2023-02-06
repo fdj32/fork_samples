@@ -12,17 +12,21 @@ SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c')
 
 TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 
+CFLAGS := -std=c23
+
+CPPFLAGS := -std=c++20
+
 all: $(TARGET_EXEC)
 
 # Build step for C source
 $(BUILD_DIR)/%.c.exe: %.c
 	mkdir -p $(dir $@)
-	$(CC) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 # Build step for C++ source
 $(BUILD_DIR)/%.cpp.exe: %.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $< -o $@
+	$(CXX) $(CPPFLAGS) $< -o $@
 
 .PHONY: clean
 clean:
