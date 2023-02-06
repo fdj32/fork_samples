@@ -12,7 +12,7 @@ SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c')
 
 TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 
-CFLAGS := -std=c23
+CFLAGS := -std=c2x
 
 CPPFLAGS := -std=c++23
 
