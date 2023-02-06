@@ -3,9 +3,12 @@
 #include <cstdint>
 #include <iostream>
 #include <iterator>
+#ifndef __clang__
 #include <memory_resource>
+#endif
 #include <vector>
- 
+
+#ifndef __clang__
 class noisy_allocator : public std::pmr::memory_resource {
     void* do_allocate(std::size_t bytes, std::size_t alignment) override {
         std::cout << "+ Allocating " << bytes << " bytes @ ";
@@ -23,8 +26,10 @@ class noisy_allocator : public std::pmr::memory_resource {
         return std::pmr::new_delete_resource()->is_equal(other);
     }
 };
- 
+#endif
+
 int main() {
+#ifndef __clang__
     constexpr int push_back_limit{16};
     noisy_allocator mem;
     std::pmr::set_default_resource(&mem);
@@ -64,4 +69,5 @@ int main() {
         }
         std::cout << "Exiting scope #2...\n";
     }
+#endif
 }

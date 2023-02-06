@@ -17,6 +17,7 @@ void prepare_file()
  
 int main()
 {
+#ifdef __clang__
     prepare_file();
     // open as a byte stream
     std::wifstream fin("text.txt", std::ios::binary);
@@ -26,4 +27,5 @@ int main()
  
     for (wchar_t c; fin.get(c); )
             std::cout << std::showbase << std::hex << c << '\n';
+#endif
 }

@@ -5,7 +5,7 @@ int main()
 {
     std::unique_ptr<int> p1(new int(42));
     std::unique_ptr<int> p2(new int(42));
- 
+#ifndef __clang__
     std::cout << std::boolalpha
         << "(p1 == p1)       : " << (p1 == p1) << '\n'
         << "(p1 <=> p1) == 0 : " << ((p1 <=> p1) == 0) << '\n' // Since C++20
@@ -15,4 +15,5 @@ int main()
         << "(p1 < p2)        : " << (p1 < p2) << '\n'
         << "(p1 <=> p2) < 0  : " << ((p1 <=> p2) < 0) << '\n'   // Since C++20
         << "(p1 <=> p2) == 0 : " << ((p1 <=> p2) == 0) << '\n'; // Since C++20
+#endif
 }

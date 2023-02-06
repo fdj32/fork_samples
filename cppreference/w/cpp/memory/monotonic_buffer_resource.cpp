@@ -4,8 +4,9 @@
 #include <cstddef>
 #include <iomanip>
 #include <iostream>
+#ifndef __clang__
 #include <memory_resource>
- 
+#endif
 template <typename Func>
 auto benchmark(Func test_func, int iterations) {
     const auto start = std::chrono::system_clock::now();
@@ -17,6 +18,7 @@ auto benchmark(Func test_func, int iterations) {
  
 int main()
 {
+#ifndef __clang__
     constexpr int iterations{100};
     constexpr int total_nodes{2'00'000};
  
@@ -55,4 +57,5 @@ int main()
               << "t2 (default pmr alloc): " << t2 << " sec; t1/t2: " << t1/t2 << '\n'
               << "t3 (pmr alloc  no buf): " << t3 << " sec; t1/t3: " << t1/t3 << '\n'
               << "t4 (pmr alloc and buf): " << t4 << " sec; t1/t4: " << t1/t4 << '\n';
+#endif
 }

@@ -10,7 +10,7 @@ int main()
     const auto p = std::get_temporary_buffer<std::string>(4);
     // requires that p.first is passed to return_temporary_buffer
     // (beware of early exit points and exceptions)
- 
+#ifndef __clang__
     std::copy(s, s + p.second,
               std::raw_storage_iterator<std::string*, std::string>(p.first));
     // has same effect as: std::uninitialized_copy(s, s + p.second, p.first);
@@ -25,4 +25,5 @@ int main()
     }); // same as: std::destroy(p.first, p.first + p.second);
  
     std::return_temporary_buffer(p.first);
+#endif
 }

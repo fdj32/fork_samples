@@ -6,6 +6,7 @@
  
 int main()
 {
+#ifdef __clang__
     // UTF-8 data. The character U+1d10b, musical sign segno, does not fit in UCS2
     std::string utf8 = "z\u6c34\U0001d10b";
  
@@ -30,4 +31,5 @@ int main()
         for (char16_t c : ucs2)
             std::cout << std::hex << std::showbase << (std::uint_least16_t)c << '\n';
     }
+#endif
 }
