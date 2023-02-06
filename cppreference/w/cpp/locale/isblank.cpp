@@ -3,8 +3,10 @@
  
 void try_with(wchar_t c, const char* loc)
 {
+    #ifndef __clang__
     std::wcout << "isblank('" << c << "', locale(\"" << loc << "\")) returned " << std::boolalpha
                << std::isblank(c, std::locale(loc)) << '\n';
+    #endif    
 }
 int main()
 {

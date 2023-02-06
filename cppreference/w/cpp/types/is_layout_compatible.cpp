@@ -20,6 +20,7 @@ enum class E1 : int {};
 int main()
 {
     std::cout << std::boolalpha << std::left;
+    #ifndef __clang__
     SHOW(std::is_layout_compatible_v<const void, volatile void>);
     SHOW(std::is_layout_compatible_v<Foo, Bar>);
     SHOW(std::is_layout_compatible_v<Foo[2], Bar[2]>);
@@ -28,4 +29,5 @@ int main()
     SHOW(std::is_layout_compatible_v<long, unsigned long>);
     SHOW(std::is_layout_compatible_v<char*, const char*>);
     SHOW(std::is_layout_compatible_v<char*, char* const>);
+    #endif
 }

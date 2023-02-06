@@ -1,4 +1,4 @@
-#include <boost/core/demangle.hpp>
+//#include <boost/core/demangle.hpp>
  
 #include <iostream>
 #include <typeinfo>
@@ -14,7 +14,8 @@ int main() {
     std::cout << typeid(*pb).name() << '\n';
     pb = &d1;
     std::cout << typeid(*pb).name() << '\n';
- 
+ /*
     std::string real_name = boost::core::demangle(typeid(pb).name());
     std::cout << typeid(pb).name() << " => " << real_name << '\n';
+*/
 }

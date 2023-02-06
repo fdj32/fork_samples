@@ -1,4 +1,3 @@
-Run this code
 #include <iostream>
 #include <locale>
  

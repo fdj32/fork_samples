@@ -9,8 +9,8 @@ int main()
     std::cout << std::hex << std::showbase;
  
     std::cout << "in the default locale, toupper(" << (std::wint_t)c << ") = "
-              << std::toupper(c, std::locale()) << '\n';
+              << (std::wint_t)std::toupper(c, std::locale()) << '\n';
  
     std::cout << "in Unicode locale, toupper(" << (std::wint_t)c << ") = "
-              << std::toupper(c, std::locale("en_US.utf8")) << '\n';
+              << (std::wint_t)std::toupper(c, std::locale("en_US.utf8")) << '\n';
 }

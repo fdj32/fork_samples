@@ -13,6 +13,7 @@ int main()
 {
     // loc is a "C" locale with myfacet added
     std::locale loc(std::locale::classic(), new myfacet);
+    #ifndef __clang__
     std::cout << std::boolalpha
               << "Can loc classify chars? "
               << std::has_facet<std::ctype<char>>(loc) << '\n'
@@ -20,4 +21,5 @@ int main()
               << std::has_facet<std::ctype<char32_t>>(loc) << '\n'
               << "Does loc implement myfacet? "
               << std::has_facet<myfacet>(loc) << '\n';
+    #endif
 }

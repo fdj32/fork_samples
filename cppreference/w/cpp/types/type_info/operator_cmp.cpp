@@ -43,8 +43,10 @@ int main()
 {
     print_info(employee{"Paul","Economics"});
     print_info(person{"Kate"});
- 
+/*
     if constexpr (typeid(employee) != typeid(person)) // C++23
     {
         std::cout << "class `employee` != class `person`\n";
     }
+*/
+}

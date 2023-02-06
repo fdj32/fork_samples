@@ -15,9 +15,11 @@ class NonStdLayout : public Baz {
  
 int main() 
 {
+    #ifndef __clang__
     std::cout << std::boolalpha
         << std::is_pointer_interconvertible_base_of_v<Bar, Baz> << '\n'
         << std::is_pointer_interconvertible_base_of_v<Foo, Baz> << '\n'
         << std::is_pointer_interconvertible_base_of_v<Baz, NonStdLayout> << '\n'
         << std::is_pointer_interconvertible_base_of_v<NonStdLayout, NonStdLayout> << '\n';
+    #endif
 }

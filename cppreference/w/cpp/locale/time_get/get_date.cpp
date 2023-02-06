@@ -10,7 +10,7 @@ void try_get_date(const std::string& s)
               << "' in the locale " << std::locale().name() << '\n';
     std::istringstream str(s);
     std::ios_base::iostate err = std::ios_base::goodbit;
- 
+/*
     std::tm t;
     std::time_get<char> facet = std::use_facet<std::time_get<char>>(str.getloc())
     std::istreambuf_iterator<char> ret = facet.get_date({str}, {}, str, err, &t);
@@ -28,6 +28,7 @@ void try_get_date(const std::string& s)
         std::copy(ret, {}, std::ostreambuf_iterator<char>(std::cout));
         std::cout << '\n';
     }
+*/
 }
 int main()
 {
