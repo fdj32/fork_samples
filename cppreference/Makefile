@@ -27,7 +27,7 @@ all: $(TARGET_EXEC)
 # Build step for C source
 $(BUILD_DIR)/%.c.exe: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
 
 # Build step for C++ source
 $(BUILD_DIR)/%.cpp.exe: %.cpp
