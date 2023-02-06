@@ -14,7 +14,7 @@ TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 
 CFLAGS := -std=c23
 
-CPPFLAGS := -std=c++20
+CPPFLAGS := -std=c++23
 
 all: $(TARGET_EXEC)
 
