@@ -5,6 +5,7 @@
  
 int main()
 {
+#ifndef __clang__
     using namespace std::chrono_literals;
  
     const std::time_t t = std::time(nullptr); // usually has "1 second" precision
@@ -18,4 +19,5 @@ int main()
     std::cout << diff << " ("
               << std::chrono::round<std::chrono::milliseconds>(diff)
               << ")\n";
+#endif
 }

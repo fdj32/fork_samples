@@ -4,7 +4,7 @@
 int main()
 {
     std::cout << "i: C: ISO: Weekday:\n";
- 
+#ifndef __clang__
     for (unsigned i{0}; i != 8; ++i) {
         const std::chrono::weekday w{i};
         std::cout << i << "  "
@@ -12,4 +12,5 @@ int main()
                   << w.iso_encoding() << "    "
                   << w << '\n';
     }
+#endif
 }

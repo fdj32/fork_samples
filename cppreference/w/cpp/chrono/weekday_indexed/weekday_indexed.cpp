@@ -8,5 +8,7 @@ int main()
     static_assert(third_friday == Friday[3]);
  
     weekday_indexed wdi = Tuesday[2]; // represents the 2nd Tuesday
+#ifndef __clang__
     std::cout << year_month_day{ wdi / October / 2019y } << '\n';
+#endif
 }

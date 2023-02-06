@@ -6,9 +6,11 @@
  
 void slow_motion()
 {
+#ifndef __clang__
     static int a[] {1,2,3,4,5,6,7,8,9,10,11,12};
     while (std::ranges::next_permutation(a).found)
     { } // generates 12! permutations
+#endif
 }
  
 int main()
@@ -24,7 +26,7 @@ int main()
  
     const std::chrono::time_point<std::chrono::steady_clock> start =
         std::chrono::steady_clock::now();
- 
+#ifndef __clang__
     std::cout << "Different clocks are not comparable: \n"
               << " System time: " << now.time_since_epoch() << "\n"
               << " Steady time: " << start.time_since_epoch() << "\n";
@@ -37,4 +39,5 @@ int main()
       << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << "µs ≈ "
       << (end - start) / 1ms << "ms ≈ " // almost equivalent form of the above, but
       << (end - start) / 1s << "s.\n";  // using milliseconds and seconds accordingly
+#endif
 }

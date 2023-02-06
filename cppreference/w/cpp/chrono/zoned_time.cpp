@@ -18,6 +18,7 @@ int main()
         "Europe/Laputa",       "Indian/Christmas",
         "Indian/Cocos",        "Pacific/Galapagos",
     };
+#ifndef __clang__
     constexpr auto width = std::ranges::max_element(locations, {},
         [](const auto& s) { return s.length(); })->length();
  
@@ -30,4 +31,5 @@ int main()
             std::cout << "Error: " << ex.what() << '\n';
         }
     }
+#endif
 }

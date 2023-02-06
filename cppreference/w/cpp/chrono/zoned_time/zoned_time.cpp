@@ -4,6 +4,7 @@
  
 int main()
 {
+#ifndef __clang__
     using std::chrono_literals::operator""y;
     using std::operator""sv;
  
@@ -42,4 +43,5 @@ int main()
         std::cout << std::chrono::zoned_time{ Tokyo, tz_NewYork } << " : " << Tokyo << '\n';
         std::cout << std::chrono::zoned_time{ NewYork, tz_Tokyo } << " : " << NewYork << '\n';
     }
+#endif
 }
