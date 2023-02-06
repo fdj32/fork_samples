@@ -20,7 +20,7 @@ else ifeq ($(CXX),c++)
 	CPPFLAGS := -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -fcolor-diagnostics -fansi-escape-codes -g
 endif
 
-LDFLAGS=-lm
+LDFLAGS=-lm -lpthread
 
 all: $(TARGET_EXEC)
 
