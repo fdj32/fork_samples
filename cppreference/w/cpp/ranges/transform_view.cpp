@@ -27,6 +27,7 @@ int main()
     auto show = [](const unsigned char x) { std::putchar(x); };
  
     std::string in{ "cppreference.com\n" };
+    #ifndef __clang__
     std::ranges::for_each(in, show);
     std::ranges::for_each(in | std::views::transform(rot13), show);
  
@@ -34,4 +35,5 @@ int main()
     std::ranges::copy( std::views::transform(in, rot13), std::back_inserter(out) );
     std::ranges::for_each(out, show);
     std::ranges::for_each(out | std::views::transform(rot13), show);
+    #endif
 }

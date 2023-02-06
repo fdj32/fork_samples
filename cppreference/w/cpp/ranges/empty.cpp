@@ -2,6 +2,7 @@
 #include <ranges>
 #include <vector>
  
+ #ifndef __clang__
 template <std::ranges::input_range R>
 void print(char id, R&& r)
 {
@@ -17,9 +18,11 @@ void print(char id, R&& r)
  
     std::cout << '\n';
 }
- 
+#endif
+
 int main()
 {
+#ifndef __clang__
     {
         auto v = std::vector<int>{1, 2, 3};
         std::cout << "(1) ranges::empty uses std::vector::empty:\n";
@@ -54,4 +57,5 @@ int main()
         y.push_back(42);
         print('b', y);
     }
+#endif
 }

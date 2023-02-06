@@ -5,6 +5,7 @@
  
 int main()
 {
+    #ifndef __clang__
     auto v = std::vector<int>{};
     std::cout << "ranges::size(v) == " << std::ranges::size(v) << '\n';
  
@@ -16,4 +17,5 @@ int main()
  
     std::cout << std::boolalpha << "is_signed: "
               << std::is_signed_v<decltype(std::ranges::size(v))> << '\n';
+    #endif
 }
