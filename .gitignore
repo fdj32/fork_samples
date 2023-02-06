@@ -1,3 +1,5 @@
+cppreference/build
+
 go/gobyexample.com/*/*.exe
 
 cppreference/w/*/*/*.dSYM
