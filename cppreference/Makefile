@@ -14,7 +14,11 @@ TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 
 CFLAGS := -std=c2x
 
-CPPFLAGS := -std=c++23
+ifeq ($(CXX),g++)
+	CPPFLAGS := -std=c++23
+else ifeq ($(CXX),c++)
+	CPPFLAGS := -std=c++2b
+endif
 
 all: $(TARGET_EXEC)
 
