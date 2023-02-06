@@ -9,7 +9,7 @@ int main()
  
     constexpr int n {4};
     alignas(alignof(S)) char out[n * sizeof(S)];
- 
+#ifndef __clang__
     try
     {
         auto first {reinterpret_cast<S*>(out)};
@@ -39,4 +39,5 @@ int main()
     } else {
         std::cout << "Unspecified\n";
     }
+#endif
 }

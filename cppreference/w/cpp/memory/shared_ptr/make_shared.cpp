@@ -24,7 +24,7 @@ int main()
     static_assert(std::is_same_v<decltype(sp2), std::shared_ptr<C>>);
     static_assert(std::is_same_v<decltype(sp1), decltype(sp2)>);
     std::cout << "sp2->{ i:" << sp2->i << ", f:" << sp2->f << " }\n";
- 
+#ifndef __clang__
     // shared_ptr to a value-initialized float[64]; overload (2):
     std::shared_ptr<float[]> sp3 = std::make_shared<float[]>(64);
  
@@ -60,4 +60,5 @@ int main()
     // has contents {5, 6}; overload (5):
     std::shared_ptr<std::vector<int>[4]> spC =
         std::make_shared<std::vector<int>[4]>({5, 6});
+#endif
 }

@@ -8,7 +8,7 @@ int main()
  
     constexpr int n {4};
     alignas(alignof(S)) char out[n * sizeof(S)];
- 
+#ifndef __clang__
     try
     {
         auto first {reinterpret_cast<S*>(out)};
@@ -36,5 +36,6 @@ int main()
     std::cout << "\n ";
     std::ranges::uninitialized_value_construct(std::begin(v), std::end(v));
     for (const int i : v) { std::cout << ' ' << static_cast<char>(i + 'A'); }
+#endif
     std::cout << '\n';
 }

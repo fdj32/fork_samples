@@ -18,9 +18,10 @@ struct S {
 int main()
 {
     alignas(S) unsigned char buf[sizeof(S)];
- 
+#ifndef __clang__
     S* ptr = std::ranges::construct_at(reinterpret_cast<S*>(buf), 42, 2.71828f, 3.1415);
     ptr->print();
  
     std::ranges::destroy_at(ptr);
+#endif
 }

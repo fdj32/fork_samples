@@ -9,7 +9,7 @@ int main()
  
     constexpr int n {4};
     alignas(alignof(std::string)) char out[n * sizeof(std::string)];
- 
+ #ifndef __clang__
     try
     {
         auto first {reinterpret_cast<std::string*>(out)};
@@ -27,4 +27,5 @@ int main()
     {
         std::cout << "uninitialized_copy_n exception\n";
     }
+#endif
 }

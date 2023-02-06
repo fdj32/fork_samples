@@ -13,7 +13,7 @@ void print(auto rem, auto first, auto last) {
 int main() {
     std::string in[] { "No", "Diagnostic", "Required", };
     print("initially, in: ", std::begin(in), std::end(in));
- 
+#ifndef __clang__
     if (
         constexpr auto sz = std::size(in);
         void* out = std::aligned_alloc(alignof(std::string), sizeof(std::string) * sz)
@@ -33,4 +33,5 @@ int main() {
         }
         std::free(out);
     }
+#endif
 }

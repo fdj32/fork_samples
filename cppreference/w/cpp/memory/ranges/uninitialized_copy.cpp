@@ -7,7 +7,7 @@
 int main()
 {
     const char* v[] { "This", "is", "an", "example", };
- 
+#ifndef __clang__
     if (const auto sz{std::size(v)};
         void* pbuf = std::aligned_alloc(alignof(std::string), sizeof(std::string) * sz))
     {
@@ -30,4 +30,5 @@ int main()
         }
         std::free(pbuf);
     }
+#endif
 }

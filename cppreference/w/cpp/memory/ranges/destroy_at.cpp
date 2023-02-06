@@ -15,7 +15,8 @@ int main()
         new(buffer + sizeof(Tracer) * i) Tracer{i}; //manually construct objects
  
     auto ptr = std::launder(reinterpret_cast<Tracer*>(buffer));
- 
+#ifndef __clang__
     for (int i = 0; i < 8; ++i)
         std::ranges::destroy_at(ptr + i);
+#endif
 }
