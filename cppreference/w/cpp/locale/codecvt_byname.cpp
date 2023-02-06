@@ -5,6 +5,7 @@
  
 int main()
 {
+    #ifdef __clang__
     // GB18030 narrow multibyte encoding
     std::ofstream("text.txt") << "\x7a"              // letter 'z', U+007a
                                  "\x81\x30\x89\x38"  // letter 'ß', U+00df
@@ -17,4 +18,5 @@ int main()
  
     for (wchar_t c; fin.get(c);)
         std::cout << std::hex << std::showbase << c << '\n';
+    #endif
 }
