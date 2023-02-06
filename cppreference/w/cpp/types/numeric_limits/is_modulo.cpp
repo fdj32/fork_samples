@@ -13,7 +13,7 @@ typename std::enable_if<std::numeric_limits<T>::is_modulo>::type
  
 int main()
 {
-    check_overflow<int>();
-    check_overflow<unsigned long>();
+    //check_overflow<int>();
+    //check_overflow<unsigned long>();
     // check_overflow<float>(); // compile-time error, not a modulo type
 }
