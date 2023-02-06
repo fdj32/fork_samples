@@ -6,7 +6,7 @@
 int main()
 {
     std::array arr{1, 2, 3, 4, 5};
-    auto s = std::ranges::ssize(arr);
+    auto s = std::ssize(arr);
  
     std::cout << "ranges::ssize(arr) = " << s << '\n'
               << "ranges::ssize is "

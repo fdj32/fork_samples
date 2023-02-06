@@ -15,9 +15,9 @@ TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 CFLAGS := -std=c2x
 
 ifeq ($(CXX),g++)
-	CPPFLAGS := -std=c++23 -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors
+	CPPFLAGS := -std=c++23 -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -fcolor-diagnostics -fansi-escape-codes -g
 else ifeq ($(CXX),c++)
-	CPPFLAGS := -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors
+	CPPFLAGS := -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -fcolor-diagnostics -fansi-escape-codes -g
 endif
 
 LDFLAGS=-lm
