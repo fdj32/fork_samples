@@ -15,10 +15,12 @@ TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 CFLAGS := -std=c2x
 
 ifeq ($(CXX),g++)
-	CPPFLAGS := -std=c++23
+	CPPFLAGS := -std=c++23 -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors
 else ifeq ($(CXX),c++)
-	CPPFLAGS := -std=c++2b
+	CPPFLAGS := -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors
 endif
+
+LDFLAGS=-lm -latomic
 
 all: $(TARGET_EXEC)
 
@@ -30,7 +32,7 @@ $(BUILD_DIR)/%.c.exe: %.c
 # Build step for C++ source
 $(BUILD_DIR)/%.cpp.exe: %.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CPPFLAGS) $< -o $@
+	$(CXX) $(CPPFLAGS) $(LDFLAGS) $< -o $@
 
 .PHONY: clean
 clean:
