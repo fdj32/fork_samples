@@ -4,6 +4,12 @@
  
 int main()
 {
+    #ifdef __cpp_lib_addressof_constexpr
+        std::cout << "__cpp_lib_addressof_constexpr: " << __cpp_lib_addressof_constexpr;
+    #endif
+    #ifdef __cpp_lib_ranges_repeat
+        std::cout << "__cpp_lib_ranges_repeat: " << __cpp_lib_ranges_repeat;
+
     for (int i : std::ranges::iota_view{1, 10})
         std::cout << i << ' ';
     std::cout << '\n';
@@ -28,5 +34,8 @@ int main()
     std::ranges::for_each(std::views::iota(1, 10), [](int i) {
         std::cout << i << ' ';
     });
+
+    #endif
+
     std::cout << '\n';
 }
