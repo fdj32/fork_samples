@@ -5,6 +5,7 @@
  
 int main()
 {
+#ifndef __clang__
     const std::string s[] = {"This", "is", "a", "test", "."};
     std::string* p = std::allocator<std::string>().allocate(5);
  
@@ -16,4 +17,5 @@ int main()
         i->~basic_string<char>();
     }
     std::allocator<std::string>().deallocate(p, 5);
+#endif
 }

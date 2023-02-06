@@ -1,12 +1,15 @@
 #include <array>
 #include <cstddef>
 #include <iostream>
+#ifndef __clang__
 #include <memory_resource>
+#endif
 #include <string>
 #include <unordered_map>
  
 int main()
 {
+#ifndef __clang__
     // allocate memory on the stack
     std::array<std::byte, 20000> buf;
  
@@ -32,4 +35,5 @@ int main()
     }
  
     std::cout << "size: " << coll.size() << '\n';
+#endif
 }

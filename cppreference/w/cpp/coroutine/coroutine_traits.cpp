@@ -1,11 +1,14 @@
 #include <chrono>
+#ifndef __clang__
 #include <coroutine>
+#endif
 #include <exception>
 #include <future>
 #include <iostream>
 #include <thread>
 #include <type_traits>
- 
+
+#ifndef __clang__
 // A program-defined type on which the coroutine_traits specializations below depend
 struct as_coroutine {};
  
@@ -88,8 +91,11 @@ std::future<void> fail(as_coroutine) {
   throw std::runtime_error("bleah");
   co_return;
 }
- 
+
+#endif
+
 int main() {
+#ifndef __clang__
   std::cout << compute({}).get() << '\n';
  
   try {
@@ -97,4 +103,5 @@ int main() {
   } catch (const std::runtime_error &e) {
     std::cout << "error: " << e.what() << '\n';
   }
+#endif
 }

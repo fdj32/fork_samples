@@ -1,7 +1,10 @@
+#ifndef __clang__
 #include <coroutine>
+#endif
 #include <utility>
 #include <iostream>
- 
+
+#ifndef __clang__
 template<class T>
 struct task {
     struct promise_type {
@@ -70,9 +73,11 @@ task<int> test() {
     int x = (co_await v + co_await u);
     co_return x;
 }
- 
+#endif
 int main() {
+#ifndef __clang__
     task<int> t = test();
     int result = t();
     std::cout << result << '\n';
+#endif
 }

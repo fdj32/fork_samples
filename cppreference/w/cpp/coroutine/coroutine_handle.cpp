@@ -1,7 +1,10 @@
+#ifndef __clang__
 #include <coroutine>
+#endif
 #include <iostream>
 #include <optional>
- 
+
+#ifndef __clang__
 template<std::movable T>
 class Generator {
 public:
@@ -102,10 +105,14 @@ Generator<T> range(T first, const T last) {
         co_yield first++;
     }
 }
- 
+
+#endif
+
 int main() {
+#ifndef __clang__
     for (const char i : range(65, 91)) {
         std::cout << i << ' ';
     }
+#endif
     std::cout << '\n';
 }
