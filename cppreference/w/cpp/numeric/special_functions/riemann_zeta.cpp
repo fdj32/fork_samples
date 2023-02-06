@@ -1,7 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <numbers>
-const auto π² = std::pow(std::numbers::pi,2);
+const auto pi2 = std::pow(std::numbers::pi,2);
 int main()
 {
     // spot checks for well-known values
@@ -10,5 +10,5 @@ int main()
               << "ζ(1) = " << std::riemann_zeta(1) << '\n'
               << "ζ(0.5) = " << std::riemann_zeta(0.5) << '\n'
               << "ζ(2) = " << std::riemann_zeta(2) << ' '
-              << "(π²/6 = " << π²/6 << ")\n";
+              << "(π²/6 = " << pi2/6 << ")\n";
 }
