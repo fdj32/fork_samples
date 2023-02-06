@@ -6,6 +6,7 @@
  
 int main()
 {
+#ifndef __clang__
     const std::string s[] = {"string", "1", "test", "..."};
     const auto p = std::get_temporary_buffer<std::string>(4);
     // requires that p.first is passed to return_temporary_buffer
@@ -25,4 +26,5 @@ int main()
     }); // same as: std::destroy(p.first, p.first + p.second);
  
     std::return_temporary_buffer(p.first);
+#endif
 }
