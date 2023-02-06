@@ -14,6 +14,7 @@ struct deletable_facet : Facet
  
 int main()
 {
+#ifdef __clang__
     // classify a single character using the default locale
     auto& f = std::use_facet<std::ctype<char>>(std::locale());
     char c = '0';
@@ -36,4 +37,5 @@ int main()
           std::cout << " punct ";
        std::cout << '\n';
     }
+#endif
 }
