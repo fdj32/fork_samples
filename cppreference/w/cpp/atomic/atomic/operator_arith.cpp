@@ -44,6 +44,7 @@ int main()
             }
         }
     };
- 
+#ifndef __clang__
     std::jthread j1(work, 'A'), j2(work, 'B'), j3(work, 'C'), j4(work, 'D');
+#endif
 }

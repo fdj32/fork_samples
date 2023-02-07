@@ -1,11 +1,13 @@
 #include <vector>
+#ifndef __clang__
 #include <mdspan>
 #include <print>
- 
+#endif
+
 int main()
 {
   std::vector v = {1,2,3,4,5,6,7,8,9,10,11,12};
- 
+#ifndef __clang__
   // View data as contiguous memory representing 2 rows of 6 ints each
   auto ms2 = std::mdspan(v.data(), 2, 6);
   // View the same data as a 3D array 2 x 3 x 2
@@ -27,4 +29,5 @@ int main()
       std::println("");
     }
   }
+#endif
 }

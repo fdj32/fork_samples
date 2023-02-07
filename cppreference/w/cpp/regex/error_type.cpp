@@ -58,7 +58,7 @@ void regular_expression_checker(const std::string& text,
 }
  
 int main() {
- 
+ #ifndef __clang__
     constexpr std::regex::flag_type your_flags
         = std::regex::flag_type{0}
     // Choose one of the supported grammars:
@@ -84,4 +84,5 @@ int main() {
     regular_expression_checker("Invalid!", R"([.)", your_flags);
     regular_expression_checker("Invalid!", R"([.]{})", your_flags);
     regular_expression_checker("Invalid!", R"([1-0])", your_flags);
+#endif
 }

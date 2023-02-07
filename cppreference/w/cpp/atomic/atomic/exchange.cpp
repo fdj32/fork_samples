@@ -2,7 +2,9 @@
 #include <atomic>
 #include <cstddef>
 #include <iostream>
+#ifndef __clang__
 #include <syncstream>
+#endif
 #include <thread>
 #include <vector>
  
@@ -18,11 +20,13 @@ int main(){
             // each thread is writing a value from its own knowledge
             const int current = atom.exchange(next);
             counter++;
+#ifndef __clang__
             // sync writing to prevent from interrupting by other threads
             std::osyncstream(std::cout)
                 << '#' << id << " (" << std::this_thread::get_id()
                 << ") wrote " << next << " replacing the old value "
                 << current << '\n';
+#endif
             next = std::max(current, next) + 1;
         }
     };

@@ -14,6 +14,7 @@ void do_work(int thread_num)
  
 int main()
 {
+#ifndef __clang__
     {
         std::jthread th0{do_work, 0};
         std::jthread th1{do_work, 1};
@@ -21,7 +22,7 @@ int main()
         std::jthread th3{do_work, 3};
         std::jthread th4{do_work, 4};
     }
- 
+#endif
     std::cout << "Result : " << data << '\n';
  
     for (long long val : return_values) {
