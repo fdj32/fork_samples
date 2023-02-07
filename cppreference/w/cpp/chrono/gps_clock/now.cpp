@@ -8,6 +8,7 @@ volatile int sink;
 int main()
 {
     std::cout << std::fixed << std::setprecision(9) << std::left;
+    /*
     for (auto size = 1ull; size < 1000'000'000ull; size *= 100) {
         // record start time
         auto start = std::chrono::gps_clock::now();
@@ -20,4 +21,5 @@ int main()
         std::cout << "Time to fill and iterate a vector of " << std::setw(9)
                   << size << " ints : " << diff.count() << " s\n";
     }
+    */
 }

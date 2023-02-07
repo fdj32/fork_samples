@@ -8,7 +8,7 @@ int main()
  
     d1 == d2 ? std::cout << "d1 and d2 are equal\n"
              : std::cout << "d1 and d2 are not equal\n";
- 
+/*
     auto res = d1 <=> d2;
     if (res < 0)
         std::cout << "d1 is less than d2\n";
@@ -22,4 +22,5 @@ int main()
     std::cout << std::boolalpha
               << (6d < 9d) << ' ' << (6d == 6d) << ' ' << (6d <= 9d) << ' '
               << (9d > 6d) << ' ' << (9d != 6d) << ' ' << (9d >= 6d) << '\n';
+*/
 }
