@@ -8,7 +8,9 @@ struct id { int i; explicit id(int i) : i{i} {} };
  
 void print(id i, const auto& v) {
     std::cout << i.i << ") ";
+#ifndef __clang__
     std::ranges::for_each(v, [](auto const& e) { std::cout << e << ' '; });
+#endif
     std::cout << '\n';
 }
  
@@ -18,7 +20,7 @@ int main()
     std::vector<int> v{1, 2, 1, 1, 3, 3, 3, 4, 5, 4};
  
     print(id{1}, v);
- 
+#ifndef __clang__
     // remove consecutive (adjacent) duplicates
     const auto ret = std::ranges::unique(v);
     // v now holds {1 2 1 3 4 5 4 x x x}, where 'x' is indeterminate
@@ -46,4 +48,5 @@ int main()
     );
     vc.erase(ret2.begin(), ret2.end());
     print(id{6}, vc);
+#endif
 }

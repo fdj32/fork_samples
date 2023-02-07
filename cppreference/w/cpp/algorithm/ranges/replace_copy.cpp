@@ -16,6 +16,7 @@ int main()
     std::array p{1, 6, 1, 6, 1, 6};
     o.resize(p.size());
     print("p", p);
+#ifndef __clang__
     std::ranges::replace_copy(p, o.begin(), 6, 9);
     print("o", o);
  
@@ -24,4 +25,5 @@ int main()
     print("q", q);
     std::ranges::replace_copy_if(q, o.begin(), [](int x){ return 5 < x; }, 5);
     print("o", o);
+#endif
 }

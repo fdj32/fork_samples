@@ -7,6 +7,7 @@ int main()
 {
     std::string s{"ABCDEF"};
     std::cout << s << " → ";
+#ifndef __clang__
     std::ranges::reverse(s.begin(), s.end());
     std::cout << s << " → ";
     std::ranges::reverse(s);
@@ -18,4 +19,5 @@ int main()
     std::ranges::reverse(a);
     for(auto e : a) { std::cout << e << ' '; }
     std::cout << '\n';
+#endif
 }

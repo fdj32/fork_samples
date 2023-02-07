@@ -23,7 +23,7 @@ int main()
     std::array s {5, 7, 4, 2, 8, 6, 1, 9, 0, 3};
  
     namespace ranges = std::ranges;
- 
+#ifndef __clang__
     ranges::sort(s);
     print("Sort using the default operator<", s);
  
@@ -47,4 +47,5 @@ int main()
     print("\nSort by name using a projection", particles, '\n');
     ranges::sort(particles, {}, &Particle::mass);
     print("Sort by mass using a projection", particles, '\n');
+#endif
 }

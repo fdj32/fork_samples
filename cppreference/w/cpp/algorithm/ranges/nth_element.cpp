@@ -4,16 +4,18 @@
 #include <iostream>
 #include <ranges>
 #include <string_view>
- 
+
+#ifndef __clang__
 void print(std::string_view rem, std::ranges::input_range auto const& a)
 {
     for (std::cout << rem; const auto e : a)
         std::cout << e << ' ';
     std::cout << "\n";
 }
- 
+#endif
 int main()
 {
+#ifndef __clang__
     std::array v{5, 6, 4, 3, 2, 6, 7, 9, 3};
     print("Before nth_element: ", v);
  
@@ -37,4 +39,5 @@ int main()
     std::ranges::nth_element(names, fifth_element);
     print("After nth_element:  ", names);
     std::cout << "The 5th element is: " << *fifth_element << '\n';
+#endif
 }

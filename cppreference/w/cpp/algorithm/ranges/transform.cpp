@@ -10,7 +10,7 @@ int main()
     std::string s("hello");
  
     namespace ranges = std::ranges;
- 
+#ifndef __clang__
     ranges::transform(s.begin(), s.end(), s.begin(),
                    [](unsigned char c) -> unsigned char { return std::toupper(c); });
  
@@ -38,4 +38,5 @@ int main()
     std::string bar;
     ranges::transform(f, std::back_inserter(bar), &Foo::bar);
     std::cout << bar << '\n';
+#endif
 }

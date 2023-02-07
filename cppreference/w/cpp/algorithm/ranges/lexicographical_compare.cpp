@@ -13,6 +13,7 @@ int main()
     auto os = std::ostream_iterator<char>(std::cout, " ");
  
     std::mt19937 g{std::random_device{}()};
+#ifndef __clang__
     while (!ranges::lexicographical_compare(v1, v2)) {
         ranges::copy(v1, os);
         std::cout << ">= ";
@@ -26,5 +27,6 @@ int main()
     ranges::copy(v1, os);
     std::cout << "<  ";
     ranges::copy(v2, os);
+#endif
     std::cout << '\n';
 }

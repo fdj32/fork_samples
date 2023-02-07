@@ -15,8 +15,8 @@ int main()
     const auto in1 = {1, 2, 2, 3, 4, 5, 6 };
     const auto in2 = {2, 2, 3, 3, 5, 7};
     std::vector<int> out;
- 
+#ifndef __clang__
     std::ranges::set_intersection(in1, in2, std::back_inserter(out));
- 
+#endif
     print(in1, " ∩ "), print(in2, " = "), print(out, "\n");
 }

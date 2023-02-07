@@ -34,7 +34,7 @@ int main()
         e = {'a', 'c', 'g'},
         f = {'A', 'B', 'C'},
         z = {'a', 'b', 'c', 'f', 'h', 'x'};
- 
+#ifndef __clang__
     std::cout
         << z << "includes\n" << std::boolalpha
         << a << std::ranges::includes(z.begin(), z.end(), a.begin(), a.end())
@@ -43,4 +43,5 @@ int main()
         << d << std::ranges::includes(z, d)
         << e << std::ranges::includes(z, e)
         << f << std::ranges::includes(z, f, ignore_case);
+#endif
 }

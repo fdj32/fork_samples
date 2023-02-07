@@ -20,6 +20,7 @@ int main()
     in1 = {1, 2, 3, 4, 5};
     in2 = {      3, 4, 5, 6, 7};
     out.resize(in1.size() + in2.size());
+#ifndef __clang__
     const auto ret = std::ranges::merge(in1, in2, out.begin());
     print(in1, in2, out.begin(), ret.out);
  
@@ -29,4 +30,5 @@ int main()
     out.reserve(in1.size() + in2.size());
     std::ranges::merge(in1, in2, std::back_inserter(out));
     print(in1, in2, out.cbegin(), out.cend());
+#endif
 }

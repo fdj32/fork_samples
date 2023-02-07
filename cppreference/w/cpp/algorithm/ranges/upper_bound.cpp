@@ -8,7 +8,7 @@ int main()
     namespace ranges = std::ranges;
  
     std::vector<int> data = { 1, 1, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6 };
- 
+ #ifndef __clang__
     {
         auto lower = ranges::lower_bound(data.begin(), data.end(), 4);
         auto upper = ranges::upper_bound(data.begin(), data.end(), 4);
@@ -23,4 +23,5 @@ int main()
         ranges::copy(lower, upper, std::ostream_iterator<int>(std::cout, " "));
         std::cout << '\n';
     }
+#endif
 }

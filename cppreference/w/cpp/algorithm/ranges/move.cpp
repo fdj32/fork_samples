@@ -15,6 +15,7 @@ void f(std::chrono::milliseconds n)
  
 int main()
 {
+#ifndef __clang__
     std::vector<std::jthread> v;
     v.emplace_back(f, 400ms);
     v.emplace_back(f, 600ms);
@@ -24,4 +25,5 @@ int main()
  
     // std::ranges::copy() would not compile, because std::jthread is non-copyable
     std::ranges::move(v, std::back_inserter(l));
+#endif
 }

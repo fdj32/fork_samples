@@ -7,7 +7,7 @@
 int main()
 {
     constexpr static auto v = {1, 2, 3, 1, 2, 3, 1, 2};
- 
+#ifndef __clang__
     {
         constexpr auto i1 = std::ranges::find_last(v.begin(), v.end(), 3);
         constexpr auto i2 = std::ranges::find_last(v, 3);
@@ -22,7 +22,7 @@ int main()
     }
  
     auto abs = [](int x) { return x < 0 ? -x : x; };
- 
+
     {
         auto pred = [](int x) { return x == 3; };
         constexpr auto i1 = std::ranges::find_last_if(v.begin(), v.end(), pred, abs);
@@ -67,5 +67,6 @@ int main()
     // print the found element and the "tail" after it
     for (P const& e : subrange)
         std::cout << '{' << std::quoted(e.first) << ", " << e.second << "} ";
+#endif
     std::cout << '\n';
 }

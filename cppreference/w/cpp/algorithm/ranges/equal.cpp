@@ -3,7 +3,8 @@
 #include <iostream>
 #include <string_view>
 #include <ranges>
- 
+
+#ifndef __clang__
 constexpr bool is_palindrome(const std::string_view s)
 {
     namespace views = std::views;
@@ -18,10 +19,13 @@ void test(const std::string_view s)
               << (is_palindrome(s) ? "" : "not ")
               << "a palindrome\n";
 }
- 
+#endif
+
 int main()
 {
+#ifndef __clang__
     test("radar");
     test("hello");
     static_assert(is_palindrome("ABBA") and not is_palindrome("AC/DC"));
+#endif
 }

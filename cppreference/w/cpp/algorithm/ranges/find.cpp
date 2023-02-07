@@ -9,7 +9,7 @@ int main()
     const int n1 = 3;
     const int n2 = 5;
     const auto v = {4, 1, 3, 2};
- 
+#ifndef __clang__
     if (ranges::find(v, n1) != v.end())
         std::cout << "v contains: " << n1 << '\n';
     else
@@ -44,4 +44,5 @@ int main()
         std::cout << "First element indivisible by 13 in v: " << *result << '\n';
     else
         std::cout << "All elements in v are divisible by 13\n";
+#endif
 }

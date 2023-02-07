@@ -18,7 +18,7 @@ int main()
  
     print("p", p);
     print("q", q, "\n\n");
- 
+#ifndef __clang__
     // swap p[0, 2) and q[1, 3):
     std::ranges::swap_ranges(p.begin(),
                              p.begin() + 4,
@@ -32,4 +32,5 @@ int main()
  
     print("p", p);
     print("q", q);
+#endif
 }

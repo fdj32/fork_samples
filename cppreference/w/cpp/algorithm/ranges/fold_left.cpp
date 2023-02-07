@@ -9,7 +9,7 @@
 int main()
 {
     std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8};
- 
+#ifndef __clang__
     int sum = std::ranges::fold_left(v.begin(), v.end(), 0, std::plus<int>()); // (1)
     std::cout << "sum: " << sum << '\n';
  
@@ -30,4 +30,5 @@ int main()
         v, "A", [](std::string s, int x) { return s + ':' + std::to_string(x); }
     );
     std::cout << "str: " << str << '\n';
+#endif
 }

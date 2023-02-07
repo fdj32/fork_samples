@@ -11,7 +11,7 @@ int main()
 {
     auto v = {1, 2, 3, 4, 5, 6, 7, 8};
     std::vector<std::string> vs{"A", "B", "C", "D"};
- 
+#ifndef __clang__
     auto r1 = std::ranges::fold_right(v.begin(), v.end(), 6, std::plus<>()); // (1)
     std::cout << "r1: " << r1 << '\n';
  
@@ -32,4 +32,5 @@ int main()
         data | std::ranges::views::values, 2.0f, std::multiplies<>()
     );
     std::cout << "r4: " << r4 << '\n';
+#endif
 }

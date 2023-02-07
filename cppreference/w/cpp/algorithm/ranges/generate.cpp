@@ -12,7 +12,9 @@ auto dice() {
 }
  
 void iota(auto& v, int n) {
+#ifndef __clang__
     std::ranges::generate(v, [&n] () mutable { return n++; });
+#endif
 }
  
 void print(std::string_view comment, const auto& v) {
@@ -23,7 +25,7 @@ void print(std::string_view comment, const auto& v) {
 int main()
 {
     std::array<int, 8> v;
- 
+#ifndef __clang__
     std::ranges::generate(v.begin(), v.end(), dice);
     print("dice: ", v);
     std::ranges::generate(v, dice);
@@ -31,4 +33,5 @@ int main()
  
     iota(v, 1);
     print("iota: ", v);
+#endif
 }

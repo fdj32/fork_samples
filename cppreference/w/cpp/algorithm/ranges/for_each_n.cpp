@@ -22,6 +22,7 @@ int main()
 {
     std::array a{1, 2, 3, 4, 5};
     print("a", a);
+#ifndef __clang__
     // Negate first three numbers:
     std::ranges::for_each_n(a.begin(), 3, [](auto& n) { n *= -1; });
     print("a", a);
@@ -34,4 +35,5 @@ int main()
     // Capitalize data members 'P::second' using projection:
     std::ranges::for_each_n(s.begin(), 3, [](auto& c) { c -= 'a'-'A'; }, &P::second);
     print("s", s);
+#endif
 }

@@ -7,6 +7,7 @@ int main()
 {
     std::vector<int> src {1, 2, 3, 4, 5};
     std::vector<int> dest(src.size());
+#ifndef __clang__
     auto pivot = std::ranges::find(src, 3);
  
     std::ranges::rotate_copy(src, pivot, dest.begin());
@@ -16,5 +17,6 @@ int main()
     // copy the rotation result directly to the std::cout
     pivot = std::ranges::find(dest, 1);
     std::ranges::rotate_copy(dest, pivot, std::ostream_iterator<int>(std::cout, " "));
+#endif
     std::cout << '\n';
 }

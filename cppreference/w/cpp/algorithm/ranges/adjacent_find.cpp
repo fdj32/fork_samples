@@ -7,7 +7,7 @@ int main()
     const auto v = {0, 1, 2, 3, 40, 40, 41, 41, 5}; /*
                                 ^^          ^^       */
     namespace ranges = std::ranges;
- 
+#ifndef __clang__
     if (auto it = ranges::adjacent_find(v.begin(), v.end()); it == v.end())
         std::cout << "No matching adjacent elements\n";
     else
@@ -19,4 +19,5 @@ int main()
     else
         std::cout << "The last element in the non-decreasing subsequence is at ["
                   << ranges::distance(v.begin(), it) << "] == " << *it << '\n';
+#endif
 }

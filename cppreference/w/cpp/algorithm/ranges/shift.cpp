@@ -50,7 +50,7 @@ int main()
  
     std::cout << "vector<S> \tvector<int> \tvector<string>\n";
     std::cout << a << "  " << b << "  " << c << '\n';
- 
+#ifndef __clang__
     std::ranges::shift_left(a, 3);
     std::ranges::shift_left(b, 3);
     std::ranges::shift_left(c, 3);
@@ -65,6 +65,6 @@ int main()
     std::ranges::shift_left(b, 8);  // ditto
     std::ranges::shift_left(c, 8);  // ditto
     std::cout << a << "  " << b << "  " << c << '\n';
- 
+#endif
 //  std::ranges::shift_left(a, -3);  // UB
 }

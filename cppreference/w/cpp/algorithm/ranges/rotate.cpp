@@ -7,7 +7,7 @@
 int main()
 {
     std::string s(16, ' ');
- 
+#ifndef __clang__
     for (int k{}; k != 5; ++k) {
         std::iota(s.begin(), s.end(), 'A');
         std::ranges::rotate(s, s.begin() + k);
@@ -32,4 +32,5 @@ int main()
         std::cout << s << '\n';
     }
     std::cout << (std::ranges::is_sorted(s) ? "Sorted!" : "Not sorted.") << '\n';
+#endif
 }

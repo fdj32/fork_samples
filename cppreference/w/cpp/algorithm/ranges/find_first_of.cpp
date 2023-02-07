@@ -8,7 +8,7 @@ int main()
  
     constexpr static auto haystack = {1, 2, 3, 4};
     constexpr static auto needles  = {0, 3, 4, 3};
- 
+#ifndef __clang__
     constexpr auto found1 = rng::find_first_of(haystack.begin(), haystack.end(),
                                                needles.begin(), needles.end());
     static_assert(std::distance(haystack.begin(), found1) == 2);
@@ -35,4 +35,5 @@ int main()
     std::cout << "First equivalent element {" << found4->x << ", " << found4->y
               << "} was found at position " << std::distance(p1.begin(), found4)
               << ".\n";
+#endif
 }

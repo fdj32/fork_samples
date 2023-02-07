@@ -4,7 +4,7 @@
 #include <vector>
  
 namespace ranges = std::ranges;
- 
+#ifndef __clang__
 template<std::forward_iterator I, std::sentinel_for<I> S, class T,
          class Proj = std::identity,
          std::indirect_strict_weak_order<
@@ -16,11 +16,12 @@ I binary_find(I first, S last, const T& value, Comp comp = {}, Proj proj = {})
     first = ranges::lower_bound(first, last, value, comp, proj);
     return first != last && !comp(value, proj(*first)) ? first : last;
 }
- 
+#endif
+
 int main()
 {
     std::vector data = { 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 };
- 
+#ifndef __clang__
     auto lower = ranges::lower_bound(data, 4);
     auto upper = ranges::upper_bound(data, 4);
  
@@ -36,4 +37,5 @@ int main()
  
     if(it != data.cend())
         std::cout << *it << " found at index "<< ranges::distance(data.cbegin(), it);
+#endif
 }

@@ -15,9 +15,10 @@ int main()
  
     std::random_device rd;
     std::mt19937 gen{rd()};
- 
+#ifndef __clang__
     for (int i{}; i != 3; ++i) {
         std::ranges::shuffle(a, gen);
         print(a);
     }
+#endif
 }

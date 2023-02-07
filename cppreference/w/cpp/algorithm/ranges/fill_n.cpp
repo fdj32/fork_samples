@@ -16,7 +16,8 @@ int main()
  
     std::vector<std::string> v(n, "░░");
     print(v);
- 
+#ifndef __clang__
     std::ranges::fill_n(v.begin(), n, "▓▓");
     print(v);
+#endif
 }

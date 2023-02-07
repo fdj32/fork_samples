@@ -8,7 +8,7 @@
 int main()
 {
     std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8};
- 
+#ifndef __clang__
     auto sum = std::ranges::fold_left_first(v.begin(), v.end(), std::plus<int>()); // (1)
     std::cout << "*sum: " << sum.value() << '\n';
  
@@ -26,4 +26,5 @@ int main()
     // use a program defined function object (lambda-expression):
     auto val = std::ranges::fold_left_first(v, [](int x, int y) { return x + y + 13; });
     std::cout << "*val: " << *val << '\n';
+#endif
 }

@@ -24,7 +24,7 @@ int main()
 {
     constexpr auto haystack {"abcd abcd"sv};
     constexpr auto needle {"bcd"sv};
- 
+#ifndef __clang__
     // the search uses iterator pairs begin()/end():
     constexpr auto found1 = std::ranges::search(
         haystack.begin(), haystack.end(),
@@ -53,4 +53,5 @@ int main()
         [](const int y) { return y + 'A' - '1'; } // proj2
         );
     print(5, haystack, bodkin, found5);
+#endif
 }

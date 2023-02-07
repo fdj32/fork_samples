@@ -22,6 +22,7 @@ auto print = [](auto const& v, char term = ' ') {
  
 int main()
 {
+#ifndef __clang__
     std::cout << "Generate all permutations (iterators case):\n";
     std::string s{"cba"};
     do { print(s); } while(std::ranges::prev_permutation(s.begin(), s.end()).found);
@@ -39,4 +40,5 @@ int main()
     std::array<S, 3> r{ S{'C',1}, S{'B',2}, S{'A',3} };
     do { print(r, '\n'); }
     while(std::ranges::prev_permutation(r, {}, &S::c).found);
+#endif
 }

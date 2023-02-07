@@ -20,7 +20,7 @@ int main()
     const S value = {2, '?'};
  
     namespace ranges = std::ranges;
- 
+#ifndef __clang__
     {
         auto p = ranges::equal_range(vec, value);
         std::cout << "1. ";
@@ -45,4 +45,5 @@ int main()
         for ( auto i = p.begin(); i != p.end(); ++i )
             std::cout << i->name << ' ';
     }
+#endif
 }

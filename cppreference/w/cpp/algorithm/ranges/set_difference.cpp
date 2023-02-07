@@ -24,7 +24,7 @@ int main()
     const auto v1 = {1, 2, 5, 5, 5, 9};
     const auto v2 = {2, 5, 7};
     std::vector<int> diff;
- 
+#ifndef __clang__
     std::ranges::set_difference(v1, v2, std::back_inserter(diff));
     print(v1, "∖ ");
     print(v2, "= ");
@@ -46,4 +46,5 @@ int main()
     std::cout << "cut orders = "; print(cut_orders, "\n");
     cut_orders.erase(cut_orders_last, end(cut_orders));
     std::cout << "cut orders = "; print(cut_orders, "\n");
+#endif
 }

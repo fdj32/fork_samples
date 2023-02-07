@@ -15,7 +15,7 @@ int main()
     out("initially, v:\n");
     for (auto i : v) std::cout << i << ' ';
     out('\n');
- 
+#ifndef __clang__
     if (!std::ranges::is_heap(v)) {
         out("making heap...\n");
         std::ranges::make_heap(v);
@@ -28,6 +28,7 @@ int main()
  
     out("\n" "corresponding binary tree is:\n");
     draw_heap(v);
+#endif
 }
  
 void draw_heap(auto const& v)

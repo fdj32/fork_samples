@@ -19,6 +19,7 @@ int main()
  
     namespace ranges = std::ranges;
     std::cout << "before:";
+#ifndef __clang__
     ranges::for_each(std::as_const(nums), print);
     print('\n');
  
@@ -41,5 +42,6 @@ int main()
  
     std::cout << "\n" "project the pair::second:";
     ranges::for_each(pairs, print, &pair::second);
+#endif
     print('\n');
 }

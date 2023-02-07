@@ -20,7 +20,7 @@ struct Particle {
 int main()
 {
     std::array s {5, 7, 4, 2, 8, 6, 1, 9, 0, 3};
- 
+#ifndef __clang__
     // sort using the default operator<
     std::ranges::stable_sort(s);
     print(s);
@@ -54,4 +54,5 @@ int main()
     print(particles);
     std::ranges::stable_sort(particles, {}, &Particle::mass); //< sort by mass
     print(particles);
+#endif
 }

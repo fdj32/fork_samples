@@ -9,6 +9,7 @@ namespace ranges = std::ranges;
  
 int main()
 {
+#ifndef __clang__
     std::cout << " raw   clamped to int8_t   clamped to uint8_t\n";
     for(int const v: {-129, -128, -1, 0, 42, 127, 128, 255, 256}) {
         std::cout << std::setw(04) << v
@@ -28,4 +29,5 @@ int main()
                   << std::setw(21) << ranges::clamp(v, "0"s, "255"s, {}, stoi)
                   << '\n';
     }
+#endif
 }

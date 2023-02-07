@@ -10,6 +10,7 @@ void draw_bin_tree(auto first, auto last);
  
 int main()
 {
+#ifndef __clang__
     std::vector<int> v { 3, 1, 4, 1, 5, 9, };
     std::ranges::make_heap(v);
  
@@ -23,6 +24,7 @@ int main()
     out("the max-heap prefix of v: \n");
     const auto heap_end = std::ranges::is_heap_until(v);
     draw_bin_tree(v.begin(), heap_end);
+#endif
 }
  
 void draw_bin_tree(auto first, auto last)
@@ -44,7 +46,9 @@ void draw_bin_tree(auto first, auto last)
         const int w {(1 << (m - t - 1)) - 1};
         bails(n, w), data(n, w, first, last);
     };
+#ifndef __clang__
     const auto size {std::ranges::distance(first, last)};
     const int m {static_cast<int>(std::ceil(std::log2(1 + size)))};
     for (int i{}; i != m; ++i) { tier(i, m, first, last); }
+#endif
 }

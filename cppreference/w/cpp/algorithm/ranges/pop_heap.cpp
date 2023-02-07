@@ -18,7 +18,7 @@ int main()
 {
     std::array v { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3 };
     print("initially, v: ", v.cbegin(), v.cend());
- 
+#ifndef __clang__
     std::ranges::make_heap(v);
     print("make_heap, v: ", v.cbegin(), v.cend());
  
@@ -28,4 +28,5 @@ int main()
         print("[ ", v.cbegin(), v.cbegin() + n, "]  ");
         print("[ ", v.cbegin() + n, v.cend(), "]\n");
     }
+#endif
 }

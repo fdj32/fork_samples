@@ -9,6 +9,7 @@ int main()
 {
     std::string v1{"No - Diagnostic - Required"};
     std::cout << std::quoted(v1) << " (v1, size: " << v1.size() << ")\n";
+#ifndef __clang__
     const auto ret = std::ranges::remove(v1, ' ');
     std::cout << std::quoted(v1) << " (v1 after `remove`, size: " << v1.size() << ")\n";
     std::cout << ' ' << std::string(std::distance(v1.begin(), ret.begin()), '^') << '\n';
@@ -30,4 +31,5 @@ int main()
         std::cout << quoted(s) << " => "
                   << std::string_view{begin(s), std::ranges::remove_if(s, rm).begin()}
                   << '\n';
+#endif
 }

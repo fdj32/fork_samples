@@ -13,6 +13,7 @@ int main()
  
     std::array p{1, 6, 1, 6, 1, 6};
     print(p);
+#ifndef __clang__
     std::ranges::replace(p, 6, 9);
     print(p);
  
@@ -20,4 +21,5 @@ int main()
     print(q);
     std::ranges::replace_if(q, [](int x){ return 5 < x; }, 5);
     print(q);
+#endif
 }

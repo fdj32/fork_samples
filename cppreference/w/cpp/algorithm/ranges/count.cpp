@@ -11,6 +11,7 @@ int main()
     // determine how many integers in a std::vector match a target value.
     int target1 = 3;
     int target2 = 5;
+#ifndef __clang__
     int num_items1 = ranges::count(v.begin(), v.end(), target1);
     int num_items2 = ranges::count(v, target2);
     std::cout << "number: " << target1 << " count: " << num_items1 << '\n';
@@ -23,4 +24,5 @@ int main()
     // use a lambda expression to count elements divisible by 11.
     int num_items11 = ranges::count_if(v, [](int i){return i % 11 == 0;});
     std::cout << "number divisible by eleven: " << num_items11 << '\n';
+#endif
 }

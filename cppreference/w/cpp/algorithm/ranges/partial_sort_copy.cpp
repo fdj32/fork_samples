@@ -5,23 +5,26 @@
 #include <ranges>
 #include <string_view>
 #include <vector>
- 
+
+#ifndef __clang__
 void print(std::string_view rem, std::ranges::input_range auto const& v)
 {
     for (std::cout << rem; const auto& e : v)
         std::cout << e << ' ';
     std::cout << '\n';
 }
- 
+#endif
+
 int main()
 {
     const std::forward_list source{4, 2, 5, 1, 3};
- 
+#ifndef __clang__
     print("Write to the smaller vector in ascending order: ", "");
  
     std::vector dest1{10, 11, 12};
     print("const source list: ", source);
     print("destination range: ", dest1);
+
     std::ranges::partial_sort_copy(source, dest1);
     print("partial_sort_copy: ", dest1);
  
@@ -32,4 +35,5 @@ int main()
     print("destination range: ", dest2);
     std::ranges::partial_sort_copy(source, dest2, std::greater{});
     print("partial_sort_copy: ", dest2);
+#endif
 }

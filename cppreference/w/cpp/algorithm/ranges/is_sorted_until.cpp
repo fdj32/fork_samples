@@ -7,6 +7,7 @@ int main()
 {
     std::random_device rd;
     std::mt19937 g{rd()};
+#ifndef __clang__
     std::array nums {3, 1, 4, 1, 5, 9};
  
     constexpr int min_sorted_size = 4;
@@ -19,4 +20,5 @@ int main()
         std::ranges::copy(nums, std::ostream_iterator<int>(std::cout, " "));
         std::cout << " : " << sorted_size << " leading sorted element(s)\n";
     } while (sorted_size < min_sorted_size);
+#endif
 }

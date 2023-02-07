@@ -4,6 +4,7 @@
  
 int main()
 {
+#ifndef __clang__
     std::cout
         << std::boolalpha
         << std::ranges::ends_with("static_cast", "cast") << '\n'
@@ -20,4 +21,5 @@ int main()
         !! std::ranges::ends_with(std::array{1,2,3,4}, std::array{3,4}) and
         !  std::ranges::ends_with(std::array{1,2,3,4}, std::array{4,5})
         );
+#endif
 }

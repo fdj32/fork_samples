@@ -19,6 +19,7 @@ int main()
     static_assert('A' < 'a');
     std::vector<char> v{'x', 'P', 'y', 'C', 'z', 'w', 'P', 'o'};
     print(v);
+#ifndef __clang__
     std::ranges::partial_sort(v, v.begin() + 3);
     print(v); underscore(3);
  
@@ -27,4 +28,5 @@ int main()
     print(s);
     std::ranges::partial_sort(s.begin(), s.begin() + 3, s.end(), std::greater{});
     print(s); underscore(3);
+#endif
 }

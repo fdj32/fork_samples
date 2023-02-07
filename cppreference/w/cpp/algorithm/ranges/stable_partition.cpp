@@ -4,7 +4,7 @@
 #include <vector>
  
 namespace rng = std::ranges;
- 
+#ifndef __clang__
 template <std::permutable I, std::sentinel_for<I> S>
 constexpr void stable_sort(I first, S last)
 {
@@ -26,14 +26,15 @@ void print(const auto rem, auto first, auto last, bool end = true) {
     for (; first != last; ++first) { std::cout << *first << ' '; }
     std::cout << (end ? "\n" : "");
 }
- 
+#endif
+
 int main()
 {
     const auto original = { 9, 6, 5, 2, 3, 1, 7, 8 };
  
     std::vector<int> vi;
     auto even = [](int x) { return 0 == (x % 2); };
- 
+#ifndef __clang__
     print("Original vector:\t", original.begin(), original.end(), "\n");
  
     vi = original;
@@ -52,4 +53,5 @@ int main()
  
     stable_sort(rng::begin(vi), rng::end(vi));
     print("Sorted vector:   ", vi.begin(), vi.end());
+#endif
 }

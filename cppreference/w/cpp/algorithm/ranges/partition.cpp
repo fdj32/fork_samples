@@ -7,7 +7,7 @@
 #include <vector>
  
 namespace ranges = std::ranges;
- 
+#ifndef __clang__
 template <class I, std::sentinel_for<I> S, class Cmp = ranges::less>
 requires std::sortable<I, Cmp>
 void quicksort(I first, S last, Cmp cmp = Cmp{})
@@ -30,13 +30,14 @@ void quicksort(I first, S last, Cmp cmp = Cmp{})
     quicksort(first, tail.begin(), std::ref(cmp));
     quicksort(ranges::next(tail.begin()), last, std::ref(cmp));
 }
- 
+#endif
 int main()
 {
     std::ostream_iterator<int> cout {std::cout, " "};
  
     std::vector<int> v {0,1,2,3,4,5,6,7,8,9};
     std::cout << "Original vector:  \t";
+#ifndef __clang__
     ranges::copy(v, cout);
  
     auto tail = ranges::partition(v, [](int i){return i % 2 == 0;});
@@ -53,6 +54,6 @@ int main()
     quicksort(ranges::begin(fl), ranges::end(fl), ranges::greater{});
     std::cout << "\nQuick-sorted list: \t";
     ranges::copy(fl, cout);
- 
+#endif
     std::cout << '\n';
 }

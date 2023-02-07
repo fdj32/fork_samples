@@ -21,11 +21,12 @@ int main()
     std::vector<int> out;
     const int max = in.size() + 2;
     auto gen = std::mt19937{std::random_device{}()};
- 
+#ifndef __clang__
     for (int n{}; n != max; ++n) {
         out.clear();
         std::ranges::sample(in, std::back_inserter(out), n, gen);
         std::cout << "n = " << n;
         print(", out", out);
     }
+#endif
 }

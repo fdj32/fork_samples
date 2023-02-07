@@ -12,7 +12,7 @@ int main()
         for (int x : v) std::cout << x << ' ';
         std::cout << (o ? "=> " : "=> not ") << "partitioned\n";
     };
- 
+#ifndef __clang__
     std::iota(v.begin(), v.end(), 1);
     print(std::ranges::is_partitioned(v, is_even));
  
@@ -22,4 +22,5 @@ int main()
     std::ranges::reverse(v);
     print(std::ranges::is_partitioned(v.cbegin(), v.cend(), is_even));
     print(std::ranges::is_partitioned(v.crbegin(), v.crend(), is_even));
+#endif
 }
