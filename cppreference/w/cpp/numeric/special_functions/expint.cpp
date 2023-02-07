@@ -28,6 +28,7 @@ void draw_vbars(Seq&& s, const bool DrawMinMax = true) {
  
 int main()
 {
+#ifndef __clang__
     std::cout << "Ei(0) = " << std::expint(0) << '\n'
               << "Ei(1) = " << std::expint(1) << '\n'
               << "Gompertz constant = " << -std::exp(1)*std::expint(-1) << '\n';
@@ -36,4 +37,5 @@ int main()
     for (float x{1.f}; x < 8.8f; x += 0.3565f)
         v.push_back(std::expint(x));
     draw_vbars<9,1,1>(v);
+#endif    
 }

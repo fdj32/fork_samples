@@ -4,8 +4,9 @@ int main()
 {
     // spot check for ν == 0
     double x = 1.2345;
+#ifndef __clang__
     std::cout << "J_0(" << x << ") = " << std::cyl_bessel_j(0, x) << '\n';
- 
+#endif
     // series expansion for J_0
     double fct = 1;
     double sum = 0;

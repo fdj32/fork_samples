@@ -23,10 +23,10 @@ int main()
     // update every value in the first columns of both planes
     v[std::gslice(0, {2, 4}, {4*3, 3})] = 1; // two level one strides of 12 elements
                                              // then four level two strides of 3 elements
- 
+#ifndef __clang__
     // subtract the third column from the second column in the 1st plane
     v[std::gslice(1, {1, 4}, {4*3, 3})] -= v[std::gslice(2, {1, 4}, {4*3, 3})];
- 
+#endif
     std::cout << "\n" "After column operations:\n";
     test_print(v, 2, 4, 3);
 }

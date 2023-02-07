@@ -4,8 +4,9 @@ int main()
 {
     // spot check for l=3, m=0
     double x = 1.2345;
+#ifndef __clang__
     std::cout << "Y_3^0(" << x << ") = " << std::sph_legendre(3, 0, x) << '\n';
- 
+#endif
     // exact solution
     double pi = std::acos(-1);
     std::cout << "exact solution = "

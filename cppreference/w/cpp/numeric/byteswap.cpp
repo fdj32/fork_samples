@@ -16,6 +16,7 @@ void dump(T v, char term = '\n') {
  
 int main()
 {
+#ifndef __clang__
     static_assert(std::byteswap('a') == 'a');
  
     std::cout << "byteswap for U16:\n";
@@ -32,4 +33,5 @@ int main()
     constexpr auto z = std::uint64_t{0x0123456789ABCDEFull};
     dump(z);
     dump(std::byteswap(z));
+#endif
 }

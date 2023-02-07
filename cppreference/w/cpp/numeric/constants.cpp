@@ -21,7 +21,7 @@ int main()
         sqrt3 * inv_sqrt3 * log2e * ln2 * log10e * ln10 *
         pi * inv_pi + (phi * phi - phi)) *
         ((sqrt2 * sqrt3)^_2) << '\n';
- 
+#ifndef __clang__
     auto egamma_aprox = [] (unsigned const iterations) {
         long double s{}, m{2.0};
         for (unsigned c{2}; c != iterations; ++c, ++m) {
@@ -46,4 +46,5 @@ int main()
         << std::setprecision(std::numeric_limits<long double>::digits10 + 1)
         << egamma_v<long double> << '\n'
         << "γ with " << γ.length() - 1 << " digits precision = " << γ << '\n';
+#endif
 }

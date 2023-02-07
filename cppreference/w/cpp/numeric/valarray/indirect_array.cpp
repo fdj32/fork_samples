@@ -10,12 +10,13 @@ int main()
     std::cout << "Original valarray: ";
     for(int n: data) std::cout << n << ' ';
     std::cout << '\n';
- 
+#ifndef __clang__
     data[idx] += data[idx]; // double the values at indexes 'idx'
  
     // the type of data[idx] is std::indirect_array<int>
  
     std::cout << "After indirect modification: ";
     for(int n: data) std::cout << n << ' ';
+#endif
     std::cout << '\n';
 }
