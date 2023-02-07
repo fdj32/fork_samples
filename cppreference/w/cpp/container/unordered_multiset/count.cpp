@@ -7,7 +7,7 @@ int main() {
  
     std::cout << "The set is:\n";
     for (int e: set) { std::cout << e << ' '; }
- 
+#ifndef __clang__
     const auto [min, max] = std::ranges::minmax(set);
  
     std::cout << "\nNumbers [" << min << ".." << max << "] frequency:\n";
@@ -15,4 +15,5 @@ int main() {
     for (int i{min}; i <= max; ++i) {
         std::cout << i << ':' << set.count(i) << "; ";
     }
+#endif
 }

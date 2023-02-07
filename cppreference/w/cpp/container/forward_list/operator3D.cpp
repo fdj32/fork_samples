@@ -1,7 +1,8 @@
 #include <forward_list>
 #include <iterator>
 #include <iostream>
- 
+
+#ifndef __clang__
 void print(auto const comment, auto const& container)
 {
     auto size = std::ranges::distance(container);
@@ -10,12 +11,13 @@ void print(auto const comment, auto const& container)
         std::cout << element << (--size ? ", " : " ");
     std::cout << "}\n";
 }
- 
+#endif
+
 int main()
 {
     std::forward_list<int> x { 1, 2, 3 }, y, z;
     const auto w = { 4, 5, 6, 7 };
- 
+#ifndef __clang__
     std::cout << "Initially:\n";
     print("x = ", x);
     print("y = ", y);
@@ -35,4 +37,5 @@ int main()
     z = w;
     print("w = ", w);
     print("z = ", z);
+#endif
 }

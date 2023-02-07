@@ -26,7 +26,7 @@ int main()
                      "l2: " << l2 << '\n';
     }
  
- 
+#ifndef __clang__
     // Compare two given lists and abort the program if they are not equal.
     auto equ = [] (F const& p, std::initializer_list<int> const& q) {
         assert(std::ranges::equal(p, q));
@@ -57,4 +57,5 @@ int main()
         equ( x, { 1, 11, 12, 2, 3, 4, 5 } );
         equ( y, { 10 } );
     }
+#endif
 }

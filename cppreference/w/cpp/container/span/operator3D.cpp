@@ -5,7 +5,8 @@
 #include <iostream>
 #include <span>
 #include <string_view>
- 
+
+#ifndef __clang__
 void print(std::string_view info = "", std::span<const int> span = {},
            std::size_t extent = 0, std::size_t size_of = 0) {
     if (span.size() == 0) {
@@ -27,14 +28,15 @@ void print(std::string_view info = "", std::span<const int> span = {},
     }
     std::cout << '\n';
 }
- 
+#endif
+
 int main()
 {
     std::array<int,6> a1;
     std::array<int,6> a2;
     a1.fill(3);
     a2.fill(4);
- 
+#ifndef __clang__
     auto s1 = std::span(a1);
     auto s2 = std::span(a2);
     print("s1", s1, s1.extent, sizeof(s1));
@@ -76,4 +78,5 @@ int main()
  // static_1  = dynamic_1; // ERROR: no match for ‘operator=’
     static_1  = static_2;  // OK: same extents = 4
  // static_1  = static_3;  // ERROR: different extents: 4 and 3
+#endif
 }

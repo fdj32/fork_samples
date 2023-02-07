@@ -7,7 +7,7 @@ int main() {
  
     std::cout << "The set is: ";
     for (int e: set) { std::cout << e << ' '; }
- 
+#ifndef __clang__
     const auto [min, max] = std::ranges::minmax(set);
  
     std::cout << "\nNumbers from " << min << " to " << max << " that are in the set: ";
@@ -16,4 +16,5 @@ int main() {
             std::cout << i << ' ';
         }
     }
+#endif
 }
