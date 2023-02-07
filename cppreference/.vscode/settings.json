@@ -103,6 +103,7 @@
         "csignal": "cpp",
         "any": "cpp",
         "typeindex": "cpp",
-        "scoped_allocator": "cpp"
+        "scoped_allocator": "cpp",
+        "csetjmp": "cpp"
     }
 }

@@ -18,7 +18,7 @@ int main()
 {
     std::string s1 {"The      string    with many       spaces!"};
     print("s1: ", s1);
- 
+#ifndef __clang__ 
     std::string s2;
     std::ranges::unique_copy(
         s1.begin(), s1.end(), std::back_inserter(s2),
@@ -30,10 +30,12 @@ int main()
     const auto v1 = { -1, +1, +2, -2, -3, +3, -3, };
     print("v1: ", v1);
     std::list<int> v2;
+
     std::ranges::unique_copy(
         v1, std::back_inserter(v2),
         {}, // default comparator std::ranges::equal_to
         [](int x) { return std::abs(x); } // projection
     );
     print("v2: ", v2);
+#endif
 }

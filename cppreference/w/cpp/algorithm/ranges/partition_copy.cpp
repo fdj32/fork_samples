@@ -11,7 +11,7 @@ int main()
     std::vector<int> o1(size(in)), o2(size(in));
  
     auto pred = [](char c){ return std::isalpha(c); };
- 
+#ifndef __clang__
     auto ret = std::ranges::partition_copy(in, o1.begin(), o2.begin(), pred);
  
     std::ostream_iterator<char> cout {std::cout, " "};
@@ -21,5 +21,6 @@ int main()
     std::copy(o1.begin(), ret.out1, cout);
     std::cout << "\no2 = ";
     std::copy(o2.begin(), ret.out2, cout);
+#endif
     std::cout << '\n';
 }

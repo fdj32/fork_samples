@@ -4,6 +4,7 @@
  
 int main()
 {
+#ifndef __clang__
     for (int i : std::ranges::iota_view{1, 10})
         std::cout << i << ' ';
     std::cout << '\n';
@@ -17,6 +18,7 @@ int main()
         int bound;
         bool operator==(int x) const { return x == bound; }
     };
+
     for (int i : std::views::iota(1, Bound{10}))
         std::cout << i << ' ';
     std::cout << '\n';
@@ -28,5 +30,6 @@ int main()
     std::ranges::for_each(std::views::iota(1, 10), [](int i) {
         std::cout << i << ' ';
     });
+#endif
     std::cout << '\n';
 }

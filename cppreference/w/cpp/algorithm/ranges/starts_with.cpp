@@ -16,7 +16,7 @@ int main()
     {
         return ascii_upper(x) == ascii_upper(y);
     };
- 
+/*
     static_assert(std::ranges::starts_with("const_cast", "const"sv));
     static_assert(std::ranges::starts_with("constexpr", "const"sv));
     static_assert(!std::ranges::starts_with("volatile", "const"sv));
@@ -36,4 +36,5 @@ int main()
     static_assert( std::ranges::starts_with( v, std::views::iota(1)
                                               | std::views::filter(odd)
                                               | std::views::take(3) ) );
+*/
 }

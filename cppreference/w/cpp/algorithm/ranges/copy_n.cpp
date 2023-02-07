@@ -4,15 +4,15 @@
 #include <iomanip>
 #include <string>
 #include <string_view>
- 
+
 int main()
 {
-    const std::string_view in {"ABCDEFGH"};
+    const std::string_view in{"ABCDEFGH"};
     std::string out;
- 
+#ifndef __clang__
     std::ranges::copy_n(in.begin(), 4, std::back_inserter(out));
     std::cout << std::quoted(out) << '\n';
- 
+
     out = "abcdefgh";
     const auto res = std::ranges::copy_n(in.begin(), 5, out.begin());
     std::cout
@@ -20,4 +20,5 @@ int main()
         << std::distance(std::begin(in), res.in) << '\n'
         << "*(res.out): '" << *(res.out) << "', distance: "
         << std::distance(std::begin(out), res.out) << '\n';
+#endif
 }

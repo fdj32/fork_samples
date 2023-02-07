@@ -18,12 +18,13 @@ void print(const auto& v, std::string_view comment) {
  
 int main()
 {
+#ifndef __clang__
     std::array<int, 8> v;
- 
     std::ranges::generate_n(v.begin(), v.size(), dice);
     print(v, "dice");
  
     std::ranges::generate_n(v.begin(), v.size(), [n{0}] () mutable { return n++; });
     // same effect as std::iota(v.begin(), v.end(), 0);
     print(v, "iota");
+#endif
 }

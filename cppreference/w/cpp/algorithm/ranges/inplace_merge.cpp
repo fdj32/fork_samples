@@ -11,7 +11,7 @@ void print(auto const& v, auto const& rem, int middle = -1)
         std::cout << (i++ == middle ? "│ " : "") << n << ' ';
     std::cout << rem << '\n';
 }
- 
+#ifndef __clang__
 template <std::random_access_iterator I, std::sentinel_for<I> S>
 requires std::sortable<I>
 void merge_sort(I first, S last)
@@ -23,12 +23,13 @@ void merge_sort(I first, S last)
         std::ranges::inplace_merge(first, middle, last);
     }
 }
- 
+#endif
 int main()
 {
     // custom merge-sort demo
     std::vector v {8, 2, 0, 4, 9, 8, 1, 7, 3};
     print(v, ": before sort");
+#ifndef __clang__
     merge_sort(v.begin(), v.end());
     print(v, ": after sort\n");
  
@@ -42,4 +43,5 @@ int main()
     print(r, ": before merge", middle - r.begin());
     std::ranges::inplace_merge(r, middle, comp, proj);
     print(r, ": after merge");
+#endif
 }

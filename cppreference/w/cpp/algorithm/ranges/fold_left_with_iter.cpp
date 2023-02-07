@@ -9,7 +9,7 @@
 int main()
 {
     std::vector<int> v{1, 2, 3, 4, 5, 6, 7, 8};
- 
+/*
     auto sum = std::ranges::fold_left_with_iter(v.begin(), v.end(), 6, std::plus<int>());
     std::cout << "sum: " << sum.value << '\n';
     assert(sum.in == v.end());
@@ -31,4 +31,5 @@ int main()
     auto val = std::ranges::fold_left_with_iter(v, -42, lambda);
     std::cout << "val: " << val.value << '\n';
     assert(val.in == v.end());
+*/
 }

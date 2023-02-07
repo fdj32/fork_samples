@@ -6,7 +6,7 @@
 int main()
 {
     int v[] { 1, 2, 3 };
- 
+#ifndef __clang__
     const auto [last, negate] = std::ranges::for_each_n(v, std::size(v),
         [](int& x) { return x = -x; });
  
@@ -16,5 +16,6 @@ int main()
  
     std::ranges::for_each(v, negate);
     std::ranges::for_each(v, result.fun);
+#endif
     std::cout << '\n';
 }

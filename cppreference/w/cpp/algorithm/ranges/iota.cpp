@@ -5,7 +5,7 @@
 #include <numeric>
 #include <random>
 #include <vector>
- 
+/*
 template <typename Proj = std::identity>
 inline void print(auto comment, std::ranges::input_range auto&& range, Proj proj = {})
 {
@@ -13,9 +13,10 @@ inline void print(auto comment, std::ranges::input_range auto&& range, Proj proj
         std::cout << proj(element) << ' ';
     std::cout << '\n';
 }
- 
+*/
 int main()
 {
+    /*
     std::list<int> list(8);
  
     // Fill the list with ascending values: 0, 1, 2, ..., 7
@@ -30,4 +31,5 @@ int main()
  
     std::ranges::shuffle(vec, std::mt19937{std::random_device{}()});
     print("Contents of the list viewed via vector: ", vec, [](auto it) { return *it; });
+    */
 }

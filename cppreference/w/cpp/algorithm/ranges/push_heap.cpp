@@ -20,7 +20,7 @@ int main()
 {
     std::vector<int> v { 1, 6, 1, 8, 0, 3, };
     print("source vector v: ", v);
- 
+#ifndef __clang__
     std::ranges::make_heap(v);
     print("after make_heap: ", v);
     draw_heap(v);
@@ -33,6 +33,7 @@ int main()
     std::ranges::push_heap(v);
     print("after push_heap: ", v);
     draw_heap(v);
+#endif
 }
  
 void draw_heap(auto const& v)
