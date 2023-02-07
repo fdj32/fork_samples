@@ -3,8 +3,10 @@
  
 int main()
 {
+#ifndef __clang__
     std::setlocale(LC_ALL, "sv_SE.utf8");
- 
+#endif
+
     std::wstring in1 = L"\u00e5r";
     std::wstring out1(1+std::wcsxfrm(nullptr, in1.c_str(), 0), L' ');
     std::wstring in2 = L"\u00e4ngel";
@@ -24,4 +26,4 @@ int main()
          std::wcout << in1 << " before " << in2 << '\n';
     else
          std::wcout << in2 << " before " << in1 << '\n';
- 
+}
