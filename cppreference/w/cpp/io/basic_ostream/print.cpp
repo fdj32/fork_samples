@@ -8,6 +8,7 @@
 int main()
 {
     std::array<char, 24> buf;
+/*
     std::format_to(buf.begin(), "{:.15f}", std::numbers::sqrt2);
  
     unsigned num{}, sum{};
@@ -22,7 +23,7 @@ int main()
         sum += n;
         ++num;
     }
- 
+
 #ifdef __cpp_lib_print
     std::print(
         std::cout,
@@ -38,4 +39,5 @@ int main()
         std::numbers::sqrt2, num, sum, '.'
     );
 #endif
+*/
 }
