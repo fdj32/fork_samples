@@ -11,6 +11,8 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community>
 
 code C:\Users\nfeng\hub\fdj32\fork_samples\cppreference
 
+make -i -j 9
+
 ```
 
 ```
