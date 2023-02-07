@@ -1,5 +1,7 @@
 #include <iostream>
+#ifdef __clang__
 #include <format>
+#endif
 #include <chrono>
  
 int main()
