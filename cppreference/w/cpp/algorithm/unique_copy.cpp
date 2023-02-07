@@ -20,6 +20,7 @@ int main()
     print("s1: ", s1);
  
     std::string s2;
+#ifndef __clang__
     std::ranges::unique_copy(
         s1.begin(), s1.end(), std::back_inserter(s2),
         [](char c1, char c2){ return c1 == ' ' && c2 == ' '; }
@@ -36,4 +37,5 @@ int main()
         [](int x) { return std::abs(x); } // projection
     );
     print("v2: ", v2);
+#endif
 }

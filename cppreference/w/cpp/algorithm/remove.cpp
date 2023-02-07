@@ -9,7 +9,7 @@ int main()
     std::string str1 = "Text with some   spaces";
  
     auto noSpaceEnd = std::remove(str1.begin(), str1.end(), ' ');
- 
+#ifndef __clang__
     // The spaces are removed from the string only logically.
     // Note, we use view, the original string is still not shrunk:
     std::cout << std::string_view(str1.begin(), noSpaceEnd) 
@@ -26,4 +26,5 @@ int main()
                               [](unsigned char x){ return std::isspace(x); }),
                str2.end());
     std::cout << str2 << '\n';
+#endif
 }

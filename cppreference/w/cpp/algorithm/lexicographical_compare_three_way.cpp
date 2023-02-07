@@ -25,7 +25,7 @@ int main()
                (ux > uy) ? std::strong_ordering::greater:
                            std::strong_ordering::equal;
     };
- 
+#ifndef __clang__
     for (const auto& [s1, s2] : { std::pair{"one"sv, "ONE"sv},
                                            {"two"sv, "four"sv},
                                            {"three"sv, "two"sv} }) {
@@ -33,4 +33,5 @@ int main()
             s1.cbegin(), s1.cend(), s2.cbegin(), s2.cend(), cmp_icase);
         show_result(s1, s2, res);
     }
+#endif
 }

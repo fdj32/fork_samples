@@ -29,7 +29,7 @@ int main()
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed "
         "do eiusmod tempor incididunt ut labore et dolore magna aliqua"sv
     };
- 
+#ifndef __clang__
     for (const auto needle: {"pisci"sv, "Pisci"sv})
     {
         const std::boyer_moore_searcher searcher(needle.begin(), needle.end());
@@ -40,4 +40,5 @@ int main()
         else
             std::cout << "found at offset " << it - haystack.begin() << '\n';
     }
+#endif
 }
