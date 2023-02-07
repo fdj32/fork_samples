@@ -16,7 +16,9 @@ int main()
     for(auto i = fs::recursive_directory_iterator("sandbox");
              i != fs::recursive_directory_iterator();
            ++i ) {
+#ifndef __clang__
         std::cout << std::string(i.depth()*2, ' ') << *i;
+#endif
         if(fs::is_symlink(i->symlink_status()))
             std::cout << " -> " << fs::read_symlink(*i);
         std::cout << '\n';
