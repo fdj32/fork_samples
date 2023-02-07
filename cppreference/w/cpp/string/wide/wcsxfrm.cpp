@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cwchar>
- 
+#include <clocale>
+
 int main()
 {
-#ifndef __clang__
+
     std::setlocale(LC_ALL, "sv_SE.utf8");
-#endif
 
     std::wstring in1 = L"\u00e5r";
     std::wstring out1(1+std::wcsxfrm(nullptr, in1.c_str(), 0), L' ');

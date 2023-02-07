@@ -2,6 +2,7 @@
 #include <cwchar>
 #include <algorithm>
 #include <iostream>
+#include <clocale>
 
 int main()
 {
@@ -11,9 +12,9 @@ int main()
     std::sort(leaders.begin(), leaders.end(), [](auto strA, auto strB) {
         return std::wcscmp(strA, strB) < 0;
     });
-#ifndef __clang__
+
     std::setlocale(LC_ALL, "en_US.utf8");
-#endif
+
     std::wcout.imbue(std::locale("en_US.utf8"));
     for (auto leader : leaders)
         std::wcout << leader << '\n';

@@ -3,6 +3,7 @@
 #include <cstring>
 #include <string>
 #include <cassert>
+#include <clocale>
  
 int main()
 {
