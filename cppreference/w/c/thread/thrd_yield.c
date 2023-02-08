@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <time.h>
-#include <threads.h>
+//#include <threads.h>
  
 // utility function: difference between timespecs in microseconds
 double usdiff(struct timespec s, struct timespec e)
