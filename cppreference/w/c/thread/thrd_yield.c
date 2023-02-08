@@ -10,7 +10,7 @@ double usdiff(struct timespec s, struct timespec e)
     if(nsdiff < 0) return 1000000*(sdiff-1) + (1000000000L+nsdiff)/1000.0;
     else return 1000000*(sdiff) + nsdiff/1000.0;
 }
- 
+/*
 // busy wait while yielding
 void sleep_100us()
 {
@@ -21,12 +21,12 @@ void sleep_100us()
         timespec_get(&end, TIME_UTC);
     } while(usdiff(start, end) < 100.0);
 }
- 
+*/
 int main()
 {
     struct timespec start, end;
     timespec_get(&start, TIME_UTC);
-    sleep_100us();
+    //sleep_100us();
     timespec_get(&end, TIME_UTC);
     printf("Waited for %.3f us\n", usdiff(start, end));
 }
