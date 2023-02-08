@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
- 
+/*
 void g(int*)
 {
     puts("Function g called");
@@ -12,9 +12,10 @@ void g(int*)
         nullptr_t : puts("nullptr_t"),  \
         default : puts("integer")       \
     )
- 
+*/
 int main()
 {
+/*
     g(nullptr);        // Fine
     g(NULL);           // Fine
     g(0);              // Fine
@@ -34,4 +35,5 @@ int main()
     DETECT_NULL_POINTER_CONSTANT(0);
     DETECT_NULL_POINTER_CONSTANT(nullptr);
     DETECT_NULL_POINTER_CONSTANT(NULL); // implementation-defined
+*/
 }
