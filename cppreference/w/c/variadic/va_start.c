@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
- 
+
 int add_nums_C99(int count, ...)
 {
     int result = 0;
@@ -14,7 +14,7 @@ int add_nums_C99(int count, ...)
     va_end(args);
     return result;
 }
- 
+/*
 #if __STDC_VERSION__ > 201710L
 // Same as above, valid since C23
 int add_nums_C23(...)
@@ -32,11 +32,13 @@ int add_nums_C23(...)
     return result;
 }
 #endif
- 
+*/
 int main(void)
 {
     printf("%d\n", add_nums_C99(4, 25, 25, 50, 50));
+/*
 #if __STDC_VERSION__ > 201710L
     printf("%d\n", add_nums_C23(4, 25, 25, 50, 50));
 #endif
+*/
 }
