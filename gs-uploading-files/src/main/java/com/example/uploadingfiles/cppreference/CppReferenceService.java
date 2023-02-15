@@ -20,21 +20,25 @@ import org.springframework.stereotype.Service;
 public class CppReferenceService {
 
 	private static final String HOST = "https://en.cppreference.com";
-	private static final String FOLDER = "/Users/nfeng/logs/cppreference";
+	private static final String FOLDER = "D:/logs/cppreference";
 
 	private static final Logger log = LoggerFactory.getLogger(CppReferenceService.class.getSimpleName());
 
 	private static final int RETRY_TIMES = 3;
 	private static final int MAX_URL = 30000;
+	private static final int MAX_STACK_DEPTH = 1000;
 
 	private static final ConcurrentMap<String, Boolean> urlMap = new ConcurrentHashMap<>();
 
 	public void run() {
-		run("");
+		run("", 0);
 		urlMap.keySet().stream().forEach(System.out::println);
 	}
 
-	public void run(String url) {
+	public void run(String url, int stackDepth) {
+		if (stackDepth > MAX_STACK_DEPTH) {
+			return;
+		}
 		if (null != urlMap.get(url) && urlMap.get(url))
 			return;
 		if (urlMap.size() > MAX_URL) {
@@ -57,7 +61,7 @@ public class CppReferenceService {
 		});
 		sourceCode(url, doc);
 		urlMap.put(url, true);
-		urlMap.keySet().stream().filter(i -> !urlMap.get(i)).forEach(i -> run(i));
+		urlMap.keySet().stream().filter(i -> !urlMap.get(i)).forEach(i -> run(i, stackDepth + 1));
 	}
 
 	private void sourceCode(String url, Document doc) {
