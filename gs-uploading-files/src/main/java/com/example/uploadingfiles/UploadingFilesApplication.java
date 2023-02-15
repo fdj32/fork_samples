@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
+import com.example.uploadingfiles.cppreference.CppReferenceService;
 import com.example.uploadingfiles.storage.StorageProperties;
 import com.example.uploadingfiles.storage.StorageService;
 
@@ -24,4 +25,12 @@ public class UploadingFilesApplication {
 			storageService.init();
 		};
 	}
+	
+	@Bean
+	CommandLineRunner cppreference(CppReferenceService service) {
+		return args -> {
+			service.run();
+		};
+	}
+	
 }
