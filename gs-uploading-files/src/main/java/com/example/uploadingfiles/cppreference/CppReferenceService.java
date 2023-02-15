@@ -26,7 +26,7 @@ public class CppReferenceService {
 
 	private static final int RETRY_TIMES = 3;
 	private static final int MAX_URL = 30000;
-	private static final int MAX_STACK_DEPTH = 10;
+	private static final int MAX_STACK_DEPTH = 5;
 
 	private static final ConcurrentMap<String, Boolean> urlMap = new ConcurrentHashMap<>();
 
@@ -61,7 +61,7 @@ public class CppReferenceService {
 		});
 		sourceCode(url, doc);
 		urlMap.put(url, true);
-		urlMap.keySet().stream().filter(i -> !urlMap.get(i)).forEach(i -> run(i, stackDepth + 1));
+		urlMap.keySet().parallelStream().filter(i -> !urlMap.get(i)).forEach(i -> run(i, stackDepth + 1));
 	}
 
 	private void sourceCode(String url, Document doc) {
