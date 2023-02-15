@@ -37,5 +37,7 @@ $(BUILD_DIR)/%.cpp.exe: %.cpp
 .PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
-# make -i
-.IGNORE:
+# make -i / --ignore
+# .IGNORE:
+# make -s / --silent
+# .SILENT:
