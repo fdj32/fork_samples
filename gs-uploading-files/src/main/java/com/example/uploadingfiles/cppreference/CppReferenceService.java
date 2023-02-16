@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class CppReferenceService {
 
 	private static final String HOST = "https://en.cppreference.com";
-	private static final String FOLDER = "D:/logs/cppreference";
+	private static final String FOLDER = -1 == System.getProperty("os.name").indexOf("Mac") ? "D:/logs/cppreference" : "/Users/nfeng/logs/cppreference";
 
 	private static final Logger log = LoggerFactory.getLogger(CppReferenceService.class.getSimpleName());
 
