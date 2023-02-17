@@ -3,6 +3,8 @@ package com.example.uploadingfiles.cppreference;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -20,13 +22,14 @@ import org.springframework.stereotype.Service;
 public class CppReferenceService {
 
 	private static final String HOST = "https://en.cppreference.com";
-	private static final String FOLDER = -1 == System.getProperty("os.name").indexOf("Mac") ? "D:/logs/cppreference" : "/Users/nfeng/logs/cppreference";
+	private static final String FOLDER = -1 == System.getProperty("os.name").indexOf("Mac") ? "D:/logs/cppreference"
+			: "/Users/nfeng/logs/cppreference";
 
 	private static final Logger log = LoggerFactory.getLogger(CppReferenceService.class.getSimpleName());
 
 	private static final int RETRY_TIMES = 3;
 	private static final int MAX_URL = 30000;
-	private static final int MAX_STACK_DEPTH = 5;
+	private static final int MAX_STACK_DEPTH = 4;
 
 	private static final ConcurrentMap<String, Boolean> urlMap = new ConcurrentHashMap<>();
 
@@ -37,18 +40,28 @@ public class CppReferenceService {
 
 	public void run(String url, int stackDepth) {
 		if (stackDepth > MAX_STACK_DEPTH) {
+			log.info("{} stack depth exceed", url);
 			return;
 		}
-		if (null != urlMap.get(url) && urlMap.get(url))
+		if (null != urlMap.get(url) && urlMap.get(url)) {
+			log.info("{} processed", url);
 			return;
+		}
 		if (urlMap.size() > MAX_URL) {
+			log.info("max url exceed", MAX_URL);
+			return;
+		}
+		String fileName = FOLDER + url + fileExtention(url);
+		if (Files.exists(Paths.get(fileName))) {
+			log.info("{} exists", fileName);
+			urlMap.put(url, true);
 			return;
 		}
 		Document doc = connect(HOST + url);
 		if (null == doc)
 			return;
 		Elements elements = doc.select("a");
-		elements.stream().forEach(e -> {
+		elements.parallelStream().forEach(e -> {
 			String href = e.attr("href");
 			if (href.startsWith("/w/c") && -1 == href.indexOf("#")) {
 				if (null == urlMap.get(href)) {
