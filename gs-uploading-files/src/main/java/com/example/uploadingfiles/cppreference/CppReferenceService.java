@@ -3,8 +3,6 @@ package com.example.uploadingfiles.cppreference;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -29,7 +27,7 @@ public class CppReferenceService {
 
 	private static final int RETRY_TIMES = 3;
 	private static final int MAX_URL = 30000;
-	private static final int MAX_STACK_DEPTH = 4;
+	private static final int MAX_STACK_DEPTH = 10;
 
 	private static final ConcurrentMap<String, Boolean> urlMap = new ConcurrentHashMap<>();
 
@@ -40,7 +38,6 @@ public class CppReferenceService {
 
 	public void run(String url, int stackDepth) {
 		if (stackDepth > MAX_STACK_DEPTH) {
-			log.info("{} stack depth exceed", url);
 			return;
 		}
 		if (null != urlMap.get(url) && urlMap.get(url)) {
@@ -51,30 +48,24 @@ public class CppReferenceService {
 			log.info("max url exceed", MAX_URL);
 			return;
 		}
-		String fileName = FOLDER + url + fileExtention(url);
-		if (Files.exists(Paths.get(fileName))) {
-			log.info("{} exists", fileName);
-			urlMap.put(url, true);
-			return;
-		}
 		Document doc = connect(HOST + url);
 		if (null == doc)
 			return;
+		sourceCode(url, doc);
+		urlMap.put(url, true);
 		Elements elements = doc.select("a");
 		elements.parallelStream().forEach(e -> {
 			String href = e.attr("href");
 			if (href.startsWith("/w/c") && -1 == href.indexOf("#")) {
 				if (null == urlMap.get(href)) {
 					urlMap.put(href, false);
-				}
-				if (0 == urlMap.size() % 100) {
-					log.info("size = {}", urlMap.size());
+					if (0 == urlMap.size() % 100) {
+						log.info("size = {}", urlMap.size());
+					}
+					run(href, stackDepth + 1);
 				}
 			}
 		});
-		sourceCode(url, doc);
-		urlMap.put(url, true);
-		urlMap.keySet().parallelStream().filter(i -> !urlMap.get(i)).forEach(i -> run(i, stackDepth + 1));
 	}
 
 	private void sourceCode(String url, Document doc) {
