@@ -134,7 +134,11 @@ public class CppReferenceService {
 				Connection conn = HttpConnection.connect(url);
 				doc = conn.get();
 			} catch (IOException e) {
-				log.error("connect({}) fail {} times", url, times);
+				if (times < RETRY_TIMES) {
+					log.debug("connect({}) fail {} times", url, times);
+				} else {
+					log.error("connect({}) fail {} times", url, times);
+				}
 			}
 			if (null != doc)
 				break;
