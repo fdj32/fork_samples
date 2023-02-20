@@ -3,6 +3,8 @@ package com.example.uploadingfiles.cppreference;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -22,26 +24,39 @@ public class CppReferenceService {
 	private static final String HOST = "https://en.cppreference.com";
 	private static final String FOLDER = -1 == System.getProperty("os.name").indexOf("Mac") ? "D:/logs/cppreference"
 			: "/Users/nfeng/logs/cppreference";
+	private static final String URL_LINES = "/url_lines.txt";
 
 	private static final Logger log = LoggerFactory.getLogger(CppReferenceService.class.getSimpleName());
 
 	private static final int RETRY_TIMES = 3;
-	private static final int MAX_URL = 30000;
-	private static final int MAX_STACK_DEPTH = 10;
+	private static final int MAX_URL = 10000;
+	private static final int MAX_LOOPS = 10;
 
 	private static final ConcurrentMap<String, Boolean> urlMap = new ConcurrentHashMap<>();
+	private static final Set<String> urlSet = new HashSet<>();
 
-	public void run() {
-		run("", 0);
-		urlMap.keySet().stream().forEach(System.out::println);
+	public void run() throws IOException {
+		urlSet.add("");
+		for (int i = 0; i < MAX_LOOPS; i++) {
+			int startSize = urlSet.size();
+			log.info("loop {} start, size: {}", i, startSize);
+			urlSet.addAll(urlMap.keySet());
+			urlSet.parallelStream().forEach(j -> run(j));
+			urlSet.addAll(urlMap.keySet());
+			int endSize = urlSet.size();
+			log.info("loop {} end, size: {}", i, endSize);
+			if (startSize == endSize) {
+				log.info("No more new url found");
+				break;
+			}
+		}
+		String lines = urlSet.stream().reduce("", (i, j) -> i + System.lineSeparator() + j);
+		System.out.println(lines);
+		FileUtils.write(new File(FOLDER + URL_LINES), lines, StandardCharsets.UTF_8);
 	}
 
-	public void run(String url, int stackDepth) {
-		if (stackDepth > MAX_STACK_DEPTH) {
-			return;
-		}
+	public void run(String url) {
 		if (null != urlMap.get(url) && urlMap.get(url)) {
-			log.info("{} processed", url);
 			return;
 		}
 		if (urlMap.size() > MAX_URL) {
@@ -54,18 +69,14 @@ public class CppReferenceService {
 		sourceCode(url, doc);
 		urlMap.put(url, true);
 		Elements elements = doc.select("a");
-		elements.parallelStream().forEach(e -> {
-			String href = e.attr("href");
-			if (href.startsWith("/w/c") && -1 == href.indexOf("#")) {
-				if (null == urlMap.get(href)) {
+		elements.parallelStream().filter(e -> null != e.attr("href") && e.attr("href").startsWith("/w/c")
+				&& -1 == e.attr("href").indexOf("#") && null == urlMap.get(e.attr("href"))).forEach(e -> {
+					String href = e.attr("href");
 					urlMap.put(href, false);
-					if (0 == urlMap.size() % 100) {
+					if (0 == urlMap.size() % 20) {
 						log.info("size = {}", urlMap.size());
 					}
-					run(href, stackDepth + 1);
-				}
-			}
-		});
+				});
 	}
 
 	private void sourceCode(String url, Document doc) {
@@ -126,7 +137,6 @@ public class CppReferenceService {
 	}
 
 	private Document connect(String url) {
-		log.info("connect({})", url);
 		Document doc = null;
 		int times = 1;
 		while (times <= RETRY_TIMES) {
