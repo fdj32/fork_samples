@@ -74,11 +74,11 @@ public class CppReferenceService {
 		sourceCode(url, doc);
 		urlMap.put(url, true);
 		Elements elements = doc.select("a");
-		elements.parallelStream().filter(e -> null != e.attr("href") && e.attr("href").startsWith("/w/c")
-				&& -1 == e.attr("href").indexOf("#") && null == urlMap.get(e.attr("href"))).forEach(e -> {
-					String href = e.attr("href");
+		elements.parallelStream().filter(e -> null != e.attr("href")).map(e -> e.attr("href"))
+				.filter(href -> href.startsWith("/w/c") && !href.contains("#") && null == urlMap.get(href))
+				.forEach(href -> {
 					urlMap.put(href, false);
-					if (0 == urlMap.size() % 20) {
+					if (0 == urlMap.size() % 50) {
 						log.info("size = {}", urlMap.size());
 					}
 				});
@@ -91,7 +91,7 @@ public class CppReferenceService {
 		for (int i = 0; i < elements.size(); i++) {
 			Element e = elements.get(i);
 			String content = sourceText(e);
-			if (-1 == content.indexOf("main"))
+			if (-1 == content.indexOf(" main("))
 				return;
 			String fileName = FOLDER + url + (elements.size() > 1 ? (i + 1) + "" : "") + fileExtention(url);
 			try {
