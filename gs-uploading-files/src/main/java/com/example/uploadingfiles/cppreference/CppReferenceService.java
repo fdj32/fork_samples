@@ -154,6 +154,11 @@ public class CppReferenceService {
 				} else {
 					log.error("connect({}) fail {} times", url, times);
 				}
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					log.error("sleep 100ms fail");
+				}
 			}
 			if (null != doc)
 				break;
