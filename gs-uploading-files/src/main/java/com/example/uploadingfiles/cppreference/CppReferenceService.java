@@ -116,7 +116,7 @@ public class CppReferenceService {
 		s = s.replaceAll("</pre>", "");
 		s = s.replaceAll("<span class=\\\"\\w{3,10}\\\">", "");
 		s = s.replaceAll("</span>", "");
-		s = s.replaceAll("<a href=\\\".{2,100}\\\">", "");
+		s = s.replaceAll("<a href=\\\"[^<>]{30,100}\\\">", "");
 		s = s.replaceAll("</a>", "");
 		s = s.replaceAll("&nbsp;", "");
 		s = s.replaceAll("&lt;", "<");
