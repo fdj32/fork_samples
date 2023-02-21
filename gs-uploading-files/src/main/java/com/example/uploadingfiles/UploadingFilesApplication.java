@@ -29,7 +29,7 @@ public class UploadingFilesApplication {
 	@Bean
 	CommandLineRunner cppreference(CppReferenceService service) {
 		return args -> {
-			System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "128");
+			System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "32");
 			service.run();
 		};
 	}
