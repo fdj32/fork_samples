@@ -27,12 +27,12 @@ all: $(TARGET_EXEC)
 # Build step for C source
 $(BUILD_DIR)/%.c.exe: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
 
 # Build step for C++ source
 $(BUILD_DIR)/%.cpp.exe: %.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CPPFLAGS) $(LDFLAGS) $< -o $@
+	$(CXX) $(CPPFLAGS) $< -o $@ $(LDFLAGS)
 
 .PHONY: clean
 clean:
