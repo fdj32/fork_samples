@@ -12,10 +12,10 @@ SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c')
 
 TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 
-CFLAGS := -std=c2x
+CFLAGS := -std=gnu2x
 
 ifeq ($(CXX),g++)
-	CPPFLAGS := -std=c++23 -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -g
+	CPPFLAGS := -std=gnu++23 -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -g
 else ifeq ($(CXX),c++)
 	CPPFLAGS := -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -fcolor-diagnostics -fansi-escape-codes -g
 endif
