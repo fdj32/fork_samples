@@ -36,7 +36,7 @@ find build/ -name *.exe | wc -l
 
 find w -name *.c -or -name *.cpp | wc -l
 
-find w -name *.c -or -name *.cpp | awk '{print "add_executable(build-cmake/"$1".exe "$1")"}' | grep -v '()' | grep -v '*' > CMakeLists.txt
+find w -name *.c -or -name *.cpp | grep -v '()' | grep -v '*' | awk '{print "add_executable("$1".exe "$1")"}' > CMakeLists.txt
 
 ```
 
