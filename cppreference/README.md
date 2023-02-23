@@ -39,9 +39,14 @@ find w -name *.c -or -name *.cpp | wc -l
 find w -name *.c -or -name *.cpp | grep -v '()' | grep -v '*' | awk '{print "add_executable("$1".exe "$1")"}' > CMakeLists.txt
 
 
-cmake_minimum_required(VERSION, "3.25.2")
-set(CMAKE_C_FLAGS, " -std=gnu17 ")
-set(CMAKE_CXX_FLAGS, " -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -fcolor-diagnostics -fansi-escape-codes -g ")
+cmake_minimum_required(VERSION 3.25)
+project(cppreference)
+if(POLICY CMP0037)
+  cmake_policy(SET CMP0037 OLD)
+endif()
+set(CMAKE_C_FLAGS " -std=c2x ")
+set(CMAKE_CXX_FLAGS " -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -g ")
+set(CMAKE_EXE_LINKER_FLAGS " -lm -lpthread ")
 
 ```
 
