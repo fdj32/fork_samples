@@ -45,7 +45,7 @@ if(POLICY CMP0037)
   cmake_policy(SET CMP0037 OLD)
 endif()
 set(CMAKE_C_FLAGS " -std=c2x ")
-set(CMAKE_CXX_FLAGS " -std=c++2b -O2 -Wall -Wextra -pedantic -pthread -pedantic-errors -g ")
+set(CMAKE_CXX_FLAGS " -std=c++2b -O2 -Wall -Wextra -pthread -g ")
 set(CMAKE_EXE_LINKER_FLAGS " -lm -lpthread ")
 
 ```
