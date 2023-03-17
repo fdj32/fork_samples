@@ -1,11 +1,12 @@
-#include <string_view>
+
+ #include <string_view>
 #include <iostream>
- 
+
 int main()
 {
   using namespace std::literals;
   constexpr auto N = std::string_view::npos;
- 
+
   static_assert(
     5 == "delete"sv.find_last_of("cdef"sv) &&
       //       └────────────────────┘
@@ -27,6 +28,6 @@ int main()
       //     └─────────────────────────┘
     N == "namespace"sv.find_last_of("cdef", 3 /* pos [0..3]: "name" */, 2 /* "cd" */)
   );
- 
+
   std::cout << "All tests passed.\n";
 }

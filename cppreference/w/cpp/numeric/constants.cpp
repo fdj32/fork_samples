@@ -1,19 +1,20 @@
-#include <cmath>
+
+ #include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <numbers>
 #include <string_view>
 #include <functional>
- 
+
 using std::placeholders::_2;
 template <class T>
 constexpr auto operator^(T base, decltype(_2)) { return base * base; }
- 
+
 int main()
 {
     using namespace std::numbers;
- 
+
     std::cout << "The answer is " <<
         (((std::sin(e)^_2) + (std::cos(e)^_2)) + 
         std::pow(e, ln2) + std::sqrt(pi) * inv_sqrtpi +
@@ -21,7 +22,7 @@ int main()
         sqrt3 * inv_sqrt3 * log2e * ln2 * log10e * ln10 *
         pi * inv_pi + (phi * phi - phi)) *
         ((sqrt2 * sqrt3)^_2) << '\n';
-#ifndef __clang__
+
     auto egamma_aprox = [] (unsigned const iterations) {
         long double s{}, m{2.0};
         for (unsigned c{2}; c != iterations; ++c, ++m) {
@@ -30,9 +31,9 @@ int main()
         }
         return s;
     };
- 
+
     constexpr std::string_view γ {"0.577215664901532860606512090082402"};
- 
+
     std::cout 
         << "γ as 10⁶ sums of ±ζ(m)/m   = "
         << egamma_aprox(1'000'000) << '\n'
@@ -46,5 +47,4 @@ int main()
         << std::setprecision(std::numeric_limits<long double>::digits10 + 1)
         << egamma_v<long double> << '\n'
         << "γ with " << γ.length() - 1 << " digits precision = " << γ << '\n';
-#endif
 }

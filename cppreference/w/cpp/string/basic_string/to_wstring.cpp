@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
- 
+
 int main()
 {
     for (const double f : { 23.43, 1e-9, 1e40, 1e-40, 123456789. }) {

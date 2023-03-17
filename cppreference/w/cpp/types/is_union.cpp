@@ -1,17 +1,18 @@
-#include <iostream>
+
+ #include <iostream>
 #include <type_traits>
- 
+
 struct A {};
- 
+
 typedef union {
     int a;
     float b;
 } B;
- 
+
 struct C {
     B d;
 };
- 
+
 int main() 
 {
     std::cout << std::boolalpha;

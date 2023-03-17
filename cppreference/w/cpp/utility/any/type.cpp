@@ -1,4 +1,5 @@
-#include <type_traits>
+
+ #include <type_traits>
 #include <any>
 #include <functional>
 #include <iomanip>
@@ -7,7 +8,7 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <vector>
- 
+
 template<class T, class F>
 inline std::pair<const std::type_index, std::function<void(std::any const&)>>
     to_any_visitor(F const &f)
@@ -23,7 +24,7 @@ inline std::pair<const std::type_index, std::function<void(std::any const&)>>
         }
     };
 }
- 
+
 static std::unordered_map<
     std::type_index, std::function<void(std::any const&)>>
     any_visitor {
@@ -36,7 +37,7 @@ static std::unordered_map<
             { std::cout << std::quoted(s); }),
         // ... add more handlers for your types ...
     };
- 
+
 inline void process(const std::any& a)
 {
     if (const auto it = any_visitor.find(std::type_index(a.type()));
@@ -46,7 +47,7 @@ inline void process(const std::any& a)
         std::cout << "Unregistered type "<< std::quoted(a.type().name());
     }
 }
- 
+
 template<class T, class F>
     inline void register_any_visitor(F const& f)
 {
@@ -54,25 +55,25 @@ template<class T, class F>
               << std::quoted(typeid(T).name()) << '\n';
     any_visitor.insert(to_any_visitor<T>(f));
 }
- 
+
 auto main() -> int
 {
     std::vector<std::any> va { {}, 42, 123u, 3.14159f, 2.71828, "C++17", };
- 
+
     std::cout << "{ ";
     for (const std::any& a : va) {
         process(a);
         std::cout << ", ";
     }
     std::cout << "}\n";
- 
+
     process(std::any(0xFULL)); //< Unregistered type "y" (unsigned long long)
     std::cout << '\n';
- 
+
     register_any_visitor<unsigned long long>([](auto x) {
         std::cout << std::hex << std::showbase << x; 
     });
- 
+
     process(std::any(0xFULL)); //< OK: 0xf
     std::cout << '\n';
 }

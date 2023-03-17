@@ -1,8 +1,9 @@
-#include <algorithm>
+
+ #include <algorithm>
 #include <iostream>
 #include <span>
 #include <string_view>
- 
+
 void ascending(const std::span<const std::string_view> data,
                const std::string_view term)
 {
@@ -10,7 +11,7 @@ void ascending(const std::span<const std::string_view> data,
         [](const std::string_view x) { std::cout << x << " "; });
     std::cout << term;
 }
- 
+
 void descending(const std::span<const std::string_view> data,
                const std::string_view term)
 {
@@ -18,7 +19,7 @@ void descending(const std::span<const std::string_view> data,
         [](const std::string_view x) { std::cout << x << " "; });
     std::cout << term;
 }
- 
+
 int main()
 {
     constexpr std::string_view bars[]{ "▁","▂","▃","▄","▅","▆","▇","█" };

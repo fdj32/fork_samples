@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <fstream>
- 
+
 struct showput_streambuf : std::filebuf
 {
     using std::filebuf::pbump; // expose protected
@@ -9,7 +10,7 @@ struct showput_streambuf : std::filebuf
         return std::string(pbase(), pptr());
     }
 };
- 
+
 int main()
 {
     showput_streambuf mybuf;

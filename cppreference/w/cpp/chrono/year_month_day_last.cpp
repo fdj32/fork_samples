@@ -1,13 +1,14 @@
-#include <iostream>
+
+ #include <iostream>
 #include <chrono>
- 
+
 // until online compiler supports streaming the year_month_day_last:
 std::ostream& operator<< (std::ostream& os, std::chrono::year_month_day_last ymdl) {
     return os << static_cast<int>(ymdl.year()) << '/' 
               << static_cast<unsigned>(ymdl.month()) << '/'
               << static_cast<unsigned>(ymdl.day());
 }
- 
+
 int main()
 {
     const auto ymd = std::chrono::year_month_day{
@@ -15,13 +16,13 @@ int main()
             std::chrono::system_clock::now()
         )
     };
- 
+
     const std::chrono::year_month_day_last ymdl{
         ymd.year(), ymd.month() / std::chrono::last
     };
     std::cout << "The date of the last day of this month is: " << ymdl << '\n';
- 
- 
+
+
     // The `last` object can be placed wherever it is legal to place a `day`:
     using namespace std::chrono;
     constexpr std::chrono::year_month_day_last

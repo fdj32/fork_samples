@@ -1,5 +1,6 @@
-#include <chrono>
- 
+
+ #include <chrono>
+
 int main()
 {
     constexpr std::chrono::weekday_indexed wdi1 {std::chrono::Wednesday[2]};

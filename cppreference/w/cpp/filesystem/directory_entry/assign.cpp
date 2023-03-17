@@ -1,28 +1,23 @@
-#include <filesystem>
+
+ #include <filesystem>
 #include <fstream>
 #include <iostream>
 
-#ifndef __clang__
-void print_entry_info(const std::filesystem::directory_entry &entry)
+void print_entry_info(const std::filesystem::directory_entry& entry)
 {
     std::cout << "the entry " << entry;
-    if (not entry.exists())
-    {
+    if (not entry.exists()) {
         std::cout << " does not exists on the file system\n";
         return;
     }
     std::cout << " is ";
-    if (entry.is_directory())
-        std::cout << "a directory\n";
-    if (entry.is_regular_file())
-        std::cout << "a regular file\n";
+    if (entry.is_directory()) std::cout << "a directory\n";
+    if (entry.is_regular_file()) std::cout << "a regular file\n";
     /*...*/
 }
-#endif
 
 int main()
 {
-#ifndef __clang__
     std::filesystem::current_path(std::filesystem::temp_directory_path());
 
     std::filesystem::directory_entry entry{std::filesystem::current_path()};
@@ -32,7 +27,7 @@ int main()
     std::ofstream{name} << "C++";
 
     std::cout << "entry.assign();\n";
-    entry.assign(entry / name);
+    entry.assign(entry/name);
     print_entry_info(entry);
 
     std::cout << "remove(entry);\n";
@@ -42,5 +37,4 @@ int main()
     std::cout << "entry.assign();\n";
     entry.assign(entry); // or just call entry.refresh()
     print_entry_info(entry);
-#endif
 }

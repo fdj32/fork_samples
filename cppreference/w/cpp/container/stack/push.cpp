@@ -1,19 +1,20 @@
-#include <map>
+
+ #include <map>
 #include <stack>
 #include <array>
 #include <iostream>
 #include <stdexcept>
 #include <string_view>
- 
+
 class BrainHackInterpreter {
     std::map<unsigned, unsigned> open_brackets, close_brackets;
     unsigned program_pos_{0};
     std::array<std::uint8_t, 32768> data_;
     int data_pos_{0};
- 
+
     void collect_brackets_positions(const std::string_view program) {
         std::stack<unsigned> brackets_stack;
- 
+
         for (auto pos{0U}; pos != program.length(); ++pos) {
             const char c{program[pos]};
             if ('[' == c) {
@@ -28,21 +29,21 @@ class BrainHackInterpreter {
                 }
             }
         }
- 
+
         if (!brackets_stack.empty())
             throw std::runtime_error("brackets [] do not match!");
     }
- 
+
     void check_data_pos(int pos) {
         if (pos < 0 or pos >= static_cast<int>(data_.size()))
             throw std::out_of_range{"data pointer out of bound"};
     }
- 
+
   public:
     BrainHackInterpreter(const std::string_view program) {
         collect_brackets_positions(program);
         data_.fill(0);
- 
+
         for (; program_pos_ < program.length(); ++program_pos_) {
             switch (program[program_pos_]) {
                 case '<': check_data_pos(--data_pos_); break;
@@ -63,7 +64,7 @@ class BrainHackInterpreter {
         }
     }
 };
- 
+
 int main()
 {
     BrainHackInterpreter

@@ -1,4 +1,5 @@
-#include <cstdio>
+
+ #include <cstdio>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
@@ -9,9 +10,9 @@
 #include <sys/stat.h>
 #include <sys/un.h>
 #include <unistd.h>
- 
+
 namespace fs = std::filesystem;
- 
+
 void print_entry_type(std::filesystem::directory_entry const& entry) {
     std::cout << entry.path() << ": ";
     if (!entry.exists()) std::cout << "does not exist ";
@@ -25,14 +26,14 @@ void print_entry_type(std::filesystem::directory_entry const& entry) {
     if (entry.is_other()) std::cout << "(an `other` file) ";
     std::cout <<'\n';
 }
- 
+
 template <typename Type, typename Fun>
 class scoped_cleanup {
     std::unique_ptr<Type, std::function<void(const Type*)>> u;
   public:
     scoped_cleanup(Type* ptr, Fun fun) : u{ptr, std::move(fun)} {}
 };
- 
+
 int main()
 {
     // create files of different kinds
@@ -45,10 +46,10 @@ int main()
     std::filesystem::create_directory(sandbox);
     std::ofstream{sandbox/"file"}; // creates a regular file
     std::filesystem::create_directory(sandbox/"dir");
- 
+
     mkfifo((sandbox/"pipe").string().data(), 0644);
     struct sockaddr_un addr; addr.sun_family = AF_UNIX;
- 
+
     std::strcpy(addr.sun_path, (sandbox/"sock").string().data());
     int fd {socket(PF_UNIX, SOCK_STREAM, 0)};
     scoped_cleanup close_socket_at_exit{&fd, [](const int* f) {
@@ -56,17 +57,17 @@ int main()
         close(*f);
     } };
     bind(fd, reinterpret_cast<sockaddr*>(std::addressof(addr)), sizeof addr);
- 
+
     fs::create_symlink("file", sandbox/"symlink");
- 
+
     for (std::filesystem::directory_entry entry: fs::directory_iterator(sandbox)) {
         print_entry_type(entry);
     }
- 
+
     // direct calls to status:
     for (const char* str: {"/dev/null", "/dev/cpu", "/usr/include/c++",
                            "/usr/include/asm", "/usr/include/time.h"}) {
         print_entry_type(fs::directory_entry{str});
     }
- 
+
 }   // cleanup via `scoped_cleanup` objects

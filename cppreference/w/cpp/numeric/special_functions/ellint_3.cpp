@@ -1,10 +1,12 @@
-#include <cmath>
+
+ #include <cmath>
 #include <iostream>
+#include <numbers>
+
 int main()
 {
-    double hpi = std::acos(-1)/2;
-#ifndef __clang__
+    const double hpi = std::numbers::pi / 2;
+
     std::cout << "Π(0,0,π/2) = " << std::ellint_3(0, 0, hpi) << '\n'
               << "π/2 = " << hpi << '\n';
-#endif              
 }

@@ -1,6 +1,7 @@
-#include <functional>
+
+ #include <functional>
 #include <iostream>
- 
+
 int f(int a) { return -a; }
 void g(double) {}
 int main()
@@ -10,7 +11,7 @@ int main()
                             fn2([](int a) {return -a;});
     std::cout << fn1.target_type().name() << '\n'
               << fn2.target_type().name() << '\n';
- 
+
     // since C++17 deduction guides (CTAD) can avail
     std::cout << std::function{g}.target_type().name() << '\n';
 }

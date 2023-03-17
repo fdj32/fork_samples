@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <typeinfo>
- 
+
 int main()
 {
     if(typeid(int).before(typeid(char)))

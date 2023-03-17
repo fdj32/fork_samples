@@ -1,6 +1,7 @@
-#include <strstream>
+
+ #include <strstream>
 #include <iostream>
- 
+
 int main()
 {
     std::ostrstream dyn; // dynamically-allocated output buffer
@@ -12,7 +13,7 @@ int main()
     std::cout << "The output stream contains \"";
     std::cout.write(dyn.str(), dyn.pcount()) << "\"\n";
     dyn.freeze(false); // freeze(false) must be called or the  destructor will leak
- 
+
     std::ostrstream dyn2; // dynamically-allocated output buffer
     dyn2 << "Test: " << 1.23; // note: no std::ends
     std::cout << "The output stream contains \"";

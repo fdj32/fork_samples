@@ -1,4 +1,5 @@
-#include <locale>
+
+ #include <locale>
 #include <iostream>
 #include <iomanip>
 #include <iterator>
@@ -13,7 +14,7 @@ int main()
     std::cout.imbue(std::locale("en_US.UTF-8"));
     std::cout << "american locale: " << std::showbase
               << std::put_money(12345678.0)<< '\n';
- 
+
     std::cout.imbue(std::locale(std::cout.getloc(), new space_out));
     std::cout << "locale with modified moneypunct: "
               << std::put_money(12345678.0)<< '\n';

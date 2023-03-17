@@ -1,7 +1,8 @@
-#include <type_traits>
+
+ #include <type_traits>
 #include <new>
 #include <utility>
- 
+
 // constructs a T at the uninitialized memory pointed to by p
 // using list-initialization for aggregates and non-list initialization otherwise
 template<class T, class... Args>
@@ -13,10 +14,10 @@ T* construct(T* p, Args&&... args) {
         return ::new (static_cast<void*>(p)) T(std::forward<Args>(args)...);
     }
 }
- 
+
 struct A { int x, y; };
 struct B { B(int, const char*) { } };
- 
+
 int main() {
     std::aligned_union_t<1, A, B> storage;
     [[maybe_unused]] A* a = construct(reinterpret_cast<A*>(&storage), 1, 2);

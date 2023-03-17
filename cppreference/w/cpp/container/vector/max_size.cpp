@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <vector>
- 
+
 int main()
 {
     std::vector<char> q;

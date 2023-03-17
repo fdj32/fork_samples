@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <string>
 #include <map>
 #include <random>
- 
+
 int main()
 {
     std::random_device rd;
@@ -14,13 +15,12 @@ int main()
     std::vector<double> i{0, 5, 10, 15};
     std::vector<double> w{0, 1,  1,  0};
     std::piecewise_linear_distribution<> d{i.begin(), i.end(), w.begin()};
- 
+
     std::map<int, int> hist;
-    for(int n=0; n<10000; ++n) {
+    for (int n{}; n < 1e4; ++n)
         ++hist[d(gen)];
-    }
-    for(auto p : hist) { 
-        std::cout << std::setw(2) << std::setfill('0') << p.first << ' '
-                  << std::string(p.second/100,'*') << '\n';
-    }
+
+    for (auto [x, y] : hist)
+        std::cout << std::setw(2) << std::setfill('0') << x
+                  << ' ' << std::string(y / 100,'*') << '\n';
 }

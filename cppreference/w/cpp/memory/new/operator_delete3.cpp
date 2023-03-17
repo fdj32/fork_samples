@@ -1,17 +1,18 @@
-#include <iostream>
+
+ #include <iostream>
 #include <stdexcept>
- 
+
 struct X
 {
     X() { throw std::runtime_error("X(): std::runtime_error"); }
- 
+
     // custom placement new
     static void* operator new(std::size_t sz, bool b)
     {
         std::cout << "custom placement new called, b = " << b << '\n';
         return ::operator new(sz);
     }
- 
+
     // custom placement delete
     static void operator delete(void* ptr, bool b)
     {
@@ -19,7 +20,7 @@ struct X
         ::operator delete(ptr);
     }
 };
- 
+
 int main()
 {
     try

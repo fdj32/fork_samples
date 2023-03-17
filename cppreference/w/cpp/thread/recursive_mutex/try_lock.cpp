@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <mutex>
- 
+
 int main()
 {
     std::recursive_mutex test;
@@ -10,7 +11,7 @@ int main()
     } else {
         std::cout << "lock not acquired\n";
     }
- 
+
     test.lock();
     // non-recursive mutex would return false from try_lock now
     if (test.try_lock()) {

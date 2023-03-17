@@ -1,7 +1,8 @@
-#include <map>
+
+ #include <map>
 #include <iostream>
 #include <string>
- 
+
 int main()
 {
   std::multimap<int, std::string> ma {{1, "apple"}, {5, "pear"}, {10, "banana"}};
@@ -11,7 +12,7 @@ int main()
   std::cout << "ma.size(): " << ma.size() << '\n';
   u.merge(mb);
   std::cout << "mb.size(): " << mb.size() << '\n';
- 
+
   for(auto const &kv: u)
     std::cout << kv.first << ", " << kv.second << '\n';
 }

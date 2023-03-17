@@ -1,27 +1,28 @@
-#include <initializer_list>
+
+ #include <initializer_list>
 #include <iostream>
 #include <iterator>
 #include <locale>
 #include <sstream>
 #include <string_view>
- 
+
 void try_get_wday(std::string_view s)
 {
     std::cout << "Parsing the weekday out of '" << s
               << "' in the locale " << std::locale().name() << '\n';
     std::istringstream str {s.data()};
     std::ios_base::iostate err {std::ios_base::goodbit};
- 
+
     std::tm t;
     std::time_get<char> const& facet = std::use_facet<std::time_get<char>>(str.getloc());
     std::istreambuf_iterator<char> ret = facet.get_weekday({str}, {}, str, err, &t);
     str.setstate(err);
     std::istreambuf_iterator<char> last{};
- 
+
     if (str)
     {
         std::cout << "Successfully parsed, weekday number is " << t.tm_wday;
- 
+
         if (ret != last)
         {
             std::cout << " Remaining content: ";
@@ -35,10 +36,10 @@ void try_get_wday(std::string_view s)
         std::cout << "Parse failed. Unparsed string: ";
         std::copy(ret, last, std::ostreambuf_iterator<char>(std::cout));
     }
- 
+
     std::cout << '\n';
 }
- 
+
 void demo(std::string_view locale_name, std::initializer_list<std::string_view>&& data)
 {
     try
@@ -51,11 +52,11 @@ void demo(std::string_view locale_name, std::initializer_list<std::string_view>&
                      "Exception: " << ex.what() << '\n';
         return;
     }
- 
+
     for (std::string_view const weekday : data)
         try_get_wday(weekday);
 }
- 
+
 int main()
 {
     demo("lt_LT.utf8", { "Št", "Šeštadienis", });

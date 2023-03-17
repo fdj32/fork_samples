@@ -1,8 +1,9 @@
-#include <algorithm>
+
+ #include <algorithm>
 #include <cassert>
 #include <cstring>
 #include <string>
- 
+
 int main()
 {
     std::string const s("Emplary");

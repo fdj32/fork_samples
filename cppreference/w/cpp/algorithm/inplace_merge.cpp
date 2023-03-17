@@ -1,7 +1,8 @@
-#include <vector>
+
+ #include <vector>
 #include <iostream>
 #include <algorithm>
- 
+
 template<class Iter>
 void merge_sort(Iter first, Iter last)
 {
@@ -12,7 +13,7 @@ void merge_sort(Iter first, Iter last)
         std::inplace_merge(first, middle, last);
     }
 }
- 
+
 int main()
 {
     std::vector<int> v{8, 2, -2, 0, 11, 11, 1, 7, 3};

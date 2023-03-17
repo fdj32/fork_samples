@@ -1,7 +1,8 @@
-#include <cstdlib>
+
+ #include <cstdlib>
 #include <iostream>
 #include <ctime>
- 
+
 int main() 
 {
     std::srand(std::time(0)); //use current time as seed for random generator

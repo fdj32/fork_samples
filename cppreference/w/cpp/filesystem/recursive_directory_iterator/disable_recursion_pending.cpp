@@ -1,10 +1,11 @@
-#include <cstdlib>
+
+ #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <filesystem>
 namespace fs = std::filesystem;
- 
+
 int main()
 {
     fs::current_path(fs::temp_directory_path());
@@ -16,13 +17,11 @@ int main()
     for(auto i = fs::recursive_directory_iterator("sandbox");
              i != fs::recursive_directory_iterator();
            ++i ) {
-#ifndef __clang__
         std::cout << std::string(i.depth()*2, ' ') << *i;
-#endif
         if(fs::is_symlink(i->symlink_status()))
             std::cout << " -> " << fs::read_symlink(*i);
         std::cout << '\n';
- 
+
         // do not descend into "b"
         if(i->path().filename() == "b")
             i.disable_recursion_pending();

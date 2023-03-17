@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
- 
+
 int main()
 {
     for (const char* name: {"en_US.UTF-8", "de_DE.UTF-8", "en_GB.UTF-8"})

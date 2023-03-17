@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstdlib>
 #include <exception>
- 
+
 int main()
 {
     std::set_terminate([](){

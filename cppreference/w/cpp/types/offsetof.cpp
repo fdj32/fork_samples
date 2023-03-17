@@ -1,6 +1,7 @@
-#include <cstddef>
+
+ #include <cstddef>
 #include <iostream>
- 
+
 struct S
 {
     char   m0;
@@ -9,7 +10,7 @@ struct S
     char   m3;
 //  private: int z; // warning: 'S' is a non-standard-layout type
 };
- 
+
 int main()
 {
     std::cout

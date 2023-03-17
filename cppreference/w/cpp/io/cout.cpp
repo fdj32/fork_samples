@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 struct Foo {
     int n;
     Foo() {

@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cfenv>
- 
+
 #pragma STDC FENV_ACCESS ON
- 
+
 int main()
 {
     std::feclearexcept(FE_ALL_EXCEPT);

@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <valarray>
 #include <algorithm>
- 
+
 int main()
 {
     const std::valarray<char> va {
@@ -9,7 +10,7 @@ int main()
         ',', ' ', 
         'C', '+', '+', '!', '\n'
     };
- 
+
     std::for_each(
         std::begin(va),
         std::end(va),

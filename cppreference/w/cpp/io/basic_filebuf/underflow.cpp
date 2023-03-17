@@ -1,6 +1,7 @@
-#include <fstream>
+
+ #include <fstream>
 #include <iostream>
- 
+
 struct mybuf : std::filebuf
 {
     int underflow() {
@@ -15,7 +16,7 @@ struct mybuf : std::filebuf
         return rc;
     }
 };
- 
+
 int main()
 {
     mybuf buf;

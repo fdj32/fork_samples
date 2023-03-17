@@ -1,6 +1,7 @@
-#include <cstring>
+
+ #include <cstring>
 #include <cstdio>
- 
+
 int main() 
 {
     char str[50] = "Hello ";

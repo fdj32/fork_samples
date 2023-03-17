@@ -1,6 +1,7 @@
-#include <strstream>
+
+ #include <strstream>
 #include <iostream>
- 
+
 int main()
 {
     std::strstream dyn; // dynamically-allocated output buffer

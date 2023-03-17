@@ -1,11 +1,12 @@
-#include <format>
+
+ #include <format>
 #include <iostream>
 #include <string_view>
- 
+
 int main()
 {
     char buffer[64];
- 
+
     const auto result =
         std::format_to_n(buffer, std::size(buffer) - 1,
                          "Hubble's H{2} {3} {0}{4}{1} km/sec/Mpc.",
@@ -16,9 +17,9 @@ int main()
                          "\u00B1"  // {4}, occupies 2 bytes
                          );
     *result.out = '\0';
- 
+
     const std::string_view str{buffer, result.out}; // uses C++20 constructor
- 
+
     std::cout << "Buffer: \"" << str << "\"\n"
               << "Buffer size = " << std::size(buffer) << '\n'
               << "Untruncated output size = " << result.size << '\n';

@@ -1,14 +1,15 @@
-#include <iostream>
+
+ #include <iostream>
 #include <condition_variable>
 #include <thread>
 #include <chrono>
 using namespace std::chrono_literals;
- 
+
 std::condition_variable_any cv;
 std::mutex cv_m;
 int i = 0;
 bool done = false;
- 
+
 void waits()
 {
     std::unique_lock<std::mutex> lk(cv_m);
@@ -17,14 +18,14 @@ void waits()
     std::cout << "...finished waiting; i == " << i << '\n';
     done = true;
 }
- 
+
 void signals()
 {
     std::this_thread::sleep_for(200ms);
     std::cout << "Notifying falsely...\n";
     cv.notify_one(); // waiting thread is notified with i == 0.
                      // cv.wait wakes up, checks i, and goes back to waiting
- 
+
     std::unique_lock<std::mutex> lk(cv_m);
     i = 1;
     while (!done) 
@@ -36,7 +37,7 @@ void signals()
         lk.lock();
     }
 }
- 
+
 int main()
 {
     std::thread t1(waits), t2(signals);

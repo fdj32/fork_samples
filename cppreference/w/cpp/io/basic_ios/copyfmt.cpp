@@ -1,18 +1,19 @@
-#include <bitset>
+
+ #include <bitset>
 #include <climits>
 #include <fstream>
 #include <iostream>
- 
+
 int main()
 {
     std::ofstream out;
- 
+
     out.copyfmt(std::cout); // copy everything except rdstate and rdbuf
     out.clear(std::cout.rdstate()); // copy rdstate
     out.basic_ios<char>::rdbuf(std::cout.rdbuf()); // share the buffer
- 
+
     out << "Hello, world\n";
- 
+
     auto bin = [](std::ios_base::fmtflags f)
     {
         return std::bitset<sizeof(std::ios_base::fmtflags) * CHAR_BIT>

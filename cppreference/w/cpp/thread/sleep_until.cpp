@@ -1,14 +1,15 @@
-#include <iostream>
+
+ #include <iostream>
 #include <chrono>
 #include <thread>
- 
+
 auto now() { return std::chrono::steady_clock::now(); }
- 
+
 auto awake_time() {
     using std::chrono::operator""ms;
     return now() + 2000ms;
 }
- 
+
 int main()
 {
     std::cout << "Hello, waiter...\n" << std::flush;

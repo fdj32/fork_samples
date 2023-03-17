@@ -1,8 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <ranges>
 #include <vector>
- 
- #ifndef __clang__
+
 template <std::ranges::input_range R>
 void print(char id, R&& r)
 {
@@ -10,24 +10,22 @@ void print(char id, R&& r)
         std::cout << '\t' << id << ") Empty\n";
         return;
     }
- 
+
     std::cout << '\t' << id << ") Elements:";
     for (const auto& element : r) {
         std::cout << ' ' << element;
     }
- 
+
     std::cout << '\n';
 }
-#endif
 
 int main()
 {
-#ifndef __clang__
     {
         auto v = std::vector<int>{1, 2, 3};
         std::cout << "(1) ranges::empty uses std::vector::empty:\n";
         print('a', v);
- 
+
         v.clear();
         print('b', v);
     }
@@ -35,7 +33,7 @@ int main()
         std::cout << "(2) ranges::empty uses ranges::size(initializer_list):\n";
         auto il = {7, 8, 9};
         print('a', il);
- 
+
         print('b', std::initializer_list<int>{});
     }
     {
@@ -50,12 +48,11 @@ int main()
             using std::vector<int>::push_back;
             // Note: both empty() and size() are hidden
         };
- 
+
         std::cout << "(3) calling ranges::empty on an object w/o empty() or size():\n";
         Scanty y;
         print('a', y);
         y.push_back(42);
         print('b', y);
     }
-#endif
 }

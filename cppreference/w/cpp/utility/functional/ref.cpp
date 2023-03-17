@@ -1,6 +1,7 @@
-#include <functional>
+
+ #include <functional>
 #include <iostream>
- 
+
 void f(int& n1, int& n2, const int& n3)
 {
     std::cout << "In function: " << n1 << ' ' << n2 << ' ' << n3 << '\n';
@@ -8,7 +9,7 @@ void f(int& n1, int& n2, const int& n3)
     ++n2; // increments the main()'s n2
     // ++n3; // compile error
 }
- 
+
 int main()
 {
     int n1 = 1, n2 = 2, n3 = 3;

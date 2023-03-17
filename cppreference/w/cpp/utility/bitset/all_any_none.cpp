@@ -1,12 +1,13 @@
-#include <iostream>
+
+ #include <iostream>
 #include <bitset>
- 
+
 int main()
 {
     std::bitset<4> b1("0000");
     std::bitset<4> b2("0101");
     std::bitset<4> b3("1111");
- 
+
     std::cout
         << "bitset\t" << "all\t" << "any\t" << "none\n"
         << b1 << '\t' << b1.all() << '\t' << b1.any() << '\t' << b1.none() << '\n'

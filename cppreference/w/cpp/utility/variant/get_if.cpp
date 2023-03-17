@@ -1,6 +1,7 @@
-#include <variant>
+
+ #include <variant>
 #include <iostream>
- 
+
 int main()
 {
     auto check_value = [](const std::variant<int, float>& v)
@@ -10,7 +11,7 @@ int main()
         else 
           std::cout << "failed to get value!" << '\n'; 
     };
- 
+
     std::variant<int, float> v{12}, w{3.f};
     check_value(v);
     check_value(w);

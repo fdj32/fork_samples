@@ -1,8 +1,9 @@
-#include <iostream>
-#include <iomanip>
-#include <cmath>
+
+ #include <cmath>
 #include <limits>
- 
+#include <iomanip>
+#include <iostream>
+
 int main()
 {
     std::cout
@@ -15,7 +16,7 @@ int main()
         << "Accuracy and comparison with `pow`:\n"
         << std::setprecision(std::numeric_limits<double>::max_digits10)
         << "cbrt(343)       = " << std::cbrt(343) << '\n'
-        << "pow(343,1.0/3)  = " << std::pow(343, 1.0/3) << '\n'
+        << "pow(343,1.0/3)  = " << std::pow(343, 1.0 / 3) << '\n'
         << "cbrt(-343)      = " << std::cbrt(-343) << '\n'
-        << "pow(-343,1.0/3) = " << std::pow(-343, 1.0/3) << '\n';
+        << "pow(-343,1.0/3) = " << std::pow(-343, 1.0 / 3) << '\n';
 }

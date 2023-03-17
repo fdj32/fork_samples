@@ -1,6 +1,7 @@
-#include <cassert>
+
+ #include <cassert>
 #include <format>
- 
+
 int main()
 {
     std::string message = std::format("The answer is {}.", 42);

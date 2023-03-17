@@ -1,10 +1,11 @@
-#include <chrono>
+
+ #include <chrono>
 #include <iomanip>
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
 #include <string_view>
- 
+
 int main()
 {
     constexpr std::string_view locations[] = {
@@ -18,10 +19,9 @@ int main()
         "Europe/Laputa",       "Indian/Christmas",
         "Indian/Cocos",        "Pacific/Galapagos",
     };
-/*
     constexpr auto width = std::ranges::max_element(locations, {},
         [](const auto& s) { return s.length(); })->length();
- 
+
     for (const auto location : locations) {
         try {
             // may throw if `location` is not in the time zone database
@@ -31,5 +31,4 @@ int main()
             std::cout << "Error: " << ex.what() << '\n';
         }
     }
-*/
 }

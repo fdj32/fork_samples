@@ -1,6 +1,7 @@
-#include <optional>
+
+ #include <optional>
 #include <iostream>
- 
+
 struct A {
     std::string s;
     A(std::string str) : s(std::move(str))  { std::cout << " constructed\n"; }
@@ -18,15 +19,15 @@ struct A {
         return *this;
     }
 };
- 
+
 int main()
 {
     std::cout << "Create empty optional:\n";
     std::optional<A> opt;
- 
+
     std::cout << "Construct and assign value:\n";
     opt = A("Lorem ipsum dolor sit amet, consectetur adipiscing elit nec.");
- 
+
     std::cout << "Reset optional:\n";
     opt.reset();
     std::cout << "End example\n";

@@ -1,11 +1,12 @@
-#include <span>
+
+ #include <span>
 #include <cstdint>
- 
+
 int main()
 {
     static constexpr std::int32_t a[] { 1, 2, 3, 4, 5 };
     constexpr std::span s{a};
- 
+
     static_assert( sizeof(int32_t) == 4  );
     static_assert( std::size(a)    == 5  );
     static_assert( sizeof(a)       == 20 );

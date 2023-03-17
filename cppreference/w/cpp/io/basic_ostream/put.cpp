@@ -1,11 +1,12 @@
-#include <fstream>
+
+ #include <fstream>
 #include <iostream>
- 
+
 int main()
 {
     std::cout.put('a'); // normal usage
     std::cout.put('\n');
- 
+
     std::ofstream s("/does/not/exist/");
     s.clear(); // pretend the stream is good
     std::cout << "Unformatted output: ";

@@ -1,10 +1,11 @@
-#include <source_location>
+
+ #include <source_location>
 #include <iostream>
- 
+
 struct src_rec {
     std::source_location srcl = std::source_location::current();
     int dummy = 0;
- 
+
     src_rec(std::source_location loc = std::source_location::current()) :
         srcl(loc)    // values of member refer to the location of the calling function
     {}
@@ -14,18 +15,18 @@ struct src_rec {
     src_rec(double)  // values of member refer to this location
     {}
 };
- 
+
 std::source_location src_clone(std::source_location a = std::source_location::current())
 {
     return a;
 }
- 
+
 std::source_location src_make()
 {
     std::source_location b = std::source_location::current();
     return b;
 }
- 
+
 int main()
 {
     src_rec srec0;
@@ -35,7 +36,7 @@ int main()
     auto s1 = src_clone(s0);
     auto s2 = src_clone();
     auto s3 = src_make();
- 
+
     std::cout
         << srec0.srcl.line() << ' ' << srec0.srcl.function_name() << '\n'
         << srec1.srcl.line() << ' ' << srec1.srcl.function_name() << '\n'

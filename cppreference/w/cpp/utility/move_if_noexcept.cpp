@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <utility>
- 
+
 struct Bad
 {
     Bad() {}
@@ -13,7 +14,7 @@ struct Bad
         std::cout << "Throwing copy constructor called\n";
     }
 };
- 
+
 struct Good
 {
     Good() {}
@@ -26,7 +27,7 @@ struct Good
         std::cout << "Non-throwing copy constructor called\n";
     }
 };
- 
+
 int main()
 {
     Good g;

@@ -1,6 +1,7 @@
-#include <strstream>
+
+ #include <strstream>
 #include <iostream>
- 
+
 struct mybuf : std::strstreambuf
 {
     int_type overflow(int_type c) 
@@ -12,7 +13,7 @@ struct mybuf : std::strstreambuf
                   << " size of the put area is " << epptr()-pbase() << '\n';
         return rc;
     }
- 
+
     int_type underflow() 
     {
         std::cout << "Before underflow(): size of the get area is " << egptr()-eback()
@@ -28,12 +29,12 @@ struct mybuf : std::strstreambuf
         return ch;
     }
 };
- 
+
 int main()
 {
     mybuf sbuf; // read-write dynamic strstreambuf
     std::iostream stream(&sbuf);
- 
+
     int n;
     stream >> n;
     stream.clear();

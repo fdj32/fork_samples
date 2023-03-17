@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <filesystem>
- 
+
 int main()
 {
     /* set up sandbox directories:
@@ -19,7 +20,7 @@ int main()
     std::filesystem::create_directories(d1);
     std::filesystem::create_directories(d2);
     std::filesystem::current_path(d1);
- 
+
     auto p1 = std::filesystem::path("../../c2/./e");
     auto p2 = std::filesystem::path("../no-such-file");
     std::cout << "Current path is "
@@ -38,7 +39,7 @@ int main()
         std::cout << "Canonical path for " << p2 << " threw exception:\n"
                   << ex.what() << '\n';
     }
- 
+
     // cleanup
     std::filesystem::current_path(old);
     const auto count = std::filesystem::remove_all(tmp / "a");

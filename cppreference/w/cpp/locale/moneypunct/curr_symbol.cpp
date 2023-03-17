@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 void show_ccy(const char* locname)
 {

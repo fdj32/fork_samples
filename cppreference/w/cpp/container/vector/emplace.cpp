@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <vector>
- 
+
 struct A {
     std::string s;
     A(std::string str) : s(std::move(str))  { std::cout << " constructed\n"; }
@@ -18,7 +19,7 @@ struct A {
         return *this;
     }
 };
- 
+
 int main()
 {
     std::vector<A> container;
@@ -27,16 +28,16 @@ int main()
     std::cout << "construct 2 times A:\n";
     A two { "two" };
     A three { "three" };
- 
+
     std::cout << "emplace:\n";
     container.emplace(container.end(), "one");
- 
+
     std::cout << "emplace with A&:\n";
     container.emplace(container.end(), two);
- 
+
     std::cout << "emplace with A&&:\n";
     container.emplace(container.end(), std::move(three));
- 
+
     std::cout << "content:\n";
     for (const auto& obj : container)
         std::cout << ' ' << obj.s;

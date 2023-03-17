@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <valarray>
 #include <string_view>
- 
+
 template <typename T>
 void print(std::string_view const note,
            std::valarray<T> const vala, // by-value, see Notes above
@@ -12,7 +13,7 @@ void print(std::string_view const note,
         std::cout << '\t' << element;
     std::cout << term;
 }
- 
+
 int main()
 {
     std::valarray<int> x{ 1, 2, 3, 4 };
@@ -21,12 +22,12 @@ int main()
     print<int>("+ + x: ", + + x);
     print<int>("-x: ", -x);
     print<int>("- - x: ", - - x, "\n\n");
- 
+
     std::valarray<short> y{ 0, 1, -1, 0x7fff };
     print<short>("y: ", y);
     print<short>("~y: ", ~y);
     print<short>("~~y: ", ~~y, "\n\n");
- 
+
     std::valarray<bool> z{ true, false };
     print<bool>("z: ", z);
     print<bool>("!z: ", !z);

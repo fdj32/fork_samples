@@ -1,5 +1,6 @@
-#include <atomic>
- 
+
+ #include <atomic>
+
 template<class T>
 struct node
 {
@@ -7,7 +8,7 @@ struct node
     node* next;
     node(const T& data) : data(data), next(nullptr) {}
 };
- 
+
 template<class T>
 class stack
 {
@@ -16,10 +17,10 @@ class stack
     void push(const T& data)
     {
         node<T>* new_node = new node<T>(data);
- 
+
         // put the current value of head into new_node->next
         new_node->next = head.load(std::memory_order_relaxed);
- 
+
         // now make new_node the new head, but if the head
         // is no longer what's stored in new_node->next
         // (some other thread must have inserted a node just now)
@@ -36,7 +37,7 @@ class stack
 // MSVC prior to 2014-03-17 (bug 819819). See member function version for workaround
     }
 };
- 
+
 int main()
 {
     stack<int> s;

@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <memory>
- 
+
 template <std::size_t N>
 struct MyAllocator
 {
@@ -21,25 +22,25 @@ struct MyAllocator
         return nullptr;
     }
 };
- 
+
 int main()
 {
     MyAllocator<64> a;
     std::cout << "allocated a.data at " << (void*)a.data
               << " (" << sizeof a.data << " bytes)\n";
- 
+
     // allocate a char
     if (char* p = a.aligned_alloc<char>()) {
         *p = 'a';
         std::cout << "allocated a char at " << (void*)p << '\n';
     }
- 
+
     // allocate an int
     if (int* p = a.aligned_alloc<int>()) {
         *p = 1;
         std::cout << "allocated an int at " << (void*)p << '\n';
     }
- 
+
     // allocate an int, aligned at 32-byte boundary
     if (int* p = a.aligned_alloc<int>(32)) {
         *p = 2;

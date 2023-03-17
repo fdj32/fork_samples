@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <regex>
- 
+
 struct noisy_traits : std::regex_traits<char> {
- 
+
     template< class Iter >
     string_type lookup_collatename( Iter first, Iter last ) const {
         string_type result = regex_traits::lookup_collatename(first, last);
@@ -13,7 +14,7 @@ struct noisy_traits : std::regex_traits<char> {
         return result;
     }
 };
- 
+
 int main()
 {
     std::string str = "z|}a"; // C locale collation order: x,y,z,{,|,},~

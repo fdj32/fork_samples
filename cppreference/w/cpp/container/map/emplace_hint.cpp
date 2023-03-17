@@ -1,11 +1,12 @@
-#include <chrono>
+
+ #include <chrono>
 #include <functional>
 #include <iomanip>
 #include <iostream>
 #include <map>
- 
+
 const int n_operations = 100500;
- 
+
 std::size_t map_emplace() {
     std::map<int, char> map;
     for (int i = 0; i < n_operations; ++i) {
@@ -13,7 +14,7 @@ std::size_t map_emplace() {
     }
     return map.size();
 }
- 
+
 std::size_t map_emplace_hint() {
     std::map<int, char> map;
     auto it = map.begin();
@@ -23,7 +24,7 @@ std::size_t map_emplace_hint() {
     }
     return map.size();
 }
- 
+
 std::size_t map_emplace_hint_wrong() {
     std::map<int, char> map;
     auto it = map.begin();
@@ -33,7 +34,7 @@ std::size_t map_emplace_hint_wrong() {
     }
     return map.size();
 }
- 
+
 std::size_t map_emplace_hint_corrected() {
     std::map<int, char> map;
     auto it = map.begin();
@@ -43,7 +44,7 @@ std::size_t map_emplace_hint_corrected() {
     }
     return map.size();
 }
- 
+
 std::size_t map_emplace_hint_closest() {
     std::map<int, char> map;
     auto it = map.begin();
@@ -52,7 +53,7 @@ std::size_t map_emplace_hint_closest() {
     }
     return map.size();
 }
- 
+
 void timeit(std::function<std::size_t()> map_test, std::string what = "") {
     auto start = std::chrono::system_clock::now();
     std::size_t mapsize = map_test();
@@ -62,7 +63,7 @@ void timeit(std::function<std::size_t()> map_test, std::string what = "") {
         std::cout << std::setw(5) << time.count() << "  ms for " << what << '\n';
     }
 }
- 
+
 int main() {
     std::cout << std::fixed << std::setprecision(2);
     timeit(map_emplace); // stack warmup

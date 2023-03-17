@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstring>
 #include <memory>
- 
+
 int main()
 {
     const char* src = "Take the test.";

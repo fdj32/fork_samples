@@ -1,6 +1,7 @@
-#include <numeric>
+
+ #include <numeric>
 #include <initializer_list>
- 
+
 int main()
 {
     static constexpr auto l = {15, 14};

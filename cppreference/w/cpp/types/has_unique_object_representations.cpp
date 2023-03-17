@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <type_traits>
- 
+
 struct foo
 {
     char c;
@@ -8,13 +9,13 @@ struct foo
     short st;
     int i;
 };
- 
+
 struct bar
 {
     int a;
     int b;
 };
- 
+
 int main()
 {   
      std::cout  << std::boolalpha 

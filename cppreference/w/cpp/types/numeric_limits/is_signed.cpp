@@ -1,17 +1,21 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <limits>
- 
-template <typename T> struct test {
-    test(const char* name, int w = 15) {
+
+template<typename T>
+struct test
+{
+    test(const char* name, int w = 15)
+    {
         std::cout
             << std::left << std::setw(w)
             << (std::numeric_limits<T>::is_specialized ? name : "non-specialized")
-            << " : "
+            << ": "
             << (std::numeric_limits<T>::is_signed ? "" : "un") << "signed\n";
     }
 };
- 
+
 int main()
 {
     test<bool>{"bool"};

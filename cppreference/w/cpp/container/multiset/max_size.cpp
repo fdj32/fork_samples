@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <set>
- 
+
 int main()
 {
     std::multiset<char> q;

@@ -1,22 +1,23 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <sstream>
 #include <iterator>
- 
+
 void try_get_time(const std::string& s)
 {
     std::cout << "Parsing the time out of '" << s
               << "' in the locale " << std::locale().name() << '\n';
     std::istringstream str(s);
     std::ios_base::iostate err = std::ios_base::goodbit;
- 
+
     std::tm t;
     std::time_get<char> const& facet =
         std::use_facet<std::time_get<char>>(str.getloc());
     std::istreambuf_iterator<char> ret =
         facet.get_time({str}, {}, str, err, &t);
     str.setstate(err);
- 
+
     if (str)
     {
         std::cout << "Hours: "   << t.tm_hour << ", "
@@ -30,12 +31,13 @@ void try_get_time(const std::string& s)
         std::cout << '\n';
     }
 }
+
 int main()
 {
     std::locale::global(std::locale("ru_RU.utf8"));
     try_get_time("21:40:11");
     try_get_time("21-40-11");
- 
+
     std::locale::global(std::locale("ja_JP.utf8"));
     try_get_time("21時37分58秒");
 }

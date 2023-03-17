@@ -1,7 +1,8 @@
-#include <cassert>
+
+ #include <cassert>
 #include <iostream>
 #include <set>
- 
+
 // Example module 97 key compare function
 struct ModCmp {
     bool operator()(const int lhs, const int rhs) const
@@ -9,13 +10,13 @@ struct ModCmp {
         return (lhs % 97) < (rhs % 97);
     }
 };
- 
+
 int main()
 {
     std::set<int, ModCmp> cont{1, 2, 3, 4, 5};
- 
+
     auto comp_func = cont.key_comp();
- 
+
     for (int key : cont) {
         bool before = comp_func(key, 100);
         bool after = comp_func(100, key);

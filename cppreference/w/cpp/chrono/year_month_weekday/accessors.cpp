@@ -1,10 +1,11 @@
-#include <iostream>
+
+ #include <iostream>
 #include <chrono>
- 
+
 int main()
 {
     std::cout << std::boolalpha;
- 
+
     constexpr auto ym {std::chrono::year(2021)/std::chrono::January};
     constexpr auto wdi {std::chrono::Wednesday[1]};
     auto ymwdi {ym/wdi};

@@ -1,8 +1,9 @@
-#include <thread>
+
+ #include <thread>
 #include <iostream>
- 
+
 using namespace std::literals::chrono_literals;
- 
+
 void f(std::stop_token stop_token, int value)
 {
     while (!stop_token.stop_requested())
@@ -12,7 +13,7 @@ void f(std::stop_token stop_token, int value)
     }
     std::cout << std::endl;
 }
- 
+
 int main()
 {
     std::jthread thread(f, 5); // prints 5 6 7 8... for approximately 3 seconds

@@ -1,11 +1,12 @@
-#include <iostream>
+
+ #include <iostream>
 #include <sstream>
- 
+
 struct Foo
 {
     char n[5];
 };
- 
+
 std::istream& operator>>(std::istream& is, Foo& f)
 {
     std::istream::sentry s(is);
@@ -13,7 +14,7 @@ std::istream& operator>>(std::istream& is, Foo& f)
         is.read(f.n, 5);
     return is;
 }
- 
+
 int main()
 {
     std::string input = "   abcde";

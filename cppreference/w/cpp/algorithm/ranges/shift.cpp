@@ -1,14 +1,15 @@
-#include <algorithm>
+
+ #include <algorithm>
 #include <iostream>
 #include <string>
 #include <type_traits>
 #include <vector>
- 
+
 struct S
 {
     int value{0};
     bool specified_state{true};
- 
+
     S(int v = 0) : value{v} {}
     S(S const& rhs) = default;
     S(S&& rhs) { *this = std::move(rhs); }
@@ -24,7 +25,7 @@ struct S
         return *this;
     }
 };
- 
+
 template <typename T>
 std::ostream& operator<< (std::ostream& os, std::vector<T> const& v)
 {
@@ -39,32 +40,32 @@ std::ostream& operator<< (std::ostream& os, std::vector<T> const& v)
     }
     return os;
 }
- 
+
 int main()
 {
     std::cout << std::left;
- 
+
     std::vector<S>            a{1, 2, 3, 4, 5, 6, 7};
     std::vector<int>          b{1, 2, 3, 4, 5, 6, 7};
     std::vector<std::string>  c{"α", "β", "γ", "δ", "ε", "ζ", "η"};
- 
+
     std::cout << "vector<S> \tvector<int> \tvector<string>\n";
     std::cout << a << "  " << b << "  " << c << '\n';
-#ifndef __clang__
+
     std::ranges::shift_left(a, 3);
     std::ranges::shift_left(b, 3);
     std::ranges::shift_left(c, 3);
     std::cout << a << "  " << b << "  " << c << '\n';
- 
+
     std::ranges::shift_right(a, 2);
     std::ranges::shift_right(b, 2);
     std::ranges::shift_right(c, 2);
     std::cout << a << "  " << b << "  " << c << '\n';
- 
+
     std::ranges::shift_left(a, 8);  // has no effect: n >= last - first
     std::ranges::shift_left(b, 8);  // ditto
     std::ranges::shift_left(c, 8);  // ditto
     std::cout << a << "  " << b << "  " << c << '\n';
-#endif
+
 //  std::ranges::shift_left(a, -3);  // UB
 }

@@ -1,12 +1,13 @@
-#include <thread>
+
+ #include <thread>
 #include <iostream>
 #include <future>
- 
+
 int main()
 {
     std::promise<int> p;
     std::future<int> f = p.get_future();
- 
+
     std::thread t([&p]{
         try {
             // code that may throw
@@ -20,7 +21,7 @@ int main()
             } catch(...) {} // set_exception() may throw too
         }
     });
- 
+
     try {
         std::cout << f.get();
     } catch(const std::exception& e) {

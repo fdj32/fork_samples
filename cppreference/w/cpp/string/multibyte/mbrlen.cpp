@@ -1,8 +1,9 @@
-#include <clocale>
+
+ #include <clocale>
 #include <string>
 #include <iostream>
 #include <cwchar>
- 
+
 int main()
 {
     // allow mbrlen() to work with UTF-8 multibyte encoding
@@ -21,5 +22,5 @@ int main()
     std::cout << "Attempting to call mbrlen() in the middle of " << str
               << " while in initial shift state returns "
               << (int)mbrlen(&str[1], str.size(), &mb) << '\n';
- 
+
 }

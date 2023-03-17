@@ -1,6 +1,7 @@
-#include <strstream>
+
+ #include <strstream>
 #include <iostream>
- 
+
 struct mybuf : std::strstreambuf
 {
     int_type overflow(int_type c) 
@@ -13,12 +14,12 @@ struct mybuf : std::strstreambuf
         return rc;
     }
 };
- 
+
 int main()
 {
     mybuf sbuf; // read-write dynamic strstreambuf
     std::iostream stream(&sbuf);
- 
+
     stream << "Sufficiently long string to overflow the initial allocation, at least "
            << " on some systems.";
 }

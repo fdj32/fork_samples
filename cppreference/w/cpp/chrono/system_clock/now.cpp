@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <vector>
 #include <numeric>
 #include <chrono>
- 
+
 volatile int sink;
 int main()
 {
@@ -18,6 +19,6 @@ int main()
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double> diff = end - start;
         std::cout << "Time to fill and iterate a vector of " << std::setw(9)
-                  << size << " ints : " << diff.count() << " s\n";
+                  << size << " ints: " << diff.count() << " s\n";
     }
 }

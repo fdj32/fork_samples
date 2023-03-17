@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <stdexcept>
 #include <bitset>
- 
+
 int main()
 {
     for (unsigned long i = 0; i < 10; ++i) {
@@ -10,9 +11,9 @@ int main()
         std::cout << i << '\t' << b << '\t' << b_inverted << '\t'
                   << b_inverted.to_ulong() << '\n'; 
     }
- 
+
     std::cout << std::bitset<32>().to_string('-') << '\n';
- 
+
     try {
         std::bitset<128> x(42);
         std::cout << x.to_ulong() << '\n';

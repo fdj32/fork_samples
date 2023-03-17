@@ -1,11 +1,12 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cwctype>
 #include <clocale>
- 
+
 int main()
 {
     wchar_t c = L'\u053d'; // Armenian capital letter xeh ('Խ')
- 
+
     std::cout << std::hex << std::showbase << std::boolalpha;
     std::cout << "in the default locale, iswupper(" << (std::wint_t)c << ") = "
               << (bool)std::iswupper(c) << '\n';

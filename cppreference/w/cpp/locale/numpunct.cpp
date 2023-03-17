@@ -1,12 +1,13 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
- 
+
 struct french_bool : std::numpunct<char>
 {
     string_type do_truename() const override { return "vrai"; }
     string_type do_falsename() const override { return "faux"; }
 };
- 
+
 int main()
 {
     std::cout << "default locale: "

@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <sstream>
- 
+
 int main()
 {
     char c[10] = {};

@@ -1,21 +1,22 @@
-#include <fstream>
+
+ #include <fstream>
 #include <iostream>
 #include <filesystem>
 namespace fs = std::filesystem;
- 
+
 int main()
 {
     fs::create_directory("sandbox");
     std::ofstream("sandbox/file1.txt").put('a');
- 
+
     fs::copy_file("sandbox/file1.txt", "sandbox/file2.txt");
- 
+
     // now there are two files in sandbox:
-    std::cout << "file1.txt holds : "
+    std::cout << "file1.txt holds: "
               << std::ifstream("sandbox/file1.txt").rdbuf() << '\n';
-    std::cout << "file2.txt holds : "
+    std::cout << "file2.txt holds: "
               << std::ifstream("sandbox/file2.txt").rdbuf() << '\n';
- 
+
     // fail to copy directory
     fs::create_directory("sandbox/abc");
     try {

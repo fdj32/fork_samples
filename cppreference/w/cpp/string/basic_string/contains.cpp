@@ -1,9 +1,10 @@
-#include <iomanip>
+
+ #include <iomanip>
 #include <iostream>
 #include <string>
 #include <string_view>
 #include <type_traits>
- 
+
 template <typename SubstrType>
 void test_substring(const std::string& str, SubstrType subs)
 {
@@ -13,13 +14,13 @@ void test_substring(const std::string& str, SubstrType subs)
                                      : " does not contain ")
               << std::quoted(std::string{subs}, delim) << '\n';
 }
- 
+
 int main()
 {
     using namespace std::literals;
- 
+
     auto helloWorld = "hello world"s;
- 
+
     test_substring(helloWorld, "hello"sv);
     test_substring(helloWorld, "goodbye"sv);
     test_substring(helloWorld, 'w');

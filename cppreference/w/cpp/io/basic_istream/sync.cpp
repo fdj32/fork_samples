@@ -1,18 +1,19 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
- 
+
 void file_abc()
 {
     std::ofstream f("test.txt");
     f << "abc\n";
 }
- 
+
 void file_123()
 {
     std::ofstream f("test.txt");
     f << "123\n";
 }
- 
+
 int main()
 {
     file_abc(); // file now contains "abc"
@@ -24,7 +25,7 @@ int main()
     f >> c; std::cout << c;
     f >> c; std::cout << c << '\n';
     f.close();
- 
+
     file_abc(); // file now contains "abc"
     f.open("test.txt");
     std::cout << "Reading from the file, with sync()\n";

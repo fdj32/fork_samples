@@ -1,25 +1,26 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <clocale>
 #include <cstring>
 #include <cwchar>
 #include <cuchar>
 #include <cassert>
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");
- 
+
     std::string str = "z\u00df\u6c34\U0001F34C"; // or u8"zß水🍌"
- 
+
     std::cout << "Processing " << str.size() << " bytes: [ " << std::showbase;
     for(unsigned char c: str) std::cout << std::hex << +c << ' ';
     std::cout << "]\n";
- 
+
     std::mbstate_t state{}; // zero-initialized to initial state
     char32_t c32;
     const char *ptr = str.c_str(), *end = str.c_str() + str.size() + 1;
- 
+
     while(std::size_t rc = std::mbrtoc32(&c32, ptr, end - ptr, &state))
     {   
         std::cout << "Next UTF-32 char: " << std::hex

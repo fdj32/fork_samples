@@ -1,14 +1,15 @@
-#include <vector>
+
+ #include <vector>
 #include <string>
 #include <cassert>
 #include <iostream>
- 
+
 struct President
 {
     std::string name;
     std::string country;
     int year;
- 
+
     President(std::string p_name, std::string p_country, int p_year)
         : name(std::move(p_name)), country(std::move(p_country)), year(p_year)
     {
@@ -21,18 +22,18 @@ struct President
     }
     President& operator=(const President& other) = default;
 };
- 
+
 int main()
 {
     std::vector<President> elections;
     std::cout << "emplace_back:\n";
     auto& ref = elections.emplace_back("Nelson Mandela", "South Africa", 1994);
     assert(ref.year == 1994 && "uses a reference to the created object (C++17)");
- 
+
     std::vector<President> reElections;
     std::cout << "\npush_back:\n";
     reElections.push_back(President("Franklin Delano Roosevelt", "the USA", 1936));
- 
+
     std::cout << "\nContents:\n";
     for (President const& president: elections) {
         std::cout << president.name << " was elected president of "

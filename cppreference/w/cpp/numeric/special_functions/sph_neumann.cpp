@@ -1,13 +1,14 @@
-#include <cmath>
+
+ #include <cmath>
 #include <iostream>
+
 int main()
 {
     // spot check for n == 1
     double x = 1.2345;
-#ifndef __clang__
     std::cout << "n_1(" << x << ") = " << std::sph_neumann(1, x) << '\n';
-#endif
+
     // exact solution for n_1
-    std::cout << "-(cos x)/x² - (sin x)/x = "
-              << -std::cos(x)/(x*x) - std::sin(x)/x << '\n';
+    std::cout << "-cos(x)/x² - sin(x)/x = "
+              << -std::cos(x) / (x * x) - std::sin(x) / x << '\n';
 }

@@ -1,6 +1,7 @@
-#include <memory>
+
+ #include <memory>
 #include <iostream>
- 
+
 class Good : public std::enable_shared_from_this<Good>
 {
 public:
@@ -8,7 +9,7 @@ public:
         return shared_from_this();
     }
 };
- 
+
 class Best : public std::enable_shared_from_this<Best>
 {
 public:
@@ -24,8 +25,8 @@ public:
 private:
     Best() = default;
 };
- 
- 
+
+
 struct Bad
 {
     std::shared_ptr<Bad> getptr() {
@@ -33,7 +34,7 @@ struct Bad
     }
     ~Bad() { std::cout << "Bad::~Bad() called\n"; }
 };
- 
+
 void testGood()
 {
     // Good: the two shared_ptr's share the same object
@@ -41,8 +42,8 @@ void testGood()
     std::shared_ptr<Good> good1 = good0->getptr();
     std::cout << "good1.use_count() = " << good1.use_count() << '\n';
 }
- 
- 
+
+
 void misuseGood()
 {
     // Bad: shared_from_this is called without having std::shared_ptr owning the caller
@@ -54,19 +55,19 @@ void misuseGood()
         std::cout << e.what() << '\n';
     }
 }
- 
- 
+
+
 void testBest()
 {
     // Best: Same but can't stack-allocate it:
     std::shared_ptr<Best> best0 = Best::create();
     std::shared_ptr<Best> best1 = best0->getptr();
     std::cout << "best1.use_count() = " << best1.use_count() << '\n';
- 
+
     // Best stackBest; // <- Will not compile because Best::Best() is private.
 }
- 
- 
+
+
 void testBad()
 {
     // Bad, each shared_ptr thinks it's the only owner of the object
@@ -74,14 +75,14 @@ void testBad()
     std::shared_ptr<Bad> bad1 = bad0->getptr();
     std::cout << "bad1.use_count() = " << bad1.use_count() << '\n';
 } // UB: double-delete of Bad
- 
- 
+
+
 int main()
 {
     testGood();
     misuseGood();
- 
+
     testBest();
- 
+
     testBad();
 }

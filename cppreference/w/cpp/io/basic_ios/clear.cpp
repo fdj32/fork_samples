@@ -1,13 +1,14 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
- 
+
 int main()
 {
     for (char c : {'\n', '4', '1', '.', '3', '\n', 'Z', 'Y', 'X'})
         std::cin.putback(c); // emulate user's input (not portable: see ungetc Notes)
- 
+
     double n;
-    while( std::cout << "Please, enter a number: " && ! (std::cin >> n) )
+    while (std::cout << "Please, enter a number: " && !(std::cin >> n))
     {
         std::cin.clear();
         std::string line;

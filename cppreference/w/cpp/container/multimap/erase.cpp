@@ -1,6 +1,7 @@
-#include <map>
+
+ #include <map>
 #include <iostream>
- 
+
 int main()
 {
     std::multimap<int, std::string> c =
@@ -8,7 +9,7 @@ int main()
         {1, "one" }, {2, "two" }, {3, "three"},
         {4, "four"}, {5, "five"}, {6, "six"  }
     };
- 
+
     // erase all odd numbers from c
     for (auto it = c.begin(); it != c.end();)
     {
@@ -17,7 +18,7 @@ int main()
         else
             ++it;
     }
- 
+
     for (auto& p : c)
         std::cout << p.second << ' ';
 }

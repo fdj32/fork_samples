@@ -1,33 +1,34 @@
-#include <iostream>
+
+ #include <iostream>
 #include <type_traits>
- 
+
 struct A {};
- 
+
 struct B {
     int m;
 };
- 
+
 struct C {
     static int m;
 };
- 
+
 struct D {
     virtual ~D();
 };
- 
+
 union E {};
- 
+
 struct F {
     [[no_unique_address]] E e;
 };
- 
+
 struct G {
     int:0;  
     // C++ standard allow "as a special case, an unnamed bit-field with a width of zero 
     // specifies alignment of the next bit-field at an allocation unit boundary.
     // Only when declaring an unnamed bit-field may the width be zero."
 };
- 
+
 int main()
 {
     std::cout << std::boolalpha;

@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <tuple>
 #include <string>
- 
+
 // helper function to print a tuple of any size
 template <class Tuple, std::size_t N>
 struct TuplePrinter
@@ -12,7 +13,7 @@ struct TuplePrinter
         std::cout << ", " << std::get<N-1>(t);
     }
 };
- 
+
 template <class Tuple>
 struct TuplePrinter<Tuple, 1>
 {
@@ -21,13 +22,13 @@ struct TuplePrinter<Tuple, 1>
         std::cout << std::get<0>(t);
     }
 };
- 
+
 template <typename... Args, std::enable_if_t<sizeof...(Args) == 0, int> = 0>
 void print(const std::tuple<Args...>& t)
 {
     std::cout << "()\n";
 }
- 
+
 template <typename... Args, std::enable_if_t<sizeof...(Args) != 0, int> = 0>
 void print(const std::tuple<Args...>& t)
 {
@@ -36,7 +37,7 @@ void print(const std::tuple<Args...>& t)
     std::cout << ")\n";
 }
 // end helper function
- 
+
 int main()
 {
     std::tuple<int, std::string, float> t1(10, "Test", 3.14);

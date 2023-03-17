@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <clocale>
 #include <string>
 #include <cwchar>
- 
+
 void print_wide(const std::wstring& wstr)
 {
     std::mbstate_t state {};
@@ -12,7 +13,7 @@ void print_wide(const std::wstring& wstr)
         std::cout << "multibyte char " << mb << " is " << ret << " bytes\n";
     }
 }
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");

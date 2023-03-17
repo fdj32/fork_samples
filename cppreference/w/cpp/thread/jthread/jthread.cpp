@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <utility>
 #include <thread>
 #include <chrono>
 using namespace std::literals;
- 
+
 void f1(int n)
 {
     for (int i = 0; i < 5; ++i) {
@@ -12,7 +13,7 @@ void f1(int n)
         std::this_thread::sleep_for(10ms);
     }
 }
- 
+
 void f2(int& n)
 {
     for (int i = 0; i < 5; ++i) {
@@ -21,7 +22,7 @@ void f2(int& n)
         std::this_thread::sleep_for(10ms);
     }
 }
- 
+
 class foo
 {
 public:
@@ -35,7 +36,7 @@ public:
     }
     int n = 0;
 };
- 
+
 class baz
 {
 public:
@@ -49,7 +50,7 @@ public:
     }
     int n = 0;
 };
- 
+
 int main()
 {
     int n = 0;

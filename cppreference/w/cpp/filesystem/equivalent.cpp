@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstdint>
 #include <filesystem>
 namespace fs = std::filesystem;
@@ -9,7 +10,7 @@ int main()
     fs::path p2 = fs::current_path();
     if(fs::equivalent(p1, p2))
         std::cout << p1 << " is equivalent to " << p2 << '\n';
- 
+
     // symlink equivalency
     for(const fs::path lib : {"/lib/libc.so.6", "/lib/x86_64-linux-gnu/libc.so.6"}) {
         try {

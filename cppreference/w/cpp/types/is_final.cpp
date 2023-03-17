@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <type_traits>
- 
+
 class A {};
 class B final {};
- 
+
 int main() 
 {
     std::cout

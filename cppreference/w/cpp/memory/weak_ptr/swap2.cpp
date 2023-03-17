@@ -1,14 +1,15 @@
-#include <iostream>
+
+ #include <iostream>
 #include <memory>
 #include <string>
- 
+
 struct Foo {
     Foo(int _val) : val(_val) { std::cout << "Foo...\n"; }
     ~Foo() { std::cout << "~Foo...\n"; }
     std::string print() { return std::to_string(val); }
     int val;
 };
- 
+
 int main()
 {
     std::shared_ptr<Foo> sp1 = std::make_shared<Foo>(100);
@@ -22,13 +23,13 @@ int main()
         std::cout << " p2=" << (p2 ? p2->print() : "nullptr") << '\n';  
     };
     print();
- 
+
     std::swap(wp1, wp2);
     print();
- 
+
     wp1.reset();
     print();
- 
+
     std::swap(wp1, wp2);
     print();   
 }

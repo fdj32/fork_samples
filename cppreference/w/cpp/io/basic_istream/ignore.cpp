@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <sstream>
 #include <limits>
- 
+
 constexpr auto max_size = std::numeric_limits<std::streamsize>::max();
- 
+
 int main()
 {
     std::istringstream input("1\n"
@@ -13,7 +14,7 @@ int main()
     {
         int n;
         input >> n;
- 
+
         if (input.eof() || input.bad())
             break;
         else if (input.fail())

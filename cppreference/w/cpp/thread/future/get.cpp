@@ -1,9 +1,10 @@
-#include <thread>
+
+ #include <thread>
 #include <future>
 #include <iostream>
 #include <string>
 #include <chrono>
- 
+
 std::string time() {
     static auto start = std::chrono::steady_clock::now();
     std::chrono::duration<double> d = std::chrono::steady_clock::now() - start;
@@ -23,7 +24,7 @@ int main() {
         std::cout << time() << " future.get() returned with " << n << ". f.valid() = "
                   << f.valid() << '\n';
     }
- 
+
     {
         std::cout << time() << " launching thread\n";
         std::future<int> f = std::async(std::launch::async, []{

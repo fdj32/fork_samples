@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <sstream>
- 
+
 int main()
 {
     std::stringstream s("abcdef"); // gptr() points to 'a' in "abcdef"
@@ -12,7 +13,7 @@ int main()
     char c3 = s.get(); // c3 = 'z', gptr() now points to 'b' in "zbcdef"
     char c4 = s.get(); // c4 = 'b', gptr() now points to 'c' in "zbcdef"
     std::cout << c1 << c2 << c3 << c4 << '\n';
- 
+
     s.rdbuf()->sputbackc('b');  // gptr() now points to 'b' in "zbcdef"
     s.rdbuf()->sputbackc('z');  // gptr() now points to 'z' in "zbcdef"
     int eof = s.rdbuf()->sputbackc('x');  // nothing to unget: pbackfail() fails

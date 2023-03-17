@@ -1,13 +1,14 @@
-#include <iomanip>
+
+ #include <iomanip>
 #include <iostream>
 #include <regex>
 #include <sstream>
 #include <string>
 using namespace std::string_literals;
- 
+
 void show_regex_error(const std::regex_error& e) {
     std::string err_message = e.what();
- 
+
 #   define CASE(type, msg) \
     case std::regex_constants::type: err_message += " ("s + #type "):\n  "s + msg; \
         break
@@ -27,10 +28,10 @@ void show_regex_error(const std::regex_error& e) {
     CASE(error_stack, "There was not enough memory to perform a match");
     }
 #   undef CASE
- 
+
     /* std::cerr */ std::cout << err_message << ". \n\n";
 }
- 
+
 void regular_expression_checker(const std::string& text,
                                 const std::string& regex,
                                 const std::regex::flag_type flags) {
@@ -38,17 +39,17 @@ void regular_expression_checker(const std::string& text,
     try {
         const std::regex re{regex, flags};
         const bool matched = std::regex_match(text, re);
- 
+
         std::stringstream out;
         out << (matched ? "MATCH!\n" : "DOES NOT MATCH!\n");
- 
+
         std::smatch m;
         if (std::regex_search(text, m, re); !m.empty()) {
             out << "prefix = [" << m.prefix().str().data() << "]\n";
- 
+
             for (std::size_t i{}; i != m.size(); ++i)
                 out << "  m[" << i << "] = [" << m[i].str().data() << "]\n";
- 
+
             out << "suffix = [" << m.suffix().str().data() << "]\n";
         }
         std::cout << out.str() << '\n';
@@ -56,9 +57,9 @@ void regular_expression_checker(const std::string& text,
         show_regex_error(ex);
     }
 }
- 
+
 int main() {
- #ifndef __clang__
+
     constexpr std::regex::flag_type your_flags
         = std::regex::flag_type{0}
     // Choose one of the supported grammars:
@@ -75,14 +76,13 @@ int main() {
     //  | std::regex::collate
     //  | std::regex::multiline
         ;
- 
+
     const auto your_text = "Hello regular expressions."s;
     const auto your_regex = R"(([a-zA-Z]+) ([a-z]+) ([a-z]+)\.)"s;
     regular_expression_checker(your_text, your_regex, your_flags);
- 
+
     regular_expression_checker("Invalid!", R"(((.)(.))", your_flags);
     regular_expression_checker("Invalid!", R"([.)", your_flags);
     regular_expression_checker("Invalid!", R"([.]{})", your_flags);
     regular_expression_checker("Invalid!", R"([1-0])", your_flags);
-#endif
 }

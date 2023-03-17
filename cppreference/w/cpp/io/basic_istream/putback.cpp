@@ -1,6 +1,7 @@
-#include <sstream>
+
+ #include <sstream>
 #include <iostream>
- 
+
 int main()
 {
     std::stringstream s1("Hello, world"); // IO stream
@@ -9,9 +10,9 @@ int main()
         std::cout << s1.rdbuf() << '\n';
     else
         std::cout << "putback failed\n";
- 
+
     std::cout << "--\n";
- 
+
     std::istringstream s2("Hello, world"); // input-only stream
     s2.get();
     if (s2.putback('Y')) // cannot modify input-only buffer
@@ -19,9 +20,9 @@ int main()
     else
         std::cout << "putback failed\n"; 
     s2.clear();
- 
+
     std::cout << "--\n";
- 
+
     if (s2.putback('H')) // non-modifying putback
         std::cout << s2.rdbuf() << '\n';
     else

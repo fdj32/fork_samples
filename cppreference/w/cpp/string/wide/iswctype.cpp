@@ -1,4 +1,5 @@
-#include <clocale>
+
+ #include <clocale>
 #include <cwctype>
 #include <iostream>
 bool classify(wchar_t wc, const std::string& cat)

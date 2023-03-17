@@ -1,8 +1,9 @@
-#include <fstream>
+
+ #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <string>
- 
+
 bool create_stream(std::fstream& fs, const std::string& path) {
     try {
         std::fstream fst { path, std::ios::trunc | std::ios::in | std::ios::out };
@@ -15,14 +16,14 @@ bool create_stream(std::fstream& fs, const std::string& path) {
     }
     return false;
 }
- 
+
 void use_stream(std::fstream& fs) {
     fs.seekg(0);
     std::string data;
     fs >> data;
     std::cout << "data: " << std::quoted(data) << '\n';
 }
- 
+
 int main() {
     std::fstream fs;
     std::string path = "/tmp/test_file.txt";

@@ -1,11 +1,12 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cwctype>
 #include <clocale>
- 
+
 int main()
 {
     wchar_t c = L'\u2051'; // Two asterisks ('⁑')
- 
+
     std::cout << std::hex << std::showbase << std::boolalpha;
     std::cout << "in the default locale, iswpunct(" << (std::wint_t)c << ") = "
               << (bool)std::iswpunct(c) << '\n';

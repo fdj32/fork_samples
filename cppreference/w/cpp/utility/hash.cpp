@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <functional>
 #include <string>
 #include <unordered_set>
- 
+
 struct S {
     std::string first_name;
     std::string last_name;
@@ -11,7 +12,7 @@ struct S {
 bool operator==(const S& lhs, const S& rhs) {
     return lhs.first_name == rhs.first_name && lhs.last_name == rhs.last_name;
 }
- 
+
 // custom hash can be a standalone function object:
 struct MyHash
 {
@@ -22,7 +23,7 @@ struct MyHash
         return h1 ^ (h2 << 1); // or use boost::hash_combine
     }
 };
- 
+
 // custom specialization of std::hash can be injected in namespace std
 template<>
 struct std::hash<S>
@@ -34,20 +35,20 @@ struct std::hash<S>
         return h1 ^ (h2 << 1); // or use boost::hash_combine
     }
 };
- 
+
 int main()
 {
     std::string str = "Meet the new boss...";
     std::size_t str_hash = std::hash<std::string>{}(str);
     std::cout << "hash(" << std::quoted(str) << ") = " << str_hash << '\n';
- 
+
     S obj = { "Hubert", "Farnsworth" };
     // using the standalone function object
     std::cout << "hash(" << std::quoted(obj.first_name) << ", "
               << std::quoted(obj.last_name) << ") = "
               << MyHash{}(obj) << " (using MyHash)\n" << std::setw(31) << "or "
               << std::hash<S>{}(obj) << " (using injected std::hash<S> specialization)\n";
- 
+
     // custom hash makes it possible to use custom types in unordered containers
     // The example will use the injected std::hash<S> specialization above,
     // to use MyHash instead, pass it as a second template argument

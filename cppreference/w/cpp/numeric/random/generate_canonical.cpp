@@ -1,6 +1,7 @@
-#include <random>
+
+ #include <random>
 #include <iostream>
- 
+
 int main()
 {
     std::random_device rd;

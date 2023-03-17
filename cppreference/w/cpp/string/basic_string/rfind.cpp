@@ -1,6 +1,7 @@
-#include <string>
+
+ #include <string>
 #include <iostream>
- 
+
 void print(std::string::size_type n, std::string const &s)
 {
     if (n == std::string::npos) {
@@ -9,12 +10,12 @@ void print(std::string::size_type n, std::string const &s)
         std::cout << "found: \"" << s.substr(n) << "\" at " << n << '\n';
     }
 }
- 
+
 int main()
 {
     std::string::size_type n;
     std::string const s = "This is a string";
- 
+
     // search backwards from end of string
     n = s.rfind("is");
     print(n, s);

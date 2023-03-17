@@ -1,4 +1,5 @@
-#include <fstream>
+
+ #include <fstream>
 #include <iostream>
 #include <string>
 #include <filesystem>
@@ -11,14 +12,11 @@ int main()
     fs::create_directories("sandbox/a/b/d/e");
     std::ofstream("sandbox/a/b/file1.txt");
     fs::create_symlink("a", "sandbox/syma");
-    for (auto i = fs::recursive_directory_iterator("sandbox");
-         i != fs::recursive_directory_iterator();
-         ++i)
-    {
-#ifndef __clang__
+    for(auto i = fs::recursive_directory_iterator("sandbox");
+             i != fs::recursive_directory_iterator();
+           ++i ) {
         std::cout << std::string(i.depth(), ' ') << *i;
-#endif
-        if (fs::is_symlink(i->symlink_status()))
+        if(fs::is_symlink(i->symlink_status()))
             std::cout << " -> " << fs::read_symlink(*i);
         std::cout << '\n';
     }

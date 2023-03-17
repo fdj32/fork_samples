@@ -1,5 +1,6 @@
-#include <initializer_list>
- 
+
+ #include <initializer_list>
+
 int main()
 {
     static constexpr auto il = {42, 24};

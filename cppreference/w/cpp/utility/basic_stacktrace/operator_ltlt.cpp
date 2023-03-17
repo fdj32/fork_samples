@@ -1,6 +1,7 @@
-#include <stacktrace>
+
+ #include <stacktrace>
 #include <iostream>
- 
+
 int main()
 {
     std::cout << "The stacktrace obtained in the main function:\n";

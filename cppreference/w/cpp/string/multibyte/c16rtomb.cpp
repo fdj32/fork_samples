@@ -1,10 +1,11 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <string_view>
 #include <clocale>
 #include <cuchar>
 #include <climits>
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");
@@ -13,7 +14,7 @@ int main()
     for(char16_t c : strv)
         std::cout << std::showbase << std::hex << static_cast<int>(c) << ' ';
     std::cout << "]\n";
- 
+
     std::mbstate_t state{};
     char out[MB_LEN_MAX]{};
     for(char16_t c : strv)

@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cfenv>
- 
+
 #pragma STDC FENV_ACCESS ON
- 
+
 void show_env()
 {
     int e = std::fetestexcept(FE_ALL_EXCEPT);
@@ -20,20 +21,20 @@ void show_env()
         case FE_UPWARD: std::cout << "rounding up\n"; break;
     }
 }
- 
+
 int main()
 {
     std::cout << "On startup: \n";
     show_env();
- 
+
     std::feraiseexcept(FE_UNDERFLOW | FE_OVERFLOW);
     std::fesetround(FE_UPWARD);
- 
+
     std::cout << "\nBefore restoration: \n";
     show_env();
- 
+
     std::fesetenv(FE_DFL_ENV);
- 
+
     std::cout << "\nAfter reset to default: \n";
     show_env();
 }

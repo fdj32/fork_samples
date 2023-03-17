@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <filesystem>
 namespace fs = std::filesystem;
 int main()
@@ -8,7 +9,7 @@ int main()
     fs::path p = fs::current_path();
     std::cout << "Number of hard links for current path is "
               << fs::hard_link_count(p) << '\n';
- 
+
     // each ".." is a hard link to the parent directory, so the total number
     // of hard links for any directory is 2 plus number of direct subdirectories
     p = fs::current_path() / ".."; // each dot-dot is a hard link to parent

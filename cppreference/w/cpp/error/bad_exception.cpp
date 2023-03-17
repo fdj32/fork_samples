@@ -1,14 +1,15 @@
-#include <iostream>
+
+ #include <iostream>
 #include <exception>
 #include <stdexcept>
- 
+
 void my_unexp() { throw; }
- 
+
 void test() throw(std::bad_exception)
 {
     throw std::runtime_error("test");
 }
- 
+
 int main()
 {
     std::set_unexpected(my_unexp);

@@ -1,11 +1,12 @@
-#include <chrono>
+
+ #include <chrono>
 #include <functional>
 #include <iomanip>
 #include <iostream>
 #include <set>
- 
+
 const int n_operations = 100500;
- 
+
 std::size_t set_emplace() {
     std::set<int> set;
     for(int i = 0; i < n_operations; ++i) {
@@ -13,7 +14,7 @@ std::size_t set_emplace() {
     }
     return set.size();
 }
- 
+
 std::size_t set_emplace_hint() {
     std::set<int> set;
     auto it = set.begin();
@@ -23,7 +24,7 @@ std::size_t set_emplace_hint() {
     }
     return set.size();
 }
- 
+
 std::size_t set_emplace_hint_wrong() {
     std::set<int> set;
     auto it = set.begin();
@@ -33,7 +34,7 @@ std::size_t set_emplace_hint_wrong() {
     }
     return set.size();
 }
- 
+
 std::size_t set_emplace_hint_corrected() {
     std::set<int> set;
     auto it = set.begin();
@@ -43,7 +44,7 @@ std::size_t set_emplace_hint_corrected() {
     }
     return set.size();
 }
- 
+
 std::size_t set_emplace_hint_closest() {
     std::set<int> set;
     auto it = set.begin();
@@ -52,7 +53,7 @@ std::size_t set_emplace_hint_closest() {
     }
     return set.size();
 }
- 
+
 void timeit(std::function<std::size_t()> set_test, const char* what = nullptr) {
     const auto start = std::chrono::system_clock::now();
     const std::size_t setsize = set_test();
@@ -62,7 +63,7 @@ void timeit(std::function<std::size_t()> set_test, const char* what = nullptr) {
         std::cout << std::setw(6) << time.count() << "  ms for " << what << '\n';
     }
 }
- 
+
 int main() {
     std::cout << std::fixed << std::setprecision(2);
     timeit(set_emplace); // stack warmup

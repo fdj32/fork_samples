@@ -1,17 +1,18 @@
-#include <iostream>
+
+ #include <iostream>
 #include <memory>
- 
+
 struct Foo { int i; };
 void foo_deleter(Foo * p)
 {
     std::cout << "foo_deleter called!\n";
     delete p;
 }
- 
+
 int main()
 {
     std::shared_ptr<int> aptr;
- 
+
     {
         // create a shared_ptr that owns a Foo and a deleter
         auto foo_p = new Foo;
@@ -19,7 +20,7 @@ int main()
         aptr = std::shared_ptr<int>(r, &r->i); // aliasing ctor
         // aptr is now pointing to an int, but managing the whole Foo
     } // r gets destroyed (deleter not called)
- 
+
     // obtain pointer to the deleter:
     if(auto del_p = std::get_deleter<void(*)(Foo*)>(aptr))
     {

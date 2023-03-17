@@ -1,10 +1,11 @@
-#include <mutex>
+
+ #include <mutex>
 #include <vector>
 #include <thread>
 #include <iostream>
 #include <functional>
 #include <chrono>
- 
+
 int main()
 {
     int foo_count = 0;
@@ -14,7 +15,7 @@ int main()
     int overall_count = 0;
     bool done = false;
     std::mutex done_mutex;
- 
+
     auto increment = [](int &counter, std::mutex &m,  const char *desc) {
         for (int i = 0; i < 10; ++i) {
             std::unique_lock<std::mutex> lock(m);
@@ -24,12 +25,12 @@ int main()
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
     };
- 
+
     std::thread increment_foo(increment, std::ref(foo_count), 
         std::ref(foo_count_mutex), "foo");
     std::thread increment_bar(increment, std::ref(bar_count), 
         std::ref(bar_count_mutex), "bar");
- 
+
     std::thread update_overall([&]() {
         done_mutex.lock();
         while (!done) {
@@ -48,14 +49,14 @@ int main()
         }
         done_mutex.unlock();
     });
- 
+
     increment_foo.join();
     increment_bar.join();
     done_mutex.lock();
     done = true;
     done_mutex.unlock();
     update_overall.join();
- 
+
     std::cout << "Done processing\n"
               << "foo: " << foo_count << '\n'
               << "bar: " << bar_count << '\n'

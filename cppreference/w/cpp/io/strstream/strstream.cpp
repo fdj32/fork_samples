@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <strstream>
 #include <string>
- 
+
 int main()
 {
     // dynamic buffer
@@ -9,7 +10,7 @@ int main()
     s1 << 1 << ' ' << 3.14 << " example" << std::ends;
     std::cout << "Buffer holds: '" << s1.str() << "'\n";
     s1.freeze(false);
- 
+
     int n;
     double d;
     std::string w;
@@ -17,7 +18,7 @@ int main()
     std::cout << "Read back: n = " << n
               << ", d = " << d
               << ", w = '" << w << "'\n";
- 
+
     // static buffer
     char arr[20] = "-1 -3.14 ";
     std::strstream s2(arr, sizeof arr, std::ios_base::app);

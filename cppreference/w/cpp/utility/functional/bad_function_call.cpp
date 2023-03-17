@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <functional>
- 
+
 int main()
 {
     std::function<int()> f = nullptr;

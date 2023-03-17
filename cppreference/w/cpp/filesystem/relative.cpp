@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <filesystem>
- 
+
 void show(std::filesystem::path x, std::filesystem::path y)
 {
     std::cout << "x:\t\t " << x << "\ny:\t\t " << y << '\n'
@@ -9,7 +10,7 @@ void show(std::filesystem::path x, std::filesystem::path y)
               << "proximate(x, y): "
               << std::filesystem::proximate(x, y) << "\n\n";
 }
- 
+
 int main()
 {
     show("/a/b/c", "/a/b");

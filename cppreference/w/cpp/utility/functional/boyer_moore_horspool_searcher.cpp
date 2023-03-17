@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <algorithm>
 #include <functional>
- 
+
 int main()
 {
     std::string in = "Lorem ipsum dolor sit amet, consectetur adipiscing elit,"

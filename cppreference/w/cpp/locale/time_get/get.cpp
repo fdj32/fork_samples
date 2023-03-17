@@ -1,16 +1,17 @@
-#include <iostream>
+
+ #include <iostream>
 #include <sstream>
 #include <locale>
 #include <iomanip>
- 
+
 int main()
 {
     std::istringstream ss("2011-Februar-18 23:12:34");
     ss.imbue(std::locale("de_DE.utf8"));
- 
+
     auto& f = std::use_facet<std::time_get<char>>(std::locale("de_DE.utf8"));
     std::tm t{};
-    std::string s = "%Y-%b-%d %H:%M:%S";
+    std::string s = "%Y-%b-%d%H:%M:%S";
     std::ios_base::iostate err = std::ios_base::goodbit;
     auto ret = f.get({ss}, {}, ss, err, &t, &s[0], &s[0] + s.size());
     ss.setstate(err);

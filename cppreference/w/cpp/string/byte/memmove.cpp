@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstring>
- 
+
 int main()
 {
     char str[] = "1234567890";

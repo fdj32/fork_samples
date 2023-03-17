@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <thread>
 #include <mutex>
- 
+
 class X {
     std::recursive_mutex m;
     std::string shared;
@@ -19,7 +20,7 @@ class X {
       std::cout << "back in fun2, shared variable is " << shared << '\n';
     };
 };
- 
+
 int main() 
 {
     X x;

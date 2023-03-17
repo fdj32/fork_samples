@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <filesystem>
 #include <cassert>
 namespace fs = std::filesystem;
- 
+
 int main()
 {
     assert(fs::path("a/./b/..").lexically_normal() == "a/");

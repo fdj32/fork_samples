@@ -1,17 +1,18 @@
-#include <variant>
+
+ #include <variant>
 #include <string>
 #include <iostream>
- 
+
 int main()
 {
     std::variant<int, float> v{12}, w;
     std::cout << std::get<int>(v) << '\n';
     w = std::get<int>(v);
     w = std::get<0>(v); // same effect as the previous line
- 
+
 //  std::get<double>(v); // error: no double in [int, float]
 //  std::get<3>(v);      // error: valid index values are 0 and 1
- 
+
     try
     {
         w = 42.0f;

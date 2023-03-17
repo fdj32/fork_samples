@@ -1,15 +1,16 @@
-#include <string_view>
+
+ #include <string_view>
 #include <iostream>
- 
+
 int main()
 {
     using namespace std::literals;
     constexpr auto N = std::string_view::npos;
- 
+
     auto is_white_space = [](const char c) noexcept {
         return " \t\n\f\r\v"sv.find_first_of(c) != N;
     };
- 
+
     static_assert(
         1 == "alignas"sv.find_first_of("klmn"sv) &&
           //   └─────────────────────────┘

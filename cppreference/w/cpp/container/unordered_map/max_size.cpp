@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <unordered_map>
- 
+
 int main()
 {
     std::unordered_map<char, char> q;

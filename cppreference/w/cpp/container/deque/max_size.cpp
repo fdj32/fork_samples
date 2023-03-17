@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <deque>
- 
+
 int main()
 {
     std::deque<char> q;

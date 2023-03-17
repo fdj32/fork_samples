@@ -1,15 +1,23 @@
-#include <iomanip>
+
+ #include <iomanip>
 #include <iostream>
 #include <string_view>
- 
-int main() {
+
+int main()
+{
     constexpr std::string_view s{"abc"};
     constexpr int width{5};
-    constexpr char fill{'-'};
- 
-    std::cout
-       << std::setfill(fill)
-       << "[" << s << "]\n"
-       << "[" << std::left << std::setw(width) << s << "]\n"
-       << "[" << std::right << std::setw(width) << s << "]\n";
+
+    // fill/left/right properties are kept until changed
+    std::cout << std::setfill('-');
+    std::cout << std::left;
+
+    std::cout << '[' << std::setw(width) << s << "]\n";
+    std::cout << '[' << std::setw(width) << s << "]\n";
+
+    std::cout << std::right;
+    std::cout << '[' << std::setw(width) << s << "]\n";
+
+    // width is reset after each call
+    std::cout << '[' << s << "]\n";
 }

@@ -1,17 +1,18 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <chrono>
 #include <map>
 #include <string_view>
 using namespace std::chrono;
- 
+
 // until C++20 chrono operator<< ready
 std::ostream& operator<<(std::ostream& os, const year_month_day& ymd) {
     return os << std::setfill('0') << static_cast<int>(ymd.year()) << '/'
               << std::setw(2) << static_cast<unsigned>(ymd.month()) << '/'
               << std::setw(2) << static_cast<unsigned>(ymd.day());
 }
- 
+
 int main() 
 {
     const std::multimap<year_month_day, int> messages {
@@ -28,6 +29,6 @@ int main()
     };
     std::cout << "Messages received, reverse date order:\n";
     for (auto it = messages.crbegin(); it != messages.crend(); ++it) {
-        std::cout << it->first << " : " << it->second << '\n';
+        std::cout << it->first << ": " << it->second << '\n';
     }
 }

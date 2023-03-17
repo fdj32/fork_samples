@@ -1,7 +1,8 @@
-#include <system_error>
+
+ #include <system_error>
 #include <filesystem>
 #include <iostream>
- 
+
 int main()
 {
     const std::filesystem::path from{"/nonexistent1/a"}, to{"/nonexistent2/b"};
@@ -17,7 +18,7 @@ int main()
             << "code().message():  " << ex.code().message() << '\n'
             << "code().category(): " << ex.code().category().name() << '\n';
     }
- 
+
     // All functions have non-throwing equivalents
     std::error_code ec;
     std::filesystem::copy_file(from, to, ec); // does not throw

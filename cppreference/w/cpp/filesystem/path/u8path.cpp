@@ -1,4 +1,5 @@
-#include <cstdio>
+
+ #include <cstdio>
 #ifdef _MSC_VER
 #include <io.h>
 #include <fcntl.h>
@@ -8,7 +9,7 @@
 #endif
 #include <fstream>
 #include <filesystem>
- 
+
 int main()
 {
 #ifdef _MSC_VER
@@ -17,13 +18,13 @@ int main()
     std::setlocale(LC_ALL, "");
     std::locale::global(std::locale(""));
 #endif
- 
+
     std::filesystem::path p(u8"要らない.txt");
     std::ofstream(p) << "File contents"; // Prior to LWG2676 uses operator string_type()
                                          // on MSVC, where string_type is wstring, only
                                          // works due to non-standard extension.
                                          // Post-LWG2676 uses new fstream constructors
- 
+
     // native string representation can be used with OS APIs
     if (std::FILE* f =
 #ifdef _MSC_VER
@@ -37,6 +38,6 @@ int main()
         while((ch=fgetc(f)) != EOF) putchar(ch);
         std::fclose(f);
     }
- 
+
     std::filesystem::remove(p);
 }

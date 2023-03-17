@@ -1,17 +1,18 @@
-#include <cassert>
+
+ #include <cassert>
 #include <cstddef>
 #include <iomanip>
 #include <iostream>
 #include <filesystem>
 #include <unordered_set>
 namespace fs = std::filesystem;
- 
+
 void show_hash(fs::path const& p)
 {
     std::cout << std::hex << std::uppercase << std::setw(16)
-              << fs::hash_value(p) << " : " << p << '\n';
+              << fs::hash_value(p) << ": " << p << '\n';
 }
- 
+
 int main()
 {
     auto tmp1 = fs::path{"/tmp"};
@@ -20,10 +21,10 @@ int main()
     assert( fs::equivalent(tmp1, tmp2) );
     show_hash( tmp1 );
     show_hash( tmp2 );
- 
+
     for (auto s : {"/a///b", "/a//b", "/a/c", "...", "..", ".", ""})
         show_hash(s);
- 
+
     // A hash function object to work with unordered_* containers:
     struct PathHash {
         std::size_t operator()(fs::path const& p) const noexcept {

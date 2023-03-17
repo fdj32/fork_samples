@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <chrono>
 template<typename Diff>
 void log_progress(Diff d)
@@ -10,7 +11,7 @@ void log_progress(Diff d)
 int main()
 {
     volatile int sink=0;
- 
+
     auto t1 = std::chrono::high_resolution_clock::now();
     for(int j=0; j<5; ++j)
     {

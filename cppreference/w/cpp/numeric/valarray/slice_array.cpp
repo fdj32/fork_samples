@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <valarray>
- 
+
 class Matrix {
     int dim;
     std::valarray<int> data;
@@ -10,7 +11,7 @@ public:
     void clear(int value = 0) { data = value; }
     void identity() { clear(); diagonal() = 1; }
     int& operator()(int x, int y) { return data[dim * y + x]; }
- 
+
     std::slice_array<int> diagonal() {
         return data[std::slice(0, dim, dim+1)];
     }
@@ -25,7 +26,7 @@ public:
     }
     template<unsigned, unsigned> friend class MatrixStack;
 };
- 
+
 template <unsigned dim = 3, unsigned max = 8> class MatrixStack {
     std::valarray<int> stack;
     unsigned count = 0;
@@ -48,39 +49,39 @@ public:
         }
     }
 };
- 
+
 int main()
 {
     constexpr int dim = 3;
     Matrix m{dim};
     MatrixStack<dim,12> stack;
- 
+
     m.identity();
     stack.push_back(m);
- 
+
     m.clear(1);
     m.secondary_diagonal() = 3;
     stack.push_back(m);
- 
+
     for (int i = 0; i != dim; ++i) {
         m.clear();
         m.row(i) = i + 1;
         stack.push_back(m);
     }
- 
+
     for (int i = 0; i != dim; ++i) {
         m.clear();
         m.column(i) = i + 1;
         stack.push_back(m);
     }
- 
+
     m.clear();
     m.row(1) = std::valarray<int>{4, 5, 6};
     stack.push_back(m);
- 
+
     m.clear();
     m.column(1) = std::valarray<int>{7, 8, 9};
     stack.push_back(m);
- 
+
     stack.print_all();
 }

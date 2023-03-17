@@ -1,4 +1,5 @@
-#if PARALLEL
+
+ #if PARALLEL
 #include <execution>
 #define SEQ std::execution::seq,
 #define PAR std::execution::par,
@@ -6,14 +7,14 @@
 #define SEQ
 #define PAR
 #endif
- 
+
 #include <chrono>
 #include <iomanip>
 #include <iostream>
 #include <numeric>
 #include <utility>
 #include <vector>
- 
+
 int main()
 {
     std::cout.imbue(std::locale("en_US.UTF-8"));
@@ -29,7 +30,7 @@ int main()
     };
     {
         const std::vector<double> v(100'000'007, 0.1);
- 
+
         eval([&v]{ return std::pair{"std::accumulate (double)",
             std::accumulate(v.cbegin(), v.cend(), 0.0)}; } );
         eval([&v]{ return std::pair{"std::reduce (seq, double)",
@@ -39,7 +40,7 @@ int main()
     }
     {
         const std::vector<long> v(100'000'007, 1);
- 
+
         eval([&v]{ return std::pair{"std::accumulate (long)",
             std::accumulate(v.cbegin(), v.cend(), 0l)}; } );
         eval([&v]{ return std::pair{"std::reduce (seq, long)",

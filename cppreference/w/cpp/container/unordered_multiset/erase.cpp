@@ -1,10 +1,11 @@
-#include <unordered_set>
+
+ #include <unordered_set>
 #include <iostream>
- 
+
 int main()
 {
-    std::unordered_multiset<int> c = { 1, 2, 3, 4, 1, 2, 3, 4 };
- 
+    std::unordered_multiset<int> c = {1, 2, 3, 4, 1, 2, 3, 4};
+
     auto print = [&c]
     {
         std::cout << "c = { ";
@@ -13,7 +14,7 @@ int main()
         std::cout << "}\n";
     };
     print();
- 
+
     std::cout << "Erase all odd numbers:\n";
     for (auto it = c.begin(); it != c.end();)
     {
@@ -23,7 +24,7 @@ int main()
             ++it;
     }
     print();
- 
+
     std::cout << "Erase 1, erased count: " << c.erase(1) << '\n';
     std::cout << "Erase 2, erased count: " << c.erase(2) << '\n';
     std::cout << "Erase 2, erased count: " << c.erase(2) << '\n';

@@ -1,5 +1,6 @@
-#include <iostream>
- 
+
+ #include <iostream>
+
 struct Foo {
     int n;
     Foo() {
@@ -9,9 +10,9 @@ struct Foo {
        std::clog << "static destructor\n";
     }
 };
- 
+
 Foo f; // static object
- 
+
 int main()
 {
     std::clog << "main function\n";

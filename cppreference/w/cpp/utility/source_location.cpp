@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string_view>
 #include <source_location>
- 
+
 void log(const std::string_view message,
          const std::source_location location =
                std::source_location::current())
@@ -13,12 +14,12 @@ void log(const std::string_view message,
               << location.function_name() << "`: "
               << message << '\n';
 }
- 
+
 template <typename T> void fun(T x)
 {
     log(x);
 }
- 
+
 int main(int, char*[])
 {
     log("Hello world!");

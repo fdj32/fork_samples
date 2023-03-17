@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cmath>
 #include <cfloat>
- 
+
 const char* show_classification(double x) {
     switch(std::fpclassify(x)) {
         case FP_INFINITE:  return "Inf";

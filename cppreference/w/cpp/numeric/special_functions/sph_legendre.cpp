@@ -1,15 +1,17 @@
-#include <cmath>
+
+ #include <cmath>
 #include <iostream>
+#include <numbers>
+
 int main()
 {
     // spot check for l=3, m=0
     double x = 1.2345;
-#ifndef __clang__
     std::cout << "Y_3^0(" << x << ") = " << std::sph_legendre(3, 0, x) << '\n';
-#endif
+
     // exact solution
-    double pi = std::acos(-1);
     std::cout << "exact solution = "
-              << 0.25*std::sqrt(7/pi)*(5*std::pow(std::cos(x),3)-3*std::cos(x))
+              << 0.25 * std::sqrt(7 / std::numbers::pi) * (5 * std::pow(std::cos(x), 3)
+                 - 3 * std::cos(x))
               << '\n';
 }

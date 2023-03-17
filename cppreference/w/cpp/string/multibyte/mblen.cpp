@@ -1,10 +1,11 @@
-#include <clocale>
+
+ #include <clocale>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
 #include <string_view>
- 
+
 // the number of characters in a multibyte string is the sum of mblen()'s
 // note: the simpler approach is std::mbstowcs(nullptr, s.c_str(), s.size())
 std::size_t strlen_mb(const std::string_view s)
@@ -21,7 +22,7 @@ std::size_t strlen_mb(const std::string_view s)
     }
     return result;
 }
- 
+
 void dump_bytes(const std::string_view str)
 {
     std::cout << std::hex << std::uppercase << std::setfill('0');
@@ -29,7 +30,7 @@ void dump_bytes(const std::string_view str)
         std::cout << std::setw(2) << static_cast<int>(c) << ' ';
     std::cout << std::dec << '\n';
 }
- 
+
 int main()
 {
     // allow mblen() to work with UTF-8 multibyte encoding

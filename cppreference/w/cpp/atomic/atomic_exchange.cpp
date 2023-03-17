@@ -1,11 +1,12 @@
-#include <thread>
+
+ #include <thread>
 #include <vector>
 #include <iostream>
 #include <atomic>
- 
+
 std::atomic<bool> lock(false); // holds true when locked
                                // holds false when unlocked
- 
+
 void f(int n)
 {
     for (int cnt = 0; cnt < 100; ++cnt) {

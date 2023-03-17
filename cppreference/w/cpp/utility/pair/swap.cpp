@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <utility>
 #include <string>
 int main()
@@ -6,7 +7,7 @@ int main()
     std::pair<int, std::string> p1(10, "test"), p2;
     p2.swap(p1);
     std::cout << "(" << p2.first << ", " << p2.second << ")\n";
- 
+
 #if __cpp_lib_ranges_zip >= 202110L
     // Using the C++23 const qualified swap overload
     // (swap is no longer propagating pair constness)

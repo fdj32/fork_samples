@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <utility>
 #include <atomic>
- 
+
 struct A { int a[100]; };
 struct B { int x, y; };
 int main()

@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstdint>
 #include <cstring>
- 
+
 int main()
 {
     // simple usage
@@ -11,16 +12,16 @@ int main()
     for (char c : dest)
         std::cout << "'" << c << "', ";
     std::cout << "};\n";
- 
+
     // reinterpreting
     double d = 0.1;
 //  std::int64_t n = *reinterpret_cast<std::int64_t*>(&d); // aliasing violation
     std::int64_t n;
     std::memcpy(&n, &d, sizeof d); // OK
- 
+
     std::cout << std::hexfloat << d << " is " << std::hex << n
-              << " as an std::int64_t\n" << std::dec;
- 
+              << " as a std::int64_t\n" << std::dec;
+
     // object creation in destination buffer
     struct S {
         int x{42};

@@ -1,11 +1,12 @@
-#include <iostream>
+
+ #include <iostream>
 #include <thread>
 #include <chrono>
 #include <mutex>
 #include <condition_variable>
- 
+
 using namespace std::chrono_literals;
- 
+
 int main()
 {
     // A sleepy worker thread
@@ -19,7 +20,7 @@ int main()
             std::cout << "Sleepy worker goes back to sleep\n";
         }
     });
- 
+
     // A waiting worker thread
     // The condition variable will be awoken by the stop request.
     std::jthread waiting_worker([](std::stop_token stoken) {
@@ -32,13 +33,13 @@ int main()
             return;
         }
     });
- 
+
     // std::jthread::request_stop() can be called explicitly:
     std::cout << "Requesting stop of sleepy worker\n";
     sleepy_worker.request_stop();
     sleepy_worker.join();
     std::cout << "Sleepy worker joined\n";
- 
+
     // Or automatically using RAII:
     // waiting_worker's destructor will call request_stop()
     // and join the thread automatically.

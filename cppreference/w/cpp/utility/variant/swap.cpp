@@ -1,7 +1,8 @@
-#include <variant>
+
+ #include <variant>
 #include <string>
 #include <iostream>
- 
+
 int main()
 {
     std::variant<int, std::string> v1{2}, v2{"abc"}; 

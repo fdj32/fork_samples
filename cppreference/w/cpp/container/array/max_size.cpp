@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <array>
- 
+
 int main()
 {
     std::array<char, 10> q;

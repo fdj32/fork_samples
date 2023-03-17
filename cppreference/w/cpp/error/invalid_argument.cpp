@@ -1,8 +1,9 @@
-#include <bitset>
+
+ #include <bitset>
 #include <iostream>
 #include <stdexcept>
 #include <string>
- 
+
 int main()
 {
     try
@@ -13,7 +14,7 @@ int main()
     {
         std::cout << "#1: " << ex.what() << '\n';
     }
- 
+
     try
     {
         [[maybe_unused]] int f = std::stoi("ABBA"); // Throws: no conversion
@@ -22,7 +23,7 @@ int main()
     {
         std::cout << "#2: " << ex.what() << '\n';
     }
- 
+
     try
     {
         [[maybe_unused]] float f = std::stof("(3.14)"); // Throws: no conversion

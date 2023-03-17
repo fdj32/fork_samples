@@ -1,15 +1,16 @@
-#include <cassert>
+
+ #include <cassert>
 #include <codecvt>
 #include <cstdint>
 #include <iostream>
 #include <locale>
 #include <string>
- 
+
 int main()
 {
     std::string u8 = "z\u00df\u6c34\U0001f34c";
     std::u16string u16 = u"z\u00df\u6c34\U0001f34c";
- 
+
     // UTF-8 to UTF-16/char16_t
     std::u16string u16_conv = std::wstring_convert<
         std::codecvt_utf8_utf16<char16_t>, char16_t>{}.from_bytes(u8);
@@ -18,7 +19,7 @@ int main()
               << u16_conv.size() << " code units:\n";
     for (char16_t c : u16_conv)
         std::cout << std::hex << std::showbase << (std::uint_least16_t)c << ' ';
- 
+
     // UTF-16/char16_t to UTF-8
     std::string u8_conv = std::wstring_convert<
         std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(u16);

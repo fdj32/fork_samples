@@ -1,6 +1,7 @@
-#include <span>
+
+ #include <span>
 #include <iostream>
- 
+
 void print(std::span<const int> const data)
 {
     for (auto offset{0U}; offset != data.size(); ++offset) {
@@ -8,7 +9,7 @@ void print(std::span<const int> const data)
     }
     std::cout << '\n';
 }
- 
+
 int main()
 {
     constexpr int data[] { 0, 1, 2, 3, 4, 5, 6 };

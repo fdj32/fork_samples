@@ -1,6 +1,7 @@
-#include <bitset>
+
+ #include <bitset>
 #include <iostream>
- 
+
 int main()
 {
     std::bitset<4> b1("0110");

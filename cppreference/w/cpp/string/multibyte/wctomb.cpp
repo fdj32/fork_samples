@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <clocale>
 #include <string>
 #include <cstdlib>
- 
+
 void print_wide(const std::wstring& wstr)
 {
     bool shifts = std::wctomb(nullptr, 0); // reset the conversion state
@@ -22,7 +23,7 @@ void print_wide(const std::wstring& wstr)
         std::cout << "]\n" << std::dec;
     }
 }
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");

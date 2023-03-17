@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <regex>
 #include <cwctype>
- 
+
 // This custom regex traits uses wctype/iswctype to implement lookup_classname/isctype
 struct wctype_traits : std::regex_traits<wchar_t>
 {
@@ -15,13 +16,13 @@ struct wctype_traits : std::regex_traits<wchar_t>
         return std::iswctype(c, f);
     }
 };
- 
+
 int main()
 {
     std::locale::global(std::locale("ja_JP.utf8"));
     std::wcout.sync_with_stdio(false);
     std::wcout.imbue(std::locale());
- 
+
     std::wsmatch m;
     std::wstring in = L"風の谷のナウシカ";
     // matches all characters (they are classified as alnum)

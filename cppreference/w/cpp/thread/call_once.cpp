@@ -1,14 +1,15 @@
-#include <iostream>
+
+ #include <iostream>
 #include <thread>
 #include <mutex>
- 
+
 std::once_flag flag1, flag2;
- 
+
 void simple_do_once()
 {
     std::call_once(flag1, [](){ std::cout << "Simple example: called once\n"; });
 }
- 
+
 void may_throw_function(bool do_throw)
 {
   if (do_throw) {
@@ -17,7 +18,7 @@ void may_throw_function(bool do_throw)
   }
   std::cout << "Didn't throw, call_once will not attempt again\n"; // guaranteed once
 }
- 
+
 void do_once(bool do_throw)
 {
   try {
@@ -26,7 +27,7 @@ void do_once(bool do_throw)
   catch (...) {
   }
 }
- 
+
 int main()
 {
     std::thread st1(simple_do_once);
@@ -37,7 +38,7 @@ int main()
     st2.join();
     st3.join();
     st4.join();
- 
+
     std::thread t1(do_once, true);
     std::thread t2(do_once, true);
     std::thread t3(do_once, false);

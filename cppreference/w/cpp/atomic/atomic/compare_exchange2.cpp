@@ -1,12 +1,13 @@
-#include <atomic>
+
+ #include <atomic>
 #include <iostream>
- 
+
 std::atomic<int>  ai;
- 
+
 int  tst_val= 4;
 int  new_val= 5;
 bool exchanged= false;
- 
+
 void valsout()
 {
     std::cout << "ai= " << ai
@@ -15,16 +16,16 @@ void valsout()
 	      << "  exchanged= " << std::boolalpha << exchanged
 	      << "\n";
 }
- 
+
 int main()
 {
     ai= 3;
     valsout();
- 
-    // tst_val != ai   ==>  tst_val is modified
+
+    // tst_val!= ai   ==>  tst_val is modified
     exchanged= ai.compare_exchange_strong( tst_val, new_val );
     valsout();
- 
+
     // tst_val == ai   ==>  ai is modified
     exchanged= ai.compare_exchange_strong( tst_val, new_val );
     valsout();

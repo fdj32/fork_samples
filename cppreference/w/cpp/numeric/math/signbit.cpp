@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cmath>
- 
+
 int main()
 {
     std::cout << std::boolalpha

@@ -1,6 +1,7 @@
-#include <atomic>
+
+ #include <atomic>
 #include <iostream>
- 
+
 int main()
 {
     std::atomic<int> a = ATOMIC_VAR_INIT(1);

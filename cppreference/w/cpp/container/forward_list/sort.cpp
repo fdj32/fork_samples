@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <functional>
 #include <forward_list>
- 
+
 std::ostream& operator<<(std::ostream& ostr, const std::forward_list<int>& list)
 {
     for (auto &i : list) {
@@ -9,11 +10,11 @@ std::ostream& operator<<(std::ostream& ostr, const std::forward_list<int>& list)
     }
     return ostr;
 }
- 
+
 int main()
 {
     std::forward_list<int> list = { 8,7,5,9,0,1,3,2,6,4 };
- 
+
     std::cout << "before:     " << list << "\n";
     list.sort();
     std::cout << "ascending:  " << list << "\n";

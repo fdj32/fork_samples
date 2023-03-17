@@ -1,13 +1,14 @@
-#include <iostream>
+
+ #include <iostream>
 #include <algorithm>
 #include <functional>
 #include <string_view>
- 
+
 constexpr bool is_vowel(char c)
 {
     return std::string_view{"aeoiuAEIOU"}.find(c) != std::string_view::npos;
 }
- 
+
 int main()
 {
     std::string_view s = "Hello, world!";

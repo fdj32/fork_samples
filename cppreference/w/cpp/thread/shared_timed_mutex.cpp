@@ -1,6 +1,7 @@
-#include <mutex>
+
+ #include <mutex>
 #include <shared_mutex>
- 
+
 class R
 {
     mutable std::shared_timed_mutex mut;
@@ -17,7 +18,7 @@ public:
         return *this;
     }
 };
- 
+
 int main() {
     R r;
 }

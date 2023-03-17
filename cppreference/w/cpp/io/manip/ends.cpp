@@ -1,4 +1,5 @@
-#include <cstdio>
+
+ #include <cstdio>
 #include <strstream>
 int main()
 {

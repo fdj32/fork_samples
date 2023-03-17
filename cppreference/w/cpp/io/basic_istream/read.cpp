@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <cstdint>
- 
+
 int main()
 {
     // read() is often used for binary I/O
@@ -12,10 +13,10 @@ int main()
     std::uint32_t n;
     if(raw.read(reinterpret_cast<char*>(&n), sizeof n))
         std::cout << std::hex << std::showbase << n << '\n';
- 
+
     // prepare file for next snippet
     std::ofstream("test.txt", std::ios::binary) << "abcd1\nabcd2\nabcd3";
- 
+
     // read entire file into string
     if(std::ifstream is{"test.txt", std::ios::binary | std::ios::ate}) {
         auto size = is.tellg();

@@ -1,10 +1,11 @@
-#include <type_traits>
- 
+
+ #include <type_traits>
+
 auto func2(char) -> int (*)()
 {
     return nullptr;
 }
- 
+
 int main()
 {
     static_assert( std::is_invocable_v<int()> );

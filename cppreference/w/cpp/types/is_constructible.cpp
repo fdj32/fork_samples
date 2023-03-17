@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <type_traits>
- 
+
 class Foo {
     int v1;
     double v2;
@@ -8,7 +9,7 @@ class Foo {
     Foo(int n) : v1(n), v2() {}
     Foo(int n, double f) noexcept : v1(n), v2(f) {}
 };
- 
+
 int main() {
     auto is = [](bool o) { return (o ? "\t" "is " : "\t" "isn't "); };
     std::cout << "Foo ...\n"

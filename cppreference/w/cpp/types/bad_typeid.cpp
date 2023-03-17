@@ -1,10 +1,11 @@
-#include <iostream>
+
+ #include <iostream>
 #include <typeinfo>
- 
+
 struct S { // The type has to be polymorphic
     virtual void f();
 }; 
- 
+
 int main()
 {
     S* p = nullptr;

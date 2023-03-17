@@ -1,6 +1,7 @@
-#include <strstream>
+
+ #include <strstream>
 #include <iostream>
- 
+
 int main()
 {
     {
@@ -14,7 +15,7 @@ int main()
                   << dyn.pcount() << " characters: '" << dyn.str() << "'\n";
         dyn.freeze(false); // unfreeze before destructor
     } // memory freed by the destructor
- 
+
     {
         char arr[20];
         std::ostrstream st(arr, sizeof arr); // fixed-size buffer

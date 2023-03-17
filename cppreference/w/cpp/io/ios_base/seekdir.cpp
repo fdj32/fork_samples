@@ -1,12 +1,13 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <sstream>
- 
+
 int main()
 {
     std::istringstream in("Hello, World!");
     std::string word1, word2, word3, word4, word5;
- 
+
     in >> word1;
     in.seekg(0, std::ios_base::beg); // <- rewind
     in >> word2;
@@ -16,7 +17,7 @@ int main()
     in >> word4;
     in.seekg(-6, std::ios_base::end); // <- seek from end toward begin
     in >> word5;
- 
+
     std::cout << "word1 = " << word1 << '\n'
               << "word2 = " << word2 << '\n'
               << "word3 = " << word3 << '\n'

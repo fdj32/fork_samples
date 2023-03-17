@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <list>
- 
+
 int main()
 {
     std::list<char> q;

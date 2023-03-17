@@ -1,13 +1,14 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cwchar>
- 
+
 int main()
 {
     const wchar_t src[] = L"hi";
     wchar_t dest[6] = {L'a', L'b', L'c', L'd', L'e', L'f'};
- 
+
     std::wcsncpy(dest, src, 5); // this will copy 'hi' and repeat \0 three times
- 
+
     std::wcout << "The contents of dest are: ";
     for(const wchar_t c : dest) {
         if(c)

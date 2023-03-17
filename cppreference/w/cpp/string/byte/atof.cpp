@@ -1,6 +1,7 @@
-#include <cstdlib>
+
+ #include <cstdlib>
 #include <iostream>
- 
+
 int main()
 {
     std::cout << std::atof("0.0000000123") << '\n'

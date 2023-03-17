@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <span>
- 
+
 void show_sizes(std::span<const int> span)
 {
     std::cout
@@ -13,7 +14,7 @@ void show_sizes(std::span<const int> span)
         << span.subspan<3, 2>() .size() << ' ' // 2
         << '\n';
 }
- 
+
 int main()
 {
     int antique_array[] { 1, 2, 3, 4, 5, 6, 7, 8 };

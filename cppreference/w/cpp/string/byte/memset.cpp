@@ -1,8 +1,9 @@
-#include <bitset>
+
+ #include <bitset>
 #include <climits>
 #include <cstring>
 #include <iostream>
- 
+
 int main()
 {
     int a[4];

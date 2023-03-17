@@ -1,11 +1,12 @@
-#include <fstream>
+
+ #include <fstream>
 #include <iostream>
- 
+
 struct mybuf : std::filebuf
 {
      using std::filebuf::showmanyc;
 };
- 
+
 int main()
 {
     mybuf fin;

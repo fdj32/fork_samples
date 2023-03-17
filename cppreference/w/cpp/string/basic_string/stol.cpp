@@ -1,9 +1,10 @@
-#include <string>
+
+ #include <string>
 #include <iomanip>
 #include <utility>
 #include <iostream>
 #include <stdexcept>
- 
+
 int main()
 {
     const auto data = {
@@ -15,7 +16,7 @@ int main()
         "words and 2",
         "12345678901",
     };
- 
+
     for (const std::string s : data)
     {
         std::size_t pos{};
@@ -36,7 +37,7 @@ int main()
             std::cout << "std::stoll('" << s << "'): " << ll << "; pos: " << pos << '\n';
         }
     }
- 
+
     std::cout << "\nCalling with different radixes:\n";
     for (const auto& [s, base]: { std::pair<const char*, int>
         {"11",  2}, {"22",  3}, {"33",  4}, {"77",  8},

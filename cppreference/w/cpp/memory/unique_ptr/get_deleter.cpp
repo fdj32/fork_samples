@@ -1,12 +1,13 @@
-#include <iostream>
+
+ #include <iostream>
 #include <memory>
- 
+
 struct Foo
 {
     Foo() { std::cout << "Foo...\n"; }
     ~Foo() { std::cout << "~Foo...\n"; }
 };
- 
+
 struct D
 {
     void bar() { std::cout << "Call deleter D::bar()...\n"; }
@@ -16,7 +17,7 @@ struct D
         delete p;
     }
 };
- 
+
 int main()
 {
     std::unique_ptr<Foo, D> up(new Foo(), D());

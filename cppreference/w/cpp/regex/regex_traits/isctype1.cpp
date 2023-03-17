@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <regex>
- 
+
 int main()
 {
     std::regex_traits<char> t;

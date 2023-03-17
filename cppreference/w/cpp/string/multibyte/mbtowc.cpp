@@ -1,8 +1,9 @@
-#include <clocale>
+
+ #include <clocale>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
- 
+
 int print_mb(const char* ptr)
 {
     std::mbtowc(nullptr, 0, 0); // reset the conversion state
@@ -13,7 +14,7 @@ int print_mb(const char* ptr)
     std::wcout << '\n';
     return ret;
 }
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");

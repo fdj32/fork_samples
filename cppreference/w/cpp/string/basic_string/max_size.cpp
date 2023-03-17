@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <climits>
- 
+
 int main()
 {
     std::string s;

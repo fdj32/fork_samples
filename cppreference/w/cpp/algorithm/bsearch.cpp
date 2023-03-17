@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstdlib>
 #include <array>
- 
+
 template <typename T>
 int compare(const void *a, const void *b) {
     const auto &arg1 = *(static_cast<const T*>(a));
@@ -11,19 +12,19 @@ int compare(const void *a, const void *b) {
         :  cmp > 0 ? +1
         :  0;
 }
- 
+
 int main() {
     std::array arr { 1, 2, 3, 4, 5, 6, 7, 8 };
- 
+
     for (const int key : { 4, 8, 9 }) {
- 
+
         const int* p = static_cast<int*>(
             std::bsearch(&key,
                 arr.data(),
                 arr.size(),
                 sizeof(decltype(arr)::value_type),
                 compare<int>));
- 
+
         std::cout << "value " << key;
         (p) ? std::cout << " found at position " << (p - arr.data()) << '\n'
             : std::cout << " not found\n";

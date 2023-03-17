@@ -1,12 +1,13 @@
-#include <iostream>
+
+ #include <iostream>
 #include <type_traits>
- 
+
 struct A { enum E { }; };
- 
+
 enum E {};
- 
+
 enum class Ec : int {};
- 
+
 int main() 
 {
     std::cout

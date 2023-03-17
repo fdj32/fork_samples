@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
 #include <cstdlib>
 int main()
@@ -7,7 +8,7 @@ int main()
     std::ofstream ofile{fname};
     ofile << "10 " << "11 " << "12 " << "non-int";
     ofile.close();
- 
+
     std::ifstream file{fname};
     if (!file.good())  
     {  
@@ -15,14 +16,14 @@ int main()
                      "one of the error flags is true\n";
         return EXIT_FAILURE;
     }
- 
+
     // typical C++ I/O loop uses the return value of the I/O function
     // as the loop controlling condition, operator bool() is used here
     for (int n; file >> n; ) {
         std::cout << n << ' ';
     }
     std::cout << '\n';
- 
+
     if (file.bad()) 
     {
         std::cout << "#2. I/O error while reading - badbit is true\n";

@@ -1,17 +1,18 @@
-#include <chrono>
+
+ #include <chrono>
 #include <iostream>
 #include <iomanip>
 #include <cstdint>
- 
+
 int main()
 {
     constexpr uint64_t chrono_years_max = std::chrono::years::max().count();
     constexpr uint64_t chrono_seconds_max = std::chrono::seconds::max().count();
- 
+
     constexpr uint64_t age_of_universe_in_years{13'787'000'000}; //: λCDM ≈ k₁/H₀ = k₂/42.
     constexpr uint64_t seconds_per_year{365'25 * 24 * 36}; // 365¼ × 24 × 60 × 60
     constexpr uint64_t age_of_universe_in_seconds{age_of_universe_in_years * seconds_per_year};
- 
+
     std::cout 
         << "The Age of the Universe is ≈ "
         << std::scientific << std::setprecision(2)

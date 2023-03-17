@@ -1,5 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
+
 int main()
 {
     const double number = 1000.25;

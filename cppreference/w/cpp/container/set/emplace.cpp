@@ -1,22 +1,23 @@
-#include <chrono>
+
+ #include <chrono>
 #include <functional>
 #include <iomanip>
 #include <iostream>
 #include <set>
 #include <string>
- 
+
 class Dew
 {
   private:
     int a;
     int b;
     int c;
- 
+
   public:
     Dew(int _a, int _b, int _c)
       : a(_a), b(_b), c(_c)
     {}
- 
+
     bool operator<(const Dew &other) const
     {
       if (a < other.a)
@@ -26,29 +27,29 @@ class Dew
       return (a == other.a && b == other.b && c < other.c);
     }
 };
- 
+
 const int nof_operations = 120;
- 
+
 int set_emplace() {
     std::set<Dew> set;
     for(int i = 0; i < nof_operations; ++i)
         for(int j = 0; j < nof_operations; ++j)
             for(int k = 0; k < nof_operations; ++k)
               set.emplace(i, j, k);
- 
+
     return set.size();
 }
- 
+
 int set_insert() {
     std::set<Dew> set;
     for(int i = 0; i < nof_operations; ++i)
         for(int j = 0; j < nof_operations; ++j)
             for(int k = 0; k < nof_operations; ++k)
               set.insert(Dew(i, j, k));
- 
+
     return set.size();
 }
- 
+
 void timeit(std::function<int()> set_test, std::string what = "") {
   auto start = std::chrono::system_clock::now();
   int setsize = set_test();
@@ -59,7 +60,7 @@ void timeit(std::function<int()> set_test, std::string what = "") {
         << time.count() << "  ms for " << what << '\n';
   }
 }
- 
+
 int main()
 {
   set_insert();

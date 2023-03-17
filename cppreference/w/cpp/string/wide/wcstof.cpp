@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <cerrno>
 #include <cwchar>
 #include <clocale>
- 
+
 int main()
 {
     const wchar_t* p = L"111.11 -2.22 0X1.BC70A3D70A3D7P+6 -Inf 1.18973e+4932zzz";
@@ -19,7 +20,7 @@ int main()
         }
         std::wcout << f << '\n';
     }
- 
+
     if (std::setlocale(LC_NUMERIC, "de_DE.utf8")) {
         std::wcout << L"With de_DE.utf8 locale:\n";
         std::wcout << L"  '123.45' -> " << std::wcstod(L"123.45", 0) << L'\n';

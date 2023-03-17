@@ -1,10 +1,11 @@
-#include <string_view>
- 
+
+ #include <string_view>
+
 int main()
 {
     using namespace std::literals;
     constexpr auto N = std::string_view::npos;
- 
+
     static_assert(true
         && (6 == "AB AB AB"sv.rfind("AB"))
         && (6 == "AB AB AB"sv.rfind("ABCD", N, 2))

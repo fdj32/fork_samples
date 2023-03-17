@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <bitset>
- 
+
 int main()
 {
     std::bitset<8> b(42);

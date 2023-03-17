@@ -1,15 +1,16 @@
-#include <cassert>
+
+ #include <cassert>
 #include <cstddef>
 #include <iomanip>
 #include <iostream>
 #include <numeric>
 #include <valarray>
- 
+
 int main()
 {
     std::valarray<int> data(32);
     std::iota(std::begin(data), std::end(data), 0);
- 
+
     const std::size_t offset = 1, z = 2, y = 3, x = 4;
     const std::valarray<std::size_t> sizes{z, y, x};
     const std::valarray<std::size_t> strides{15, 5, 1};
@@ -30,14 +31,14 @@ int main()
     //  ...
     //  index[22] = 1 + 1*15 + 2*5 + 2*1 = 28
     //  index[23] = 1 + 1*15 + 2*5 + 3*1 = 29
- 
+
     const std::valarray<int> indices = data[gslice];
     for (unsigned i=0; i != indices.size(); ++i) {
         std::cout << std::setfill('0') << std::setw(2) << indices[i] << ' ';
     }
     std::cout << "\nTotal indices: " << indices.size() << '\n';
     assert(indices.size() == x*y*z);
- 
+
     data = 0;
     std::gslice_array<int> gslice_array = data[gslice];
     gslice_array = 1;

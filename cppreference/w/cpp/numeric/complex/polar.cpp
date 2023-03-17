@@ -1,15 +1,16 @@
-#include <cmath>
+
+ #include <cmath>
 #include <complex>
 #include <iomanip>
 #include <iostream>
 #include <numbers>
 using namespace std::complex_literals;
- 
+
 int main()
 {
     constexpr auto π_2 {std::numbers::pi / 2.0};
     constexpr auto mag {1.0};
- 
+
     std::cout 
         << std::fixed << std::showpos << std::setprecision(1)
         << "   θ: │ polar:      │ exp:        │ complex:    │ trig:\n";

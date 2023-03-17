@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <clocale>
 #include <cstring>
 #include <cwchar>
- 
+
 void print_mb(const char* ptr)
 {
     std::mbstate_t state = std::mbstate_t(); // initial state
@@ -14,7 +15,7 @@ void print_mb(const char* ptr)
         ptr += len;
     }
 }
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");

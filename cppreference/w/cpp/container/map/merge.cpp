@@ -1,7 +1,8 @@
-#include <map>
+
+ #include <map>
 #include <iostream>
 #include <string>
- 
+
 int main()
 {
   std::map<int, std::string> ma {{1, "apple"}, {5, "pear"}, {10, "banana"}};

@@ -1,19 +1,33 @@
-#include <cmath>
-#include <string>
-#include <iostream>
+
+ #include <cmath>
+#include <cassert>
 #include <iomanip>
-#ifndef __clang__
-double binom(int n, int k) { return 1/((n+1)*std::beta(n-k+1,k+1)); }
-#endif
+#include <iostream>
+#include <string>
+
+long binom_via_beta(int n, int k)
+{
+    return std::lround(1 / ((n + 1) * std::beta(n - k + 1, k + 1)));
+}
+
+long binom_via_gamma(int n, int k)
+{
+    return std::lround(std::tgamma(n + 1) /
+                      (std::tgamma(n - k + 1) * 
+                       std::tgamma(k + 1)));
+}
+
 int main()
 {
     std::cout << "Pascal's triangle:\n";
-    for(int n = 1; n < 10; ++n) {
-        std::cout << std::string(20-n*2, ' ');
-#ifndef __clang__
-        for(int k = 1; k < n; ++k)
-            std::cout << std::setw(3) << binom(n,k) << ' ';
-#endif
+    for (int n = 1; n < 10; ++n)
+    {
+        std::cout << std::string(20 - n * 2, ' ');
+        for (int k = 1; k < n; ++k)
+        {
+            std::cout << std::setw(3) << binom_via_beta(n, k) << ' ';
+            assert(binom_via_beta(n, k) == binom_via_gamma(n, k));
+        }
         std::cout << '\n';
     }
 }

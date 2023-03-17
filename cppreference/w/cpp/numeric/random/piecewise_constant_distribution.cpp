@@ -1,8 +1,9 @@
-#include <iostream>
-#include <string>
+
+ #include <iostream>
 #include <map>
+#include <string>
 #include <random>
- 
+
 int main()
 {
     std::random_device rd;
@@ -12,13 +13,11 @@ int main()
     std::vector<double> i{0,  1, 10, 15};
     std::vector<double> w{  1,  0,  1  };
     std::piecewise_constant_distribution<> d(i.begin(), i.end(), w.begin());
- 
+
     std::map<int, int> hist;
-    for(int n=0; n<10000; ++n) {
+    for (int n{}; n < 1e4; ++n)
         ++hist[d(gen)];
-    }
-    for(auto p : hist) {
-        std::cout << std::hex << std::uppercase << p.first << ' '
-                  << std::string(p.second/100, '*') << '\n';
-    }
+
+    for (std::cout << std::hex << std::uppercase; auto [x, y] : hist)
+        std::cout << x << ' ' << std::string(y / 100, '*') << '\n';
 }

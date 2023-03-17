@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <ratio>
- 
+
 int main()
 {
     using two_third = std::ratio<2, 3>;

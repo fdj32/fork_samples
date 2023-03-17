@@ -1,8 +1,9 @@
-#include <bit>
+
+ #include <bit>
 #include <bitset>
 #include <cstdint>
 #include <iostream>
- 
+
 int main()
 {
     const std::uint8_t i = 0b00011101;

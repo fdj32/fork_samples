@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <clocale>
 #include <cstdlib>
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");

@@ -1,24 +1,25 @@
-#include <iostream>
+
+ #include <iostream>
 #include <iomanip>
 #include <clocale>
 #include <cstring>
 #include <cwchar>
 #include <cuchar>
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");
- 
+
     std::string str = "z\u00df\u6c34\U0001F34C"; // or u8"zß水🍌"
- 
+
     std::cout << "Processing " << str.size() << " bytes: [ " << std::showbase;
     for(unsigned char c: str) std::cout << std::hex << +c << ' ';
     std::cout << "]\n";
- 
+
     std::mbstate_t state{}; // zero-initialized to initial state
     char16_t c16;
     const char *ptr = &str[0], *end = &str[0] + str.size();
- 
+
     while(std::size_t rc = std::mbrtoc16(&c16, ptr, end - ptr + 1, &state))
     {
         std::cout << "Next UTF-16 char: " << std::hex 

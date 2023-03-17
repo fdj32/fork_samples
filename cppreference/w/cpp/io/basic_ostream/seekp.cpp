@@ -1,6 +1,7 @@
-#include <sstream>
+
+ #include <sstream>
 #include <iostream>
- 
+
 int main()
 {
     std::ostringstream os("hello, world");

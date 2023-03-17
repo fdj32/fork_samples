@@ -1,14 +1,15 @@
-#include <cstddef>
+
+ #include <cstddef>
 #include <cstring>
 #include <iomanip>
 #include <iostream>
 #include <string>
- 
+
 int main()
 {
     std::string s = "abcde312$#@";
     const char* invalid = "*$#";
- 
+
     const std::size_t valid_len = std::strcspn(s.c_str(), invalid);
     if (valid_len != s.size())
     {

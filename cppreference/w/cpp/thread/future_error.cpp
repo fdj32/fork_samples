@@ -1,6 +1,7 @@
-#include <future>
+
+ #include <future>
 #include <iostream>
- 
+
 int main()
 {
     std::future<int> empty;

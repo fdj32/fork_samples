@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string_view>
 int main()
 {
@@ -8,5 +9,5 @@ int main()
     if(trim_pos != v.npos)
         v.remove_suffix(v.size() - trim_pos);
     std::cout << "Array: '" << arr << "', size=" << sizeof arr << '\n'
-              << "View : '" << v << "', size=" << v.size() << '\n';
+              << "View: '" << v << "', size=" << v.size() << '\n';
 }

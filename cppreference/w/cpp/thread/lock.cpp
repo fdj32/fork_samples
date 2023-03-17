@@ -1,11 +1,12 @@
-#include <mutex>
+
+ #include <mutex>
 #include <thread>
 #include <iostream>
 #include <vector>
 #include <functional>
 #include <chrono>
 #include <string>
- 
+
 struct Employee {
     Employee(std::string id) : id(id) {}
     std::string id;
@@ -19,13 +20,13 @@ struct Employee {
         return ret;
     }
 };
- 
+
 void send_mail(Employee &, Employee &)
 {
     // simulate a time-consuming messaging operation
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
- 
+
 void assign_lunch_partner(Employee &e1, Employee &e2)
 {
     static std::mutex io_mutex;
@@ -33,7 +34,7 @@ void assign_lunch_partner(Employee &e1, Employee &e2)
         std::lock_guard<std::mutex> lk(io_mutex);
         std::cout << e1.id << " and " << e2.id << " are waiting for locks" << std::endl;
     }
- 
+
     // use std::lock to acquire two locks without worrying about 
     // other calls to assign_lunch_partner deadlocking us
     {
@@ -56,11 +57,11 @@ void assign_lunch_partner(Employee &e1, Employee &e2)
     send_mail(e1, e2);
     send_mail(e2, e1);
 }
- 
+
 int main()
 {
     Employee alice("alice"), bob("bob"), christina("christina"), dave("dave");
- 
+
     // assign in parallel threads because mailing users about lunch assignments
     // takes a long time
     std::vector<std::thread> threads;
@@ -68,7 +69,7 @@ int main()
     threads.emplace_back(assign_lunch_partner, std::ref(christina), std::ref(bob));
     threads.emplace_back(assign_lunch_partner, std::ref(christina), std::ref(alice));
     threads.emplace_back(assign_lunch_partner, std::ref(dave), std::ref(bob));
- 
+
     for (auto &thread : threads) thread.join();
     std::cout << alice.output() << '\n'  << bob.output() << '\n'
               << christina.output() << '\n' << dave.output() << '\n';

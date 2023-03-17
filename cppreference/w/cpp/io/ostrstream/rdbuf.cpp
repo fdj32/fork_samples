@@ -1,4 +1,5 @@
-#include <strstream>
+
+ #include <strstream>
 int main()
 {
     const std::ostrstream buf;

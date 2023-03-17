@@ -1,6 +1,7 @@
-#include <string>
+
+ #include <string>
 #include <iostream>
- 
+
 int main()
 {
   std::string foo("quuuux");

@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cwchar>
 #include <clocale>
 #include <locale>
- 
+
 int main()
 {
     const wchar_t str[] = L"诺不轻信，故人不负我\0诺不轻许，故我不负人。";

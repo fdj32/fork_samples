@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <filesystem>
 #include <string_view>
 namespace fs = std::filesystem;
- 
+
 void demo(fs::path p1, fs::path p2, std::string_view msg) {
     using std::cout;
     cout << p1;
@@ -12,7 +13,7 @@ void demo(fs::path p1, fs::path p2, std::string_view msg) {
     else cout << " == ";
     cout << p2 << " \t: " << msg << '\n';
 }
- 
+
 int main() {
     demo("/a/b/", "/a/b/", "simple");
     demo("/a/b/", "/a/b/c", "simple");

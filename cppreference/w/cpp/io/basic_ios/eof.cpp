@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
 #include <cstdlib>
 int main()
@@ -9,14 +10,14 @@ int main()
         std::cout << "File opening failed\n";
         return EXIT_FAILURE;
     }
- 
+
     // typical C++ I/O loop uses the return value of the I/O function
     // as the loop controlling condition, operator bool() is used here
     for(int n; file >> n; ) {
        std::cout << n << ' ';
     }
     std::cout << '\n';
- 
+
     if (file.bad())
         std::cout << "I/O error while reading\n";
     else if (file.eof())

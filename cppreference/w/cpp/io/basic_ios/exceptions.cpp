@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
- 
+
 int main() 
 {
     int ivalue;

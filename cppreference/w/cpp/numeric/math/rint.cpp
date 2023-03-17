@@ -1,8 +1,9 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cmath>
 #include <cfenv>
 #include <climits>
- 
+
 int main()
 {
 #pragma STDC FENV_ACCESS ON
@@ -14,7 +15,7 @@ int main()
               << "rint(-2.3) = " << std::rint(-2.3)
               << "  rint(-2.5) = " << std::rint(-2.5)
               << "  rint(-3.5) = " << std::rint(-3.5) << '\n';
- 
+
     std::fesetround(FE_DOWNWARD);
     std::cout << "rounding down:\n" 
               << "rint(+2.3) = " << std::rint(2.3)
@@ -30,16 +31,16 @@ int main()
               << "lrint(-2.3) = " << std::lrint(-2.3)
               << "  lrint(-2.5) = " << std::lrint(-2.5)
               << "  lrint(-3.5) = " << std::lrint(-3.5) << '\n';
- 
+
     std::cout << "lrint(-0.0) = " << std::lrint(-0.0)  << '\n'
               << "lrint(-Inf) = " << std::lrint(-INFINITY) << '\n';
- 
+
     // error handling
     std::feclearexcept(FE_ALL_EXCEPT);
     std::cout << "std::rint(0.1) = " << std::rint(.1) << '\n';
     if (std::fetestexcept(FE_INEXACT))
               std::cout << "    FE_INEXACT was raised\n";
- 
+
     std::feclearexcept(FE_ALL_EXCEPT);
     std::cout << "std::lrint(LONG_MIN-2048.0) = "
               << std::lrint(LONG_MIN-2048.0) << '\n';

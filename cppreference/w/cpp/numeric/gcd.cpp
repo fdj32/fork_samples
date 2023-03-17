@@ -1,4 +1,5 @@
-#include <numeric>
+
+ #include <numeric>
 int main() {
     constexpr int p {2 * 2 * 3};
     constexpr int q {2 * 3 * 3};

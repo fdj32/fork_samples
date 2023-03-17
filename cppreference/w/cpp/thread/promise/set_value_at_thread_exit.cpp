@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <future>
 #include <thread>
- 
+
 int main()
 {
     using namespace std::chrono_literals;
@@ -11,7 +12,7 @@ int main()
           std::this_thread::sleep_for(1s);
           p.set_value_at_thread_exit(9);
     }).detach();
- 
+
     std::cout << "Waiting..." << std::flush;
     f.wait();
     std::cout << "Done!\nResult is: " << f.get() << '\n';

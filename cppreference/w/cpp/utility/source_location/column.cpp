@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <source_location>
- 
+
 template<typename T = std::source_location>
 inline void pos(const T& location = T::current())
 {
@@ -11,7 +12,7 @@ inline void pos(const T& location = T::current())
         << location.column()
         << ") ";
 }
- 
+
 int main()
 {
 //      ↓: column #9

@@ -1,19 +1,20 @@
-#include <format>
+
+ #include <format>
 #include <iostream>
 #include <iterator>
 #include <string>
- 
+
 auto main() -> int
 {
     std::string buffer;
- 
+
     std::format_to(
         std::back_inserter(buffer), //< OutputIt
         "Hello, C++{}!\n",          //< fmt 
         "20");                      //< arg
     std::cout << buffer;
     buffer.clear();
- 
+
     std::format_to(
         std::back_inserter(buffer), //< OutputIt
         "Hello, {0}::{1}!{2}",      //< fmt 
@@ -22,7 +23,7 @@ auto main() -> int
         "\n",                       //< arg {2}
         "extra param(s)...");       //< unused
     std::cout << buffer;
- 
+
     std::wstring wbuffer;
     std::format_to(
         std::back_inserter(wbuffer),//< OutputIt 

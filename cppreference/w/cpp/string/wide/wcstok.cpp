@@ -1,6 +1,7 @@
-#include <cwchar>
+
+ #include <cwchar>
 #include <iostream>
- 
+
 int main()
 {
     wchar_t input[100] = L"A bird came down the walk";

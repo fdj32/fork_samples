@@ -1,5 +1,6 @@
-#include <iostream>
- 
+
+ #include <iostream>
+
 // class-specific allocation functions
 struct X
 {
@@ -8,14 +9,14 @@ struct X
         std::cout << "custom new for size " << count << '\n';
         return ::operator new(count);
     }
- 
+
     static void* operator new[](std::size_t count)
     {
         std::cout << "custom new[] for size " << count << '\n';
         return ::operator new[](count);
     }
 };
- 
+
 int main()
 {
     X* p1 = new X;

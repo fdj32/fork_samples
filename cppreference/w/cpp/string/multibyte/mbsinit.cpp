@@ -1,8 +1,9 @@
-#include <clocale>
+
+ #include <clocale>
 #include <string>
 #include <iostream>
 #include <cwchar>
- 
+
 int main()
 {
     // allow mbrlen() to work with UTF-8 multibyte encoding
@@ -15,7 +16,7 @@ int main()
         std::cout << "After processing the first 1 byte of " << str
                   << " the conversion state is not initial\n";
     }
- 
+
     (void)std::mbrlen(&str[1], str.size()-1, &mb);
     if (std::mbsinit(&mb)) {
         std::cout << "After processing the remaining 2 bytes of " << str

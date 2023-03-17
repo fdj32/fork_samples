@@ -1,13 +1,14 @@
-#include <iostream>
+
+ #include <iostream>
 #include <mutex>
 #include <string>
 #include <shared_mutex>
 #include <thread>
- 
+
 std::string file = "Original content."; // Simulates a file
 std::mutex output_mutex; // mutex that protects output operations.
 std::shared_mutex file_mutex; // reader/writer mutex
- 
+
 void read_content(int id)
 {
     std::string content;
@@ -19,7 +20,7 @@ void read_content(int id)
     std::lock_guard lock(output_mutex);
     std::cout << "Contents read by reader #" << id << ": " << content << '\n';
 }
- 
+
 void write_content()
 {
     {
@@ -29,7 +30,7 @@ void write_content()
     std::lock_guard output_lock(output_mutex);
     std::cout << "New content saved.\n";
 }
- 
+
 int main()
 {
     std::cout << "Two readers reading from file.\n"

@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <vector>
 #include <clocale>
 #include <string>
 #include <cwchar>
- 
+
 void print_wide(const wchar_t* wstr)
 {
     std::mbstate_t state = std::mbstate_t();
@@ -13,7 +14,7 @@ void print_wide(const wchar_t* wstr)
     std::cout << "multibyte string: " << &mbstr[0] << '\n'
               << "Length, including '\\0': " << mbstr.size() << '\n';
 }
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "en_US.utf8");

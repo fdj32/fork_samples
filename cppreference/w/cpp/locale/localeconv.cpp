@@ -1,6 +1,7 @@
-#include <clocale>
+
+ #include <clocale>
 #include <iostream>
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "ja_JP.UTF-8");

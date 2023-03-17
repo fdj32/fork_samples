@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
 #include <cstdio>
 #include <cstring>
@@ -7,9 +8,9 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <sys/stat.h>
- 
+
 namespace fs = std::filesystem;
- 
+
 void demo_status(const fs::path& p, fs::file_status s)
 {
     std::cout << p;
@@ -29,7 +30,7 @@ void demo_status(const fs::path& p, fs::file_status s)
     }
     std::cout << '\n';
 }
- 
+
 int main()
 {
     // create files of different kinds
@@ -43,14 +44,14 @@ int main()
     int fd = socket(PF_UNIX, SOCK_STREAM, 0);
     bind(fd, reinterpret_cast<sockaddr*>(&addr), sizeof addr);
     fs::create_symlink("file", "sandbox/symlink");
- 
+
     // demo different status accessors
     for(auto it = fs::directory_iterator("sandbox"); it != fs::directory_iterator(); ++it)
         demo_status(*it, it->symlink_status()); // use cached status from directory entry
     demo_status("/dev/null", fs::status("/dev/null")); // direct calls to status
     demo_status("/dev/sda", fs::status("/dev/sda"));
     demo_status("sandbox/no", fs::status("/sandbox/no"));
- 
+
     // cleanup
     close(fd);
     fs::remove_all("sandbox");

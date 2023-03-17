@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <clocale>
 #include <cstdlib>
 int main()

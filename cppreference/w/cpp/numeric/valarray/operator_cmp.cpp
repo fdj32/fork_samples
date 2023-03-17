@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <valarray>
- 
+
 int main()
 {
     // zero all negatives in a valarray
@@ -16,11 +17,11 @@ int main()
         std::cout << n << ' ';
     }
     std::cout << '\n';
- 
+
     // convert the valarray<bool> result of == to a single bool
     std::valarray<int> a = {1,2,3};
     std::valarray<int> b = {2,4,6};
- 
+
     std::cout << "2*a == b is " << std::boolalpha
               << (2*a == b).min() << '\n';
 }

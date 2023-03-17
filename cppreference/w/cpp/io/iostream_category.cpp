@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
- 
+
 int main()
 {
     std::ifstream f("doesn't exist");
@@ -11,6 +12,6 @@ int main()
                   << "Error code: " << e.code().value() 
                   << " (" << e.code().message() << ")\n"
                   << "Error category: " << e.code().category().name() << '\n';
- 
+
     }
 }

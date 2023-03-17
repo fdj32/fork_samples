@@ -1,19 +1,20 @@
-#include <algorithm>
+
+ #include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
- 
+
 struct Employee
 {
     int age;
     std::string name;  // Does not participate in comparisons
 };
- 
+
 bool operator<(const Employee & lhs, const Employee & rhs)
 {
     return lhs.age < rhs.age;
 }
- 
+
 int main()
 {
     std::vector<Employee> v =
@@ -22,9 +23,9 @@ int main()
         {32, "Arthur"},
         {108, "Ford"},
     };
- 
+
     std::stable_sort(v.begin(), v.end());
- 
+
     for (const Employee & e : v)
         std::cout << e.age << ", " << e.name << '\n';
 }

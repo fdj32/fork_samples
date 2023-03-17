@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string_view>
 #include <source_location>
- 
+
 inline void cur_line(
     const std::string_view message = "",
     const std::source_location& location = std::source_location::current())
@@ -11,7 +12,7 @@ inline void cur_line(
         << ") "
         << message; 
 }
- 
+
 int main()
 {
     cur_line("++\n");

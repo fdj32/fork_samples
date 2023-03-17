@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstring>
- 
+
 int main()
 {
     char arr[] = {'a','\0','a','A','a','a','A','a'};

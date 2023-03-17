@@ -1,8 +1,9 @@
-#include <clocale>
+
+ #include <clocale>
 #include <cwctype>
 #include <iostream>
 #include <algorithm>
- 
+
 std::wstring tohira(std::wstring str)
 {
     std::transform(str.begin(), str.end(), str.begin(), [](wchar_t c) {
@@ -10,7 +11,7 @@ std::wstring tohira(std::wstring str)
     });
     return str;
 }
- 
+
 int main()
 {
     std::setlocale(LC_ALL, "ja_JP.UTF-8");

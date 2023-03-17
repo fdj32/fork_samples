@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <locale>
 #include <map>
- 
+
 int main()
 {
     std::multimap<char, char> q;

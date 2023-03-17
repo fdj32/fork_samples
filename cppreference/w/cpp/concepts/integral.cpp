@@ -1,14 +1,15 @@
-#include <concepts>
+
+ #include <concepts>
 #include <iostream>
- 
+
 void print(std::integral auto i) {
     std::cout << "Integral: " << i << '\n';
 }
- 
+
 void print(auto x) {
     std::cout << "Non-integral: " << x << '\n';
 }
- 
+
 int main()
 {
     std::cout << std::boolalpha;

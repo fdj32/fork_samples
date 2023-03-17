@@ -1,10 +1,11 @@
-#include <iostream>
+
+ #include <iostream>
 #include <fstream>
- 
+
 int main()
 {
     std::ifstream f("doesn't exist");
- 
+
     try
     {
         f.exceptions(f.failbit);

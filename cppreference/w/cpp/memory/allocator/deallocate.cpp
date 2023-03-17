@@ -1,9 +1,10 @@
-#include <algorithm>
+
+ #include <algorithm>
 #include <cstddef>
 #include <iostream>
 #include <memory>
 #include <string>
- 
+
 class S {
     inline static int n{1};
     int m{};
@@ -13,7 +14,7 @@ public:
     ~S() { pre(); std::cout << "S::~S();\n"; }
     void id() const { pre(); std::cout << "S::id();\n"; }
 };
- 
+
 int main() {
     constexpr std::size_t n{4};
     std::allocator<S> allocator;

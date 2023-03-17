@@ -1,14 +1,15 @@
-#include <iostream>
+
+ #include <iostream>
 #include <atomic>
 #include <condition_variable>
 #include <thread>
 #include <chrono>
 using namespace std::chrono_literals;
- 
+
 std::condition_variable_any cv;
 std::mutex cv_m;
 int i;
- 
+
 void waits(int idx)
 {
     std::unique_lock<std::mutex> lk(cv_m);
@@ -17,7 +18,7 @@ void waits(int idx)
     else
         std::cerr << "Thread " << idx << " timed out. i == " << i << '\n';
 }
- 
+
 void signals()
 {
     std::this_thread::sleep_for(120ms);
@@ -31,7 +32,7 @@ void signals()
     std::cerr << "Notifying again...\n";
     cv.notify_all();
 }
- 
+
 int main()
 {
     std::thread t1(waits, 1), t2(waits, 2), t3(waits, 3), t4(signals);

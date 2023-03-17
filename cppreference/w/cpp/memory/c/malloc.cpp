@@ -1,8 +1,9 @@
-#include <iostream>   
+
+ #include <iostream>   
 #include <cstdlib> 
 #include <string>
 #include <memory>
- 
+
 int main() 
 {
     constexpr std::size_t size = 4;

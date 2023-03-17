@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <memory>
- 
+
 void report(std::shared_ptr<int> ptr) 
 {
     if (ptr) {
@@ -9,12 +10,12 @@ void report(std::shared_ptr<int> ptr)
         std::cout << "ptr is not a valid pointer.\n";
     }
 }
- 
+
 int main()
 {
     std::shared_ptr<int> ptr;
     report(ptr);
- 
+
     ptr = std::make_shared<int>(7);
     report(ptr);
 }

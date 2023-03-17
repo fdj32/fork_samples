@@ -1,7 +1,8 @@
-#include <iostream>
+
+ #include <iostream>
 #include <filesystem>
 #include <cstdint>
- 
+
 void print_space_info(auto const& dirs, int width = 15)
 {
     (std::cout << std::left).imbue(std::locale("en_US.UTF-8"));
@@ -18,7 +19,7 @@ void print_space_info(auto const& dirs, int width = 15)
             << "│ " << dir << '\n';
     }
 }
- 
+
 int main()
 {
     const auto dirs = { "/dev/null", "/tmp", "/home", "/null" };

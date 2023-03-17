@@ -1,9 +1,10 @@
-#include <iostream>
+
+ #include <iostream>
 #include <stdexcept>
 #include <exception>
 #include <string>
 #include <fstream>
- 
+
 // prints the explanatory string of an exception. If the exception is nested,
 // recurses to print the explanatory of the exception it holds
 void print_exception(const std::exception& e, int level =  0)
@@ -15,7 +16,7 @@ void print_exception(const std::exception& e, int level =  0)
         print_exception(nestedException, level+1);
     } catch(...) {}
 }
- 
+
 // sample function that catches an exception and wraps it in a nested exception
 void open_file(const std::string& s)
 {
@@ -26,7 +27,7 @@ void open_file(const std::string& s)
         std::throw_with_nested( std::runtime_error("Couldn't open " + s) );
     }
 }
- 
+
 // sample function that catches an exception and wraps it in a nested exception
 void run()
 {
@@ -36,7 +37,7 @@ void run()
         std::throw_with_nested( std::runtime_error("run() failed") );
     }
 }
- 
+
 // runs the sample function above and prints the caught exception
 int main()
 {

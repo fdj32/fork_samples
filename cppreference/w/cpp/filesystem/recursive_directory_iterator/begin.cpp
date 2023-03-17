@@ -1,4 +1,5 @@
-#include <cstdlib>
+
+ #include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -15,9 +16,8 @@ int main()
     std::system("tree --noreport sandbox");
 
     std::cout << "\nPrint dir structure using directory iterator:\n";
-/*
     for(auto& p: fs::recursive_directory_iterator("sandbox"))
         std::cout << p << '\n';
-*/
+
     fs::remove_all("sandbox");
 }

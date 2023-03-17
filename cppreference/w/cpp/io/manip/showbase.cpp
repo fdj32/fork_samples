@@ -1,4 +1,5 @@
-#include <sstream>
+
+ #include <sstream>
 #include <locale>
 #include <iostream>
 #include <iomanip>
@@ -8,7 +9,7 @@ int main()
     std::cout << std::hex
               << "showbase: " << std::showbase << 42 << '\n'
               << "noshowbase: " << std::noshowbase << 42 << '\n';
- 
+
     // and both input and output of monetary values
     std::locale::global(std::locale("en_US.utf8"));
     long double val = 0;

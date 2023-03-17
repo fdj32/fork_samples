@@ -1,4 +1,5 @@
-#include <iostream>
+
+ #include <iostream>
 #include <sstream>
 #include <bitset>
 int main()
@@ -12,7 +13,7 @@ int main()
     // the output base is sticky until changed
     std::cout << std::hex << "42 as hex gives " << 42
         << " and 21 as hex gives " << 21 << '\n';
- 
+
     // Note: there is no I/O manipulator that sets up a stream to print out
     // numbers in binary format (e.g. bin). If binary output is necessary
     // the std::bitset trick can be used:

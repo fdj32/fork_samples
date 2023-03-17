@@ -1,14 +1,16 @@
-#include <iostream>
+
+ #include <iostream>
 #include <string>
 #include <cerrno>
 #include <cstdlib>
 #include <clocale>
- 
+
 int main()
 {
     const char* p = "111.11 -2.22 0X1.BC70A3D70A3D7P+6 -Inf 1.18973e+4932zzz";
     char* end{};
     std::cout << "Parsing \"" << p << "\":\n";
+    errno = 0;
     for (double f = std::strtod(p, &end); p != end; f = std::strtod(p, &end))
     {
         std::cout << "  '" << std::string(p, end - p) << "' -> ";
@@ -20,7 +22,7 @@ int main()
         }
         std::cout << f << '\n';
     }
- 
+
     if (std::setlocale(LC_NUMERIC, "de_DE.utf8"))
     {
         std::cout << "With de_DE.utf8 locale:\n";

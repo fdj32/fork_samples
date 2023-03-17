@@ -1,24 +1,25 @@
-#include <iostream>
+
+ #include <iostream>
 #include <cstring>
- 
+
 void demo(const char* lhs, const char* rhs, std::size_t sz)
 {
     std::cout << std::string(lhs, sz);
     const int rc = std::memcmp(lhs, rhs, sz);
-    if(rc < 0)
+    if (rc < 0)
         std::cout << " precedes ";
-    else if(rc > 0)
+    else if (rc > 0)
         std::cout << " follows ";
     else
         std::cout << " compares equal to ";
     std::cout << std::string(rhs, sz) << " in lexicographical order\n";
 }
- 
+
 int main()
 {
     char a1[] = {'a','b','c'};
     char a2[sizeof a1] = {'a','b','d'};
- 
+
     demo(a1, a2, sizeof a1);
     demo(a2, a1, sizeof a1);
     demo(a1, a1, sizeof a1);
