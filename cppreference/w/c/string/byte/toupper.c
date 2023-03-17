@@ -1,8 +1,9 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <ctype.h>
 #include <locale.h>
 #include <limits.h>
- 
+
 int main(void)
 {
     /* In the default locale: */
@@ -11,7 +12,7 @@ int main(void)
         if (u != l) printf("%c%c ", l, u);
     }
     printf("\n\n");
- 
+
     unsigned char c = '\xb8'; // the character Ž in ISO-8859-15
                               // but ´ (acute accent) in ISO-8859-1 
     setlocale(LC_ALL, "en_US.iso88591");

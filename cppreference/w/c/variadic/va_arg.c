@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <stdarg.h>
 #include <math.h>
- 
+
 double stddev(int count, ...) 
 {
     double sum = 0;
@@ -16,7 +17,7 @@ double stddev(int count, ...)
     va_end(args);
     return sqrt(sum_sq/count - (sum/count)*(sum/count));
 }
- 
+
 int main(void) 
 {
     printf("%f\n", stddev(4, 25.0, 27.3, 26.9, 25.7));

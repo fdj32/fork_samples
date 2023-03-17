@@ -1,7 +1,8 @@
-#include <errno.h>
+
+ #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
- 
+
 int main(void)
 {
     const char *p = "10 200000000000000000000000000000 30 -40 - 42";

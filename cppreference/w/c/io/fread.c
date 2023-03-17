@@ -1,5 +1,6 @@
-#include <stdio.h>
- 
+
+ #include <stdio.h>
+
 enum { SIZE = 5 };
 int main(void)
 {
@@ -7,7 +8,7 @@ int main(void)
     FILE *fp = fopen("test.bin", "wb"); // must use binary mode
     fwrite(a, sizeof *a, SIZE, fp); // writes an array of doubles
     fclose(fp);
- 
+
     double b[SIZE];
     fp = fopen("test.bin","rb");
     size_t ret_code = fread(b, sizeof *b, SIZE, fp); // reads an array of doubles
@@ -22,6 +23,6 @@ int main(void)
            perror("Error reading test.bin");
        }
     }
- 
+
     fclose(fp);
 }

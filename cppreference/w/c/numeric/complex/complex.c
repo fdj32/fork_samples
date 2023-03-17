@@ -1,12 +1,13 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <complex.h>
 #include <math.h>
- 
+
 void print_complex(const char* note, complex z)
 {
-    printf("%s %f%+f*i\n", note, creal(z), cimag(z));
+    printf("%s%f%+f*i\n", note, creal(z), cimag(z));
 }
- 
+
 int main(void)
 {
     double complex z = -1.0 + 2.0*I;

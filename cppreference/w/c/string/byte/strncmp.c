@@ -1,16 +1,17 @@
-#include <string.h>
+
+ #include <string.h>
 #include <stdio.h>
- 
+
 void demo(const char* lhs, const char* rhs, int sz)
 {
     int rc = strncmp(lhs, rhs, sz);
     if(rc == 0)
-        printf("First %d chars of [%s] equal [%s]\n", sz, lhs, rhs);
+        printf("First%d chars of [%s] equal [%s]\n", sz, lhs, rhs);
     else if(rc < 0)
-        printf("First %d chars of [%s] precede [%s]\n", sz, lhs, rhs);
+        printf("First%d chars of [%s] precede [%s]\n", sz, lhs, rhs);
     else if(rc > 0)
-        printf("First %d chars of [%s] follow [%s]\n", sz, lhs, rhs);
- 
+        printf("First%d chars of [%s] follow [%s]\n", sz, lhs, rhs);
+
 }
 int main(void)
 {

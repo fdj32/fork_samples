@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
- 
+
 int main(void)
 {
     // parsing with error handling
@@ -18,8 +19,8 @@ int main(void)
         }
         printf("%f\n", f);
     }
- 
+
     // parsing without error handling
-    printf("\"  -0.0000000123junk\"  -->  %g\n", strtod("  -0.0000000123junk", NULL));
-    printf("\"junk\"                 -->  %g\n", strtod("junk", NULL));
+    printf("\"  -0.0000000123junk\"  --> %g\n", strtod("  -0.0000000123junk", NULL));
+    printf("\"junk\"                 --> %g\n", strtod("junk", NULL));
 }

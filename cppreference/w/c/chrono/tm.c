@@ -1,6 +1,7 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <time.h>
- 
+
 int main(void)
 {
     struct tm start = {.tm_year=2022-1900, .tm_mday=1};

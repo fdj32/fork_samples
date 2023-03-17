@@ -1,8 +1,9 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <fenv.h>
- 
+
 #pragma STDC FENV_ACCESS ON
- 
+
 void show_fe_exceptions(void)
 {
     printf("current exceptions raised: ");
@@ -15,19 +16,19 @@ void show_fe_exceptions(void)
     feclearexcept(FE_ALL_EXCEPT);
     printf("\n");
 }
- 
+
 double some_computation(void)
 {
     /* Computation reaches a state that causes overflow. */
     int r = feraiseexcept(FE_OVERFLOW | FE_INEXACT);
-    printf("feraiseexcept() %s\n", (r?"fails":"succeeds"));
+    printf("feraiseexcept()%s\n", (r?"fails":"succeeds"));
     return 0.0;
 }
- 
+
 int main(void)
 {
     some_computation();
     show_fe_exceptions();
- 
+
     return 0;
 }

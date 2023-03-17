@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <math.h>
 #include <fenv.h>
- 
+
 #pragma STDC FENV_ACCESS ON
 void show_fe_current_rounding_direction(void)
 {
@@ -15,26 +16,26 @@ void show_fe_current_rounding_direction(void)
     };
     printf("\n");
 }
- 
+
 int main(void)
 {
     /* Default rounding direction */
     show_fe_current_rounding_direction();
-    printf("+11.5 -> %+4.1f\n", rint(+11.5)); /* midway between two integers */
-    printf("+12.5 -> %+4.1f\n", rint(+12.5)); /* midway between two integers */
- 
+    printf("+11.5 ->%+4.1f\n", rint(+11.5)); /* midway between two integers */
+    printf("+12.5 ->%+4.1f\n", rint(+12.5)); /* midway between two integers */
+
     /* Save current rounding direction. */
     int curr_direction = fegetround();
- 
+
     /* Temporarily change current rounding direction. */
     fesetround(FE_DOWNWARD);
     show_fe_current_rounding_direction();
-    printf("+11.5 -> %+4.1f\n", rint(+11.5));
-    printf("+12.5 -> %+4.1f\n", rint(+12.5));
- 
+    printf("+11.5 ->%+4.1f\n", rint(+11.5));
+    printf("+12.5 ->%+4.1f\n", rint(+12.5));
+
     /* Restore default rounding direction. */
     fesetround(curr_direction);
     show_fe_current_rounding_direction(); 
- 
+
     return 0;
 }

@@ -1,6 +1,7 @@
-#include <locale.h>
+
+ #include <locale.h>
 #include <wchar.h>
- 
+
 int main(void)
 {
     char narrow_str[] = "z\u00df\u6c34\U0001f34c";

@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <errno.h>
 #include <wchar.h>
- 
+
 int main(void)
 {
     const wchar_t *p = L"111.11 -2.22 0X1.BC70A3D70A3D7P+6  1.18973e+4932zzz";

@@ -1,4 +1,5 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <math.h>
 #include <fenv.h>
 #ifndef __GNUC__
@@ -20,15 +21,15 @@ double cos_pi_x_smart(double x)
 }
 int main(void)
 {
-    printf("cos(pi * 0.25) = %f\n", cos_pi_x_naive(0.25));
-    printf("cos(pi * 1.25) = %f\n", cos_pi_x_naive(1.25));
-    printf("cos(pi * 1000000000000.25) = %f\n", cos_pi_x_naive(1000000000000.25));
-    printf("cos(pi * 1000000000001.25) = %f\n", cos_pi_x_naive(1000000000001.25));
-    printf("cos(pi * 1000000000000.25) = %f\n", cos_pi_x_smart(1000000000000.25));
-    printf("cos(pi * 1000000000001.25) = %f\n", cos_pi_x_smart(1000000000001.25));
+    printf("cos(pi * 0.25) =%f\n", cos_pi_x_naive(0.25));
+    printf("cos(pi * 1.25) =%f\n", cos_pi_x_naive(1.25));
+    printf("cos(pi * 1000000000000.25) =%f\n", cos_pi_x_naive(1000000000000.25));
+    printf("cos(pi * 1000000000001.25) =%f\n", cos_pi_x_naive(1000000000001.25));
+    printf("cos(pi * 1000000000000.25) =%f\n", cos_pi_x_smart(1000000000000.25));
+    printf("cos(pi * 1000000000001.25) =%f\n", cos_pi_x_smart(1000000000001.25));
     // error handling
     feclearexcept(FE_ALL_EXCEPT);
     int quo;
-    printf("remquo(+Inf, 1) = %.1f\n", remquo(INFINITY, 1, &quo));
+    printf("remquo(+Inf, 1) =%.1f\n", remquo(INFINITY, 1, &quo));
     if(fetestexcept(FE_INVALID)) puts("    FE_INVALID raised");
 }

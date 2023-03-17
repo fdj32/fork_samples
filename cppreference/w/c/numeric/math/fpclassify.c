@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <math.h>
 #include <float.h>
- 
+
 const char *show_classification(double x) {
     switch(fpclassify(x)) {
         case FP_INFINITE:  return "Inf";
@@ -14,9 +15,9 @@ const char *show_classification(double x) {
 }
 int main(void)
 {
-    //printf("1.0/0.0 is %s\n", show_classification(1/0.0));
-    //printf("0.0/0.0 is %s\n", show_classification(0.0/0.0));
-    printf("DBL_MIN/2 is %s\n", show_classification(DBL_MIN/2));
-    printf("-0.0 is %s\n", show_classification(-0.0));
-    printf("1.0 is %s\n", show_classification(1.0));
+    printf("1.0/0.0 is%s\n", show_classification(1/0.0));
+    printf("0.0/0.0 is%s\n", show_classification(0.0/0.0));
+    printf("DBL_MIN/2 is%s\n", show_classification(DBL_MIN/2));
+    printf("-0.0 is%s\n", show_classification(-0.0));
+    printf("1.0 is%s\n", show_classification(1.0));
 }

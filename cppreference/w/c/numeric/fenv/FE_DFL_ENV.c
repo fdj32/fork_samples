@@ -1,8 +1,9 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <fenv.h>
- 
+
 #pragma STDC FENV_ACCESS ON
- 
+
 void show_fe_exceptions(void)
 {
     printf("current exceptions raised: ");
@@ -14,7 +15,7 @@ void show_fe_exceptions(void)
     if(fetestexcept(FE_ALL_EXCEPT)==0) printf(" none");
     printf("\n");
 }
- 
+
 void show_fe_rounding_method(void)
 {
     printf("current rounding method:    ");
@@ -27,24 +28,24 @@ void show_fe_rounding_method(void)
     };
     printf("\n");
 }
- 
+
 void show_fe_environment(void)
 {
     show_fe_exceptions();
     show_fe_rounding_method();
 } 
- 
+
 int main()
 {
     printf("On startup:\n");
     show_fe_environment();
- 
+
     // Change environment
     fesetround(FE_DOWNWARD);     // change rounding mode
     feraiseexcept(FE_INVALID);   // raise exception
     printf("\nBefore restoration:\n");
     show_fe_environment();
- 
+
     fesetenv(FE_DFL_ENV);    // restore
     printf("\nAfter restoring default environment:\n");
     show_fe_environment();

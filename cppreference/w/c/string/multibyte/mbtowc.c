@@ -1,22 +1,22 @@
+
+ #include <locale.h>
 #include <stdio.h>
-#include <locale.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <wchar.h>
- 
+
 // print multibyte string to wide-oriented stdout
 // equivalent to wprintf(L"%s\n", ptr);
 void print_mb(const char* ptr)
 {
     mbtowc(NULL, 0, 0); // reset the conversion state
     const char* end = ptr + strlen(ptr);
-    int ret;
-    for (wchar_t wc; (ret = mbtowc(&wc, ptr, end-ptr)) > 0; ptr+=ret) {
+    int ret = 0;
+    for (wchar_t wc; (ret = mbtowc(&wc, ptr, end - ptr)) > 0; ptr += ret)
         wprintf(L"%lc", wc);
-    }
     wprintf(L"\n");
 }
- 
+
 int main(void)
 {
     setlocale(LC_ALL, "en_US.utf8");

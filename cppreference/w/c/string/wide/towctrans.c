@@ -1,8 +1,9 @@
-#include <locale.h>
+
+ #include <locale.h>
 #include <wctype.h>
 #include <wchar.h>
 #include <stdio.h>
- 
+
 int main(void)
 {
     setlocale(LC_ALL, "ja_JP.UTF-8");
@@ -11,5 +12,5 @@ int main(void)
     wchar_t hira[sz];
     for(size_t n = 0; n < sz; ++n)
         hira[n] = towctrans(kana[n], wctrans("tojhira"));
-    printf("katakana characters %ls are %ls in hiragana\n", kana, hira);
+    printf("katakana characters%ls are%ls in hiragana\n", kana, hira);
 }

@@ -1,4 +1,5 @@
-#include <assert.h>
+
+ #include <assert.h>
 #define FNAME "test.c"
 int main(void)
 {

@@ -1,6 +1,7 @@
-#include <stdlib.h>
+
+ #include <stdlib.h>
 #include <stdio.h>
- 
+
 int main(void)
 {
     printf("%g\n", atof("  -0.0000000123junk"));

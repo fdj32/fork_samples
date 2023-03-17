@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <errno.h>
 #include <wchar.h>
- 
+
 int main(void)
 {
     const wchar_t *p = L"10 200000000000000000000000000000 30 40";

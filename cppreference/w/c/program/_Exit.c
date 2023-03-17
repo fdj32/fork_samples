@@ -1,17 +1,18 @@
-#include <stdlib.h>
+
+ #include <stdlib.h>
 #include <stdio.h>
- 
+
 /* _Exit does not call functions registered with atexit. */
 void f1(void)
 {
     puts("pushed first");
 }
- 
+
 void f2(void)
 {
     puts("pushed second");
 }
- 
+
 int main(void)
 {
     printf("Enter main()\n");

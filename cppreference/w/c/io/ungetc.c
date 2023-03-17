@@ -1,6 +1,7 @@
-#include <ctype.h>
+
+ #include <ctype.h>
 #include <stdio.h>
- 
+
 void demo_scanf(const char* fmt, FILE* s)
 {
     while (*fmt != '\0') {
@@ -14,7 +15,7 @@ void demo_scanf(const char* fmt, FILE* s)
                         num = num*10 + c-'0';
                         c = getc(s);
                     }
-                    printf("%%u scanned %u\n", num);
+                    printf("%%u scanned%u\n", num);
                     ungetc(c, s);
                     break;
                 case 'c':
@@ -27,7 +28,7 @@ void demo_scanf(const char* fmt, FILE* s)
         }
     }
 }
- 
+
 int main(void)
 {
     FILE* f = fopen("input.txt", "w+");

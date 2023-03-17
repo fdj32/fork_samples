@@ -1,10 +1,12 @@
-#include <stdio.h>
-#include <ctype.h>
+
+ #include <ctype.h>
 #include <limits.h>
- 
+#include <stdio.h>
+
 int main(void)
 {
-    for (int ndx=0; ndx<=UCHAR_MAX; ndx++)
-        if (isxdigit(ndx)) printf("%c", ndx);
+    for (int ndx = 0; UCHAR_MAX >= ndx; ++ndx)
+        if (isxdigit(ndx))
+            printf("%c", ndx);
     printf("\n");
 }

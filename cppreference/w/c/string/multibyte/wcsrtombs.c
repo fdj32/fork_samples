@@ -1,8 +1,9 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <locale.h>
 #include <string.h>
 #include <wchar.h>
- 
+
 void print_wide(const wchar_t* wstr)
 {
     mbstate_t state;
@@ -10,10 +11,10 @@ void print_wide(const wchar_t* wstr)
     size_t len = 1 + wcsrtombs(NULL, &wstr, 0, &state);
     char mbstr[len];
     wcsrtombs(mbstr, &wstr, len, &state);
-    printf("Multibyte string: %s\n", mbstr);
-    printf("Length, including '\\0': %zu\n", len);
+    printf("Multibyte string:%s\n", mbstr);
+    printf("Length, including '\\0':%zu\n", len);
 }
- 
+
 int main(void)
 {
     setlocale(LC_ALL, "en_US.utf8");

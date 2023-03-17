@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <time.h>
 #include <locale.h>
- 
+
 int main(void)
 {
     char buff[70];
@@ -12,16 +13,16 @@ int main(void)
                           .tm_min=10,   // = 10 minutes
                           .tm_sec=20    // = 20 secs
     };
- 
-    if (strftime(buff, sizeof buff, "%A %c", &my_time)) {
+
+    if (strftime(buff, sizeof buff, "%A%c", &my_time)) {
         puts(buff);
     } else {
         puts("strftime failed");
     }
- 
+
     setlocale(LC_TIME, "el_GR.utf8");
- 
-    if (strftime(buff, sizeof buff, "%A %c", &my_time)) {
+
+    if (strftime(buff, sizeof buff, "%A%c", &my_time)) {
         puts(buff);
     } else {
         puts("strftime failed");

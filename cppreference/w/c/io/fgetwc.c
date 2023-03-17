@@ -1,9 +1,10 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <stdlib.h>
 #include <wchar.h>
 #include <errno.h>
 #include <locale.h>
- 
+
 int main(void)
 {
     setlocale(LC_ALL, "en_US.utf8");
@@ -14,7 +15,7 @@ int main(void)
     }
     fputs("кошка\n", fp);
     fclose(fp);
- 
+
     fp = fopen("fgetwc.dat", "r");
     if(!fp) {
         perror("Can't open file for reading");
@@ -24,7 +25,7 @@ int main(void)
     errno = 0;
     while ((wc = fgetwc(fp)) != WEOF)
         putwchar(wc);
- 
+
     if (ferror(fp)) {
         if (errno == EILSEQ)
             puts("Character encoding error while reading.");
@@ -32,6 +33,6 @@ int main(void)
             puts("I/O error when reading");
     } else if (feof(fp))
         puts("End of file reached successfully");
- 
+
     fclose(fp);
 }

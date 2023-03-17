@@ -1,4 +1,5 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 enum { SIZE = 5 };
@@ -8,9 +9,9 @@ int main(void)
     FILE *f1 = fopen("file.bin", "wb");
     assert(f1);
     size_t r1 = fwrite(a, sizeof a[0], SIZE, f1);
-    printf("wrote %zu elements out of %d requested\n", r1,  SIZE);
+    printf("wrote%zu elements out of%d requested\n", r1,  SIZE);
     fclose(f1);
- 
+
     double b[SIZE];
     FILE *f2 = fopen("file.bin", "rb");
     size_t r2 = fread(b, sizeof b[0], SIZE, f2);

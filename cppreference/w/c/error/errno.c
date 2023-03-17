@@ -1,7 +1,8 @@
-#include <stdio.h>
+
+ #include <stdio.h>
 #include <math.h>
 #include <errno.h>
- 
+
 void show_errno(void)
 {
     const char *err_info = "unknown error";
@@ -21,24 +22,24 @@ void show_errno(void)
     fputs(err_info, stdout);
     puts(" occurred");
 }
- 
+
 int main(void)
 {
     fputs("MATH_ERRNO is ", stdout);
     puts(math_errhandling & MATH_ERRNO ? "set" : "not set");
- /*
+
     errno = 0;
     1.0/0.0;
     show_errno();
- */
+
     errno = 0;
     acos(+1.1);
     show_errno();
- 
+
     errno = 0;
     log(0.0);
     show_errno();
- 
+
     errno = 0;
     sin(0.0);
     show_errno();

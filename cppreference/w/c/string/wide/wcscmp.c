@@ -1,16 +1,17 @@
-#include <wchar.h>
+
+ #include <wchar.h>
 #include <stdio.h>
 #include <locale.h>
- 
+
 void demo(const wchar_t* lhs, const wchar_t* rhs)
 {
     int rc = wcscmp(lhs, rhs);
     const char *rel = rc < 0 ? "precedes" : rc > 0 ? "follows" : "equals";
- 
+
     setlocale(LC_ALL, "en_US.utf8");
-    printf("[%ls] %s [%ls]\n", lhs, rel, rhs);
+    printf("[%ls]%s [%ls]\n", lhs, rel, rhs);
 }
- 
+
 int main(void)
 {
     const wchar_t* string = L"どうもありがとうございます";

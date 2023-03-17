@@ -1,7 +1,8 @@
-#include <wchar.h> 
+
+ #include <wchar.h> 
 #include <stdio.h>
 #include <locale.h>
- 
+
 int main(void) 
 {
     wchar_t str[50] = L"Земля, прощай.";

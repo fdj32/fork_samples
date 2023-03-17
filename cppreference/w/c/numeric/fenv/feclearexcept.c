@@ -1,8 +1,9 @@
-#include <fenv.h>
+
+ #include <fenv.h>
 #include <stdio.h>
 #include <math.h>
 #include <float.h>
- 
+
 /*
  * A possible implementation of hypot which makes use of many advanced
  * floating-point features.
@@ -18,7 +19,7 @@ double hypot_demo(double a, double b) {
   int a_exponent,b_exponent;
   frexp(a, &a_exponent);
   frexp(b, &b_exponent);
- 
+
   if (a_exponent - b_exponent > DBL_MAX_EXP)
     return fabs(a) + fabs(b);        // we can ignore the smaller value
   // scale so that fabs(a) is near 1
@@ -29,15 +30,15 @@ double hypot_demo(double a, double b) {
   // undo scaling
   return scalbn(result, a_exponent);
 }
- 
+
 int main(void)
 {
   // Normal case takes the fast route
-  printf("hypot(%f, %f) = %f\n", 3.0, 4.0, hypot_demo(3.0, 4.0));
+  printf("hypot(%f,%f) =%f\n", 3.0, 4.0, hypot_demo(3.0, 4.0));
   // Extreme case takes the slow but more accurate route
-  printf("hypot(%e, %e) = %e\n", DBL_MAX / 2.0, 
+  printf("hypot(%e,%e) =%e\n", DBL_MAX / 2.0, 
                                 DBL_MAX / 2.0, 
                                 hypot_demo(DBL_MAX / 2.0, DBL_MAX / 2.0));
- 
+
   return 0;
 }

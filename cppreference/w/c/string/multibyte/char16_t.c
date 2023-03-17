@@ -1,6 +1,7 @@
-#include <uchar.h>
+
+ #include <uchar.h>
 #include <stdio.h>
- 
+
 int main(void)
 {
     char16_t wcs[] = u"zß水🍌"; // or "z\u00df\u6c34\U0001f34c"
