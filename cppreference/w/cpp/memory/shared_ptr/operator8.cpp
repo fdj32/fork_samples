@@ -1,6 +1,7 @@
-#include <iostream>
+
+ #include <iostream>
 #include <memory>
- 
+
 struct Foo
 {
    Foo(int in) : a(in) {}
@@ -10,7 +11,7 @@ struct Foo
    }
    int a;
 };
- 
+
 int main()
 {
    auto ptr = std::make_shared<Foo>(10);
