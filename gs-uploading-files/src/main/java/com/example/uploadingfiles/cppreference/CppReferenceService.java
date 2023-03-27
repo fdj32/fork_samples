@@ -93,7 +93,7 @@ public class CppReferenceService {
 			String content = sourceText(e);
 			if (-1 == content.indexOf(" main("))
 				return;
-			String fileName = FOLDER + url + (elements.size() > 1 ? (i + 1) + "" : "") + fileExtention(url);
+			String fileName = FOLDER + url.replaceAll("\\*", "8") + (elements.size() > 1 ? (i + 1) + "" : "") + fileExtention(url);
 			try {
 				writeFile(fileName, content);
 			} catch (IOException e1) {
