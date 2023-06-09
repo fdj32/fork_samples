@@ -7,7 +7,7 @@
 plugins {
 	id 'java'
 	id 'application'
-	id 'org.springframework.boot' version '2.7.9'
+	id 'org.springframework.boot' version '2.7.12'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
@@ -31,7 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// https://mvnrepository.com/artifact/org.jsoup/jsoup
-	implementation 'org.jsoup:jsoup:1.15.4'
+	implementation 'org.jsoup:jsoup:1.16.1'
 	implementation 'commons-io:commons-io:2.11.0'
 	
 }
