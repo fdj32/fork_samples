@@ -1,4 +1,20 @@
+https://hpc-tutorials.llnl.gov/posix/
 
+https://hpc-tutorials.llnl.gov/posix/creating_and_terminating/
+```
+gcc creating_and_terminating.c -pthread
+./a.out
+In main: creating thread 0
+In main: creating thread 1
+Hello World! It's me, thread #0!
+Hello World! It's me, thread #1!
+In main: creating thread 2
+In main: creating thread 3
+In main: creating thread 4
+Hello World! It's me, thread #2!
+Hello World! It's me, thread #4!
+Hello World! It's me, thread #3!
+```
 ```
 **********************************************************************
 ** Visual Studio 2019 Developer Command Prompt v16.11.22
