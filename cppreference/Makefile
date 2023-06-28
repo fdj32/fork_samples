@@ -15,12 +15,12 @@ TARGET_EXEC := $(SRCS:%=$(BUILD_DIR)/%.exe)
 CFLAGS := -std=gnu17
 
 ifeq ($(CXX),g++)
-	CPPFLAGS := -std=gnu++20 -O2 -Wall -Wextra -pthread -g
+	CPPFLAGS := -std=gnu++20 -O2 -Wall -Wextra -g
 else ifeq ($(CXX),c++)
-	CPPFLAGS := -std=c++20 -O2 -Wall -Wextra -pthread -g
+	CPPFLAGS := -std=c++20 -O2 -Wall -Wextra -g
 endif
 
-LDFLAGS=-lm -lpthread
+LDFLAGS=-lm -pthread
 
 all: $(TARGET_EXEC)
 
