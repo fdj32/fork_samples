@@ -1,4 +1,5 @@
 ###############################################################################
+# brew install mpich
 # FILE: mpithreads.makefile
 # DESCRIPTION:
 #   Makefile for MPI with threads example codes.
@@ -19,3 +20,8 @@ mpithreads_mpi: mpithreads_mpi.c
 mpithreads_both: mpithreads_both.c
 	mpicc -pthread -o mpithreads_both mpithreads_both.c
 
+.PHONY: clean
+
+clean:
+	rm mpithreads_serial mpithreads_threads mpithreads_mpi mpithreads_both
+	rm -rf mpithreads_mpi.dSYM mpithreads_both.dSYM
