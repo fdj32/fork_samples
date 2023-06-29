@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         a[i] = i * 1.0;
         sum = sum + a[i];
     }
-    printf("Check Sum= %e\n", sum);
+    printf("Check Sum= %f\n", sum);
 
     /* Clean up and exit */
     pthread_attr_destroy(&attr);

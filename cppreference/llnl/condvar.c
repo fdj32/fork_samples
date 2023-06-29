@@ -16,6 +16,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define NUM_THREADS 3
 #define TCOUNT 10
@@ -75,7 +76,7 @@ void *watch_count(void *t)
         printf("watch_count(): thread %ld Count= %d. Going into wait...\n", my_id, count);
         pthread_cond_wait(&count_threshold_cv, &count_mutex);
         printf("watch_count(): thread %ld Condition signal received. Count= %d\n", my_id, count);
-        printf("watch_count(): thread %ld Updating the value of count...\n", my_id, count);
+        printf("watch_count(): thread %ld Updating the value of count...\n", my_id);
         count += 125;
         printf("watch_count(): thread %ld count now = %d.\n", my_id, count);
     }
