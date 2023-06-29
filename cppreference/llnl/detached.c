@@ -9,6 +9,7 @@
  * AUTHOR: 01/30/08 Blaise Barney
  * LAST REVISED: 01/29/09
  ******************************************************************************/
+#include <math.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,4 +58,5 @@ int main(int argc, char *argv[])
      */
     printf("Main: program completed. Exiting.\n");
     pthread_exit(NULL);
+    return 0;
 }
