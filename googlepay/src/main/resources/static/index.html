@@ -4,16 +4,195 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bootstrap demo</title>
+	<title>Google Pay demo</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-
-<body>
-	<h1>Hello, world!</h1>
+	<script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@textea/json-viewer@3.2.2/dist/browser.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+	<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+	<script type="text/javascript">
+		const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
+		const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
+		var tax, subtotal, amount;
+		function processPayment(paymentData) {
+			console.log(paymentData);
+			new JsonViewer({value: paymentData}).render('#paymentData')
+			return new Promise(function(resolve, reject) {
+				setTimeout(function() {
+					resolve({});
+				}, 3000);
+			});
+		}
+		function loadGPayButton(ma) {
+			const paymentsClient = new google.payments.api.PaymentsClient({
+				environment: 'TEST',
+				paymentDataCallbacks: {
+					onPaymentAuthorized: function (paymentData) {
+						return new Promise(function (resolve, reject) {
+							processPayment(paymentData)
+								.then(function () {
+									resolve({transactionState: 'SUCCESS'});
+								})
+								.catch(function () {
+									resolve({
+										transactionState: 'ERROR',
+										error: {
+											intent: 'PAYMENT_AUTHORIZATION',
+											message: 'Insufficient funds',
+											reason: 'PAYMENT_DATA_INVALID'
+										}
+									});
+								});
+						});
+					}
+				}
+			});
+
+			paymentsClient.isReadyToPay({
+				apiVersion: 2,
+				apiVersionMinor: 0,
+				allowedPaymentMethods: [{
+					type: 'CARD',
+					parameters: {
+						allowedAuthMethods: allowedCardAuthMethods,
+						allowedCardNetworks: allowedCardNetworks
+					}
+				}]
+			})
+				.then(function (response) {
+					if (response.result) {
+						const button = paymentsClient.createButton({
+							onClick: function () {
+								const paymentDataRequest = {
+									apiVersion: 2,
+									apiVersionMinor: 0,
+									allowedPaymentMethods: [{
+										type: 'CARD',
+										parameters: {
+											allowedAuthMethods: allowedCardAuthMethods,
+											allowedCardNetworks: allowedCardNetworks
+										},
+										tokenizationSpecification: {
+											"type": "DIRECT",
+											"parameters": {
+												"protocolVersion": "ECv2",
+												"publicKey": ma.publicKey
+											}
+										}
+									}],
+									transactionInfo: {
+										displayItems: [
+											{
+												label: "Subtotal",
+												type: "SUBTOTAL",
+												price: subtotal,
+											},
+											{
+												label: "Tax",
+												type: "TAX",
+												price: tax,
+											}
+										],
+										countryCode: 'US',
+										currencyCode: "USD",
+										totalPriceStatus: "FINAL",
+										totalPrice: amount,
+										totalPriceLabel: "Total"
+									},
+									merchantInfo: {
+										merchantId: ma.merchantId,
+										merchantName: ma.merchantName
+									},
+									callbackIntents: ["PAYMENT_AUTHORIZATION"]
+								};
+								paymentsClient.loadPaymentData(paymentDataRequest);
+							}
+						});
+						$("#payButton").empty();
+						$("#payButton").append(button);
+					}
+				})
+				.catch(function (err) {
+					console.error(err);
+				});
+		}
+		function validate() {
+			if ("" === $("#subtotal").val()) {
+				alert("subtotal empty");
+				return true;
+			} else if (isNaN($("#subtotal").val())) {
+				alert("subtotal not a number");
+				return true;
+			} else {
+				subtotal = $("#subtotal").val();
+			}
+			if ("" === $("#tax").val()) {
+				alert("tax empty");
+				return true;
+			} else if (isNaN($("#tax").val())) {
+				alert("tax not a number");
+				return true;
+			} else {
+				tax = $("#tax").val();
+			}
+			amount = "" + (Number(subtotal) + Number(tax));
+			return false;
+		}
+		$(() => {
+			var ma = new Object();
+			ma.merchantId = "12345678901234567890";
+			ma.merchantName = "Jing Dong Mall";
+			ma.publicKey = "BIOCqGybpJXPE6O6T82kIhpiNWBAgLPqceuBiXkfcnqGXIWb3tpAPxM5OXZfjUq2TU1WM0Rt1vMNqEYwx3DQBCk=";
+
+			$("#btn_ok").click(() => {
+				var hasError = validate();
+				if (hasError)
+					return;
+				loadGPayButton(ma);
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container my-1">
+		<div class="card my-1">
+			<div class="card-header">Order</div>
+			<div class="card-body">
+				<div class="row justify-content-evenly">
+					<div class="col-2">
+						<label for="subtotal" class="form-label">Sub Total</label>
+						<input class="form-control" id="subtotal" placeholder="subtotal" value="11.00">
+					</div>
+					<div class="col-2">
+						<label for="tax" class="form-label">Tax</label>
+						<input class="form-control" id="tax" placeholder="tax" value="1.00">
+					</div>
+					<div class="col-2">
+						<label for="btn_ok" class="form-label">&nbsp;</label>
+						<input id="btn_ok" class="form-control btn btn-outline-primary" type="button" value="Pay">
+					</div>
+					<div class="col-2">
+						<label for="payButton" class="form-label">&nbsp;</label>
+						<div id="payButton"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card my-1">
+			<div class="card-header">Callback</div>
+			<div class="card-body">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" id="paymentData"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
