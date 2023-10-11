@@ -32,11 +32,11 @@ dependencies {
 configurations.all {
 	exclude group: 'com.google.code.findbugs'
 	exclude group: 'com.google.errorprone'
-	exclude group: 'com.google.guava'
-	exclude group: 'com.google.http-client'
+	//exclude group: 'com.google.guava'
+	//exclude group: 'com.google.http-client'
 	exclude group: 'com.google.j2objc'
 	exclude group: 'com.google.protobuf'
-	exclude group: 'io.opencensus'
+	//exclude group: 'io.opencensus'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

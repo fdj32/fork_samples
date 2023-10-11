@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Google Pay demo</title>
+	<link href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
@@ -18,14 +19,16 @@
 	<script type="text/javascript">
 		const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
 		const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
-		var tax, subtotal, amount;
+		var tax, subtotal, amount, paymentToken;
 		function processPayment(paymentData) {
 			console.log(paymentData);
+			paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+			console.log(paymentToken);
 			new JsonViewer({value: paymentData}).render('#paymentData')
 			return new Promise(function(resolve, reject) {
 				setTimeout(function() {
 					resolve({});
-				}, 3000);
+				}, 1000);
 			});
 		}
 		function loadGPayButton(ma) {
@@ -155,6 +158,16 @@
 					return;
 				loadGPayButton(ma);
 			});
+			$("#btn_tink").click(() => {
+				NProgress.start();
+				$.post("/apis/googlepay/tink", {
+					sealedMessage: paymentToken
+				}, data => {
+					console.log(data);
+					new JsonViewer({value: JSON.parse(data)}).render('#decrypted');
+					NProgress.done();
+				}, "text");
+			});
 		});
 	</script>
 </head>
@@ -189,6 +202,24 @@
 			<div class="card-body">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item" id="paymentData"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="card my-1">
+			<div class="card-header">Decrypt</div>
+			<div class="card-body">
+				<div class="row justify-content-evenly">
+					<div class="col-2">
+						<input id="btn_tink" class="form-control btn btn-outline-primary" type="button" value="Decrypt with Tink">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card my-1">
+			<div class="card-header">Decrypted</div>
+			<div class="card-body">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" id="decrypted"></li>
 				</ul>
 			</div>
 		</div>
