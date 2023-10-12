@@ -14,6 +14,7 @@ import com.google.crypto.tink.apps.paymentmethodtoken.PaymentMethodTokenRecipien
 import io.github.fdj32.model.Token;
 import io.github.fdj32.util.CopyTink;
 import io.github.fdj32.util.EC;
+import io.github.fdj32.util.TinkSimulator;
 
 @RestController
 @RequestMapping("/apis/googlepay")
@@ -59,7 +60,17 @@ public class GooglePayController {
 		Token t = Token.parse(sealedMessage);
 		String json = EC.decrypt(t.getSignedMessage().getEncryptedMessage(), t.getSignedMessage().getEphemeralPublicKey(), PRIVATE_KEY);
 		long end = System.currentTimeMillis();
-		LOGGER.info("{} -> {}, cost {}, /rawEC unsealed: {}", start, end, (end - start), json);
+		LOGGER.info("{} -> {}, cost {}, /rawEC decrypt: {}", start, end, (end - start), json);
+		return json;
+	}
+	
+	@PostMapping(path = "/tinkSimulator", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String tinkSimulator(@RequestParam String sealedMessage) throws Exception {
+		long start = System.currentTimeMillis();
+		LOGGER.info("{} /tinkSimulator sealedMessage: {}", start, sealedMessage);
+		String json = TinkSimulator.unseal(MERCHANT_ID, PRIVATE_KEY, sealedMessage);
+		long end = System.currentTimeMillis();
+		LOGGER.info("{} -> {}, cost {}, /tinkSimulator unsealed: {}", start, end, (end - start), json);
 		return json;
 	}
 

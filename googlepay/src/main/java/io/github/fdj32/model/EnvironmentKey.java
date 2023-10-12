@@ -54,4 +54,11 @@ public class EnvironmentKey {
 		return list;
 	}
 
+	public boolean expired() {
+		if (null != keyExpiration && keyExpiration.length() > 0) {
+			return Long.parseLong(keyExpiration) < System.currentTimeMillis();
+		}
+		return false;
+	}
+
 }

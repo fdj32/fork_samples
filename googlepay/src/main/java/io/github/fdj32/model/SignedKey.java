@@ -31,4 +31,11 @@ public class SignedKey {
 		k.setKeyExpiration(jo.get("keyExpiration").getAsString());
 		return k;
 	}
+
+	public boolean expired() {
+		if (null != keyExpiration && keyExpiration.length() > 0) {
+			return Long.parseLong(keyExpiration) < System.currentTimeMillis();
+		}
+		return false;
+	}
 }

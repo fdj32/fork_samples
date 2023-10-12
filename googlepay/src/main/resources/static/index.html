@@ -188,6 +188,16 @@
 					NProgress.done();
 				}, "text");
 			});
+			$("#btn_tinkSimulator").click(() => {
+				NProgress.start();
+				$.post("/apis/googlepay/rawEC", {
+					sealedMessage: paymentToken
+				}, data => {
+					console.log(data);
+					new JsonViewer({value: JSON.parse(data)}).render('#decrypted4');
+					NProgress.done();
+				}, "text");
+			});
 		});
 	</script>
 </head>
@@ -230,13 +240,16 @@
 			<div class="card-body">
 				<div class="row justify-content-evenly">
 					<div class="col-3">
-						<input id="btn_tink" class="form-control btn btn-outline-primary" type="button" value="Decrypt with Tink">
+						<input id="btn_tink" class="form-control btn btn-outline-primary" type="button" value="Tink">
 					</div>
 					<div class="col-3">
-						<input id="btn_copyTink" class="form-control btn btn-outline-info" type="button" value="Decrypt with CopyTink">
+						<input id="btn_copyTink" class="form-control btn btn-outline-info" type="button" value="CopyTink">
 					</div>
 					<div class="col-3">
-						<input id="btn_rawEC" class="form-control btn btn-outline-success" type="button" value="Decrypt with RawEC">
+						<input id="btn_rawEC" class="form-control btn btn-outline-success" type="button" value="RawEC">
+					</div>
+					<div class="col-3">
+						<input id="btn_tinkSimulator" class="form-control btn btn-outline-secondary" type="button" value="Simulator">
 					</div>
 				</div>
 			</div>
@@ -262,6 +275,14 @@
 			<div class="card-body">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item" id="decrypted3"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="card my-1">
+			<div class="card-header">Decrypted with Simulator</div>
+			<div class="card-body">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" id="decrypted4"></li>
 				</ul>
 			</div>
 		</div>
