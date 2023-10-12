@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.crypto.tink.apps.paymentmethodtoken.GooglePaymentsPublicKeysManager;
 import com.google.crypto.tink.apps.paymentmethodtoken.PaymentMethodTokenRecipient;
 
+import io.github.fdj32.util.CopyTink;
+
 @RestController
 @RequestMapping("/apis/googlepay")
 public class GooglePayController {
@@ -28,11 +30,23 @@ public class GooglePayController {
 
 	@PostMapping(path = "/tink", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String tink(@RequestParam String sealedMessage) throws Exception {
-		LOGGER.info(sealedMessage);
+		long start = System.currentTimeMillis();
+		LOGGER.info("{} /tink sealedMessage: {}", start, sealedMessage);
 		String json = new PaymentMethodTokenRecipient.Builder().fetchSenderVerifyingKeysWith(MANAGER)
 				.recipientId(RECIPIENT_PREFIX + MERCHANT_ID).protocolVersion(PROTOCOL)
 				.addRecipientPrivateKey(PRIVATE_KEY).build().unseal(sealedMessage);
-		LOGGER.info(json);
+		long end = System.currentTimeMillis();
+		LOGGER.info("{} -> {}, cost {}, /tink unsealed: {}", start, end, (end - start), json);
+		return json;
+	}
+	
+	@PostMapping(path = "/copyTink", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String copyTink(@RequestParam String sealedMessage) throws Exception {
+		long start = System.currentTimeMillis();
+		LOGGER.info("{} /copyTink sealedMessage: {}", start, sealedMessage);
+		String json = CopyTink.unseal(RECIPIENT_PREFIX + MERCHANT_ID, PRIVATE_KEY, sealedMessage);
+		long end = System.currentTimeMillis();
+		LOGGER.info("{} -> {}, cost {}, /copyTink unsealed: {}", start, end, (end - start), json);
 		return json;
 	}
 
