@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.crypto.tink.apps.paymentmethodtoken.GooglePaymentsPublicKeysManager;
 import com.google.crypto.tink.apps.paymentmethodtoken.PaymentMethodTokenRecipient;
 
+import io.github.fdj32.model.Token;
 import io.github.fdj32.util.CopyTink;
+import io.github.fdj32.util.EC;
 
 @RestController
 @RequestMapping("/apis/googlepay")
@@ -47,6 +49,17 @@ public class GooglePayController {
 		String json = CopyTink.unseal(RECIPIENT_PREFIX + MERCHANT_ID, PRIVATE_KEY, sealedMessage);
 		long end = System.currentTimeMillis();
 		LOGGER.info("{} -> {}, cost {}, /copyTink unsealed: {}", start, end, (end - start), json);
+		return json;
+	}
+	
+	@PostMapping(path = "/rawEC", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String rawEC(@RequestParam String sealedMessage) throws Exception {
+		long start = System.currentTimeMillis();
+		LOGGER.info("{} /rawEC sealedMessage: {}", start, sealedMessage);
+		Token t = Token.parse(sealedMessage);
+		String json = EC.decrypt(t.getSignedMessage().getEncryptedMessage(), t.getSignedMessage().getEphemeralPublicKey(), PRIVATE_KEY);
+		long end = System.currentTimeMillis();
+		LOGGER.info("{} -> {}, cost {}, /rawEC unsealed: {}", start, end, (end - start), json);
 		return json;
 	}
 

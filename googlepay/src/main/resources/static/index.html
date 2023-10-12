@@ -178,6 +178,16 @@
 					NProgress.done();
 				}, "text");
 			});
+			$("#btn_rawEC").click(() => {
+				NProgress.start();
+				$.post("/apis/googlepay/rawEC", {
+					sealedMessage: paymentToken
+				}, data => {
+					console.log(data);
+					new JsonViewer({value: JSON.parse(data)}).render('#decrypted3');
+					NProgress.done();
+				}, "text");
+			});
 		});
 	</script>
 </head>
@@ -225,6 +235,9 @@
 					<div class="col-3">
 						<input id="btn_copyTink" class="form-control btn btn-outline-info" type="button" value="Decrypt with CopyTink">
 					</div>
+					<div class="col-3">
+						<input id="btn_rawEC" class="form-control btn btn-outline-success" type="button" value="Decrypt with RawEC">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -241,6 +254,14 @@
 			<div class="card-body">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item" id="decrypted2"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="card my-1">
+			<div class="card-header">Decrypted with RawEC</div>
+			<div class="card-body">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" id="decrypted3"></li>
 				</ul>
 			</div>
 		</div>
