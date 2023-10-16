@@ -190,7 +190,7 @@
 			});
 			$("#btn_tinkSimulator").click(() => {
 				NProgress.start();
-				$.post("/apis/googlepay/rawEC", {
+				$.post("/apis/googlepay/tinkSimulator", {
 					sealedMessage: paymentToken
 				}, data => {
 					console.log(data);

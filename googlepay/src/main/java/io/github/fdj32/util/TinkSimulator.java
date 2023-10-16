@@ -14,12 +14,14 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.crypto.tink.subtle.Hex;
+
 import io.github.fdj32.model.EnvironmentKey;
 import io.github.fdj32.model.Token;
 
 public class TinkSimulator {
 	
-	private static Logger LOG = LoggerFactory.getLogger(TinkSimulator.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TinkSimulator.class);
 	
 	/** PaymentMethodTokenConstants */
 	public static final String GOOGLE_SENDER_ID = "Google";
@@ -151,6 +153,11 @@ public class TinkSimulator {
 		byte[] demKey = Hkdf.computeEciesHkdfSymmetricKey(
 				Base64.getDecoder().decode(t.getSignedMessage().getEphemeralPublicKey()), sharedSecret,
 				HMAC_SHA256_ALGO, HKDF_EMPTY_SALT, GOOGLE_CONTEXT_INFO_ECV1, demKeySize);
+		byte[] bcDemKey = BCHKDF.computeEciesHkdfSymmetricKey(
+				Base64.getDecoder().decode(t.getSignedMessage().getEphemeralPublicKey()), sharedSecret, HKDF_EMPTY_SALT,
+				GOOGLE_CONTEXT_INFO_ECV1, demKeySize);
+		LOG.info("Hkdf.computeEciesHkdfSymmetricKey   = {}", Hex.encode(demKey));
+		LOG.info("BCHKDF.computeEciesHkdfSymmetricKey = {}", Hex.encode(bcDemKey));
 		// 9. derive hmacSha256Key from demKey, the second half of demKey
 		byte[] hmacSha256Key = Arrays.copyOfRange(demKey, 256 / 8, demKey.length);
 		// 10. decode token.signedMessage.encryptedMessage bytes
