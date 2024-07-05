@@ -121,12 +121,23 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Upload successful")
 }
 
+func middlewareCORS(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS")
+		if r.Method == "OPTIONS" {
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", IndexHandler)
 	mux.HandleFunc("/upload", uploadHandler)
 
-	if err := http.ListenAndServe(":4500", mux); err != nil {
+	if err := http.ListenAndServeTLS("[::]:4500", "server.crt", "server.key", middlewareCORS(mux)); err != nil {
 		log.Fatal(err)
 	}
 }
