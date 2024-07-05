@@ -67,7 +67,8 @@
       </div>
     </div>
     <script>
-      const SERVER_ENDPOINT = "http://localhost:8000";
+      const SERVER_ENDPOINT = window.location.protocol + "//" + window.location.host;
+      console.log(SERVER_ENDPOINT)
       const IMAGE_PREVIEW = document.getElementById("file-preview");
       //   Upload Single Image
       document

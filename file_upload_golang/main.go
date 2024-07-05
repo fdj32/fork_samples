@@ -18,6 +18,10 @@ import (
 )
 
 func uploadResizeSingleFile(ctx *gin.Context) {
+	proto := "http"
+	if ctx.Request.TLS != nil {
+		proto += "s"
+	}
 	file, header, err := ctx.Request.FormFile("image")
 	if err != nil {
 		ctx.String(http.StatusBadRequest, fmt.Sprintf("file err : %s", err.Error()))
@@ -28,7 +32,7 @@ func uploadResizeSingleFile(ctx *gin.Context) {
 	originalFileName := strings.TrimSuffix(filepath.Base(header.Filename), filepath.Ext(header.Filename))
 	now := time.Now()
 	filename := strings.ReplaceAll(strings.ToLower(originalFileName), " ", "-") + "-" + fmt.Sprintf("%v", now.Unix()) + fileExt
-	filePath := "http://localhost:8000/images/single/" + filename
+	filePath := proto + "://" + ctx.Request.Host + "/images/single/" + filename
 
 	imageFile, _, err := image.Decode(file)
 	if err != nil {
@@ -43,6 +47,10 @@ func uploadResizeSingleFile(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"filepath": filePath})
 }
 func uploadSingleFile(ctx *gin.Context) {
+	proto := "http"
+	if ctx.Request.TLS != nil {
+		proto += "s"
+	}
 	file, header, err := ctx.Request.FormFile("image")
 	if err != nil {
 		ctx.String(http.StatusBadRequest, fmt.Sprintf("file err : %s", err.Error()))
@@ -53,7 +61,7 @@ func uploadSingleFile(ctx *gin.Context) {
 	originalFileName := strings.TrimSuffix(filepath.Base(header.Filename), filepath.Ext(header.Filename))
 	now := time.Now()
 	filename := strings.ReplaceAll(strings.ToLower(originalFileName), " ", "-") + "-" + fmt.Sprintf("%v", now.Unix()) + fileExt
-	filePath := "http://localhost:8000/images/single/" + filename
+	filePath := proto + "://" + ctx.Request.Host + "/images/single/" + filename
 
 	out, err := os.Create("public/single/" + filename)
 	if err != nil {
@@ -67,6 +75,10 @@ func uploadSingleFile(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"filepath": filePath})
 }
 func uploadResizeMultipleFile(ctx *gin.Context) {
+	proto := "http"
+	if ctx.Request.TLS != nil {
+		proto += "s"
+	}
 	form, _ := ctx.MultipartForm()
 	files := form.File["images"]
 	filePaths := []string{}
@@ -75,7 +87,7 @@ func uploadResizeMultipleFile(ctx *gin.Context) {
 		originalFileName := strings.TrimSuffix(filepath.Base(file.Filename), filepath.Ext(file.Filename))
 		now := time.Now()
 		filename := strings.ReplaceAll(strings.ToLower(originalFileName), " ", "-") + "-" + fmt.Sprintf("%v", now.Unix()) + fileExt
-		filePath := "http://localhost:8000/images/multiple/" + filename
+		filePath := proto + "://" + ctx.Request.Host + "/images/multiple/" + filename
 
 		filePaths = append(filePaths, filePath)
 		readerFile, _ := file.Open()
@@ -93,6 +105,10 @@ func uploadResizeMultipleFile(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"filepaths": filePaths})
 }
 func uploadMultipleFile(ctx *gin.Context) {
+	proto := "http"
+	if ctx.Request.TLS != nil {
+		proto += "s"
+	}
 	form, _ := ctx.MultipartForm()
 	files := form.File["images"]
 	filePaths := []string{}
@@ -101,7 +117,7 @@ func uploadMultipleFile(ctx *gin.Context) {
 		originalFileName := strings.TrimSuffix(filepath.Base(file.Filename), filepath.Ext(file.Filename))
 		now := time.Now()
 		filename := strings.ReplaceAll(strings.ToLower(originalFileName), " ", "-") + "-" + fmt.Sprintf("%v", now.Unix()) + fileExt
-		filePath := "http://localhost:8000/images/multiple/" + filename
+		filePath := proto + "://" + ctx.Request.Host + "/images/multiple/" + filename
 
 		filePaths = append(filePaths, filePath)
 		out, err := os.Create("./public/multiple/" + filename)
@@ -141,11 +157,13 @@ func main() {
 		ctx.JSON(200, gin.H{"status": "success", "message": "How to Upload Single and Multiple Files in Golang"})
 	})
 
-	router.POST("/upload/single", uploadResizeSingleFile)
-	router.POST("/upload/multiple", uploadResizeMultipleFile)
+	router.POST("/upload/single", uploadSingleFile)
+	router.POST("/upload/multiple", uploadMultipleFile)
+	router.POST("/upload/singleResize", uploadResizeSingleFile)
+	router.POST("/upload/multipleResize", uploadResizeMultipleFile)
 	router.StaticFS("/images", http.Dir("public"))
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", nil)
 	})
-	router.Run(":8000")
+	router.RunTLS(":8000", "../file-upload/server.crt", "../file-upload/server.key")
 }
