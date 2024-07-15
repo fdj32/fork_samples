@@ -26,7 +26,7 @@ public class UploadingFilesApplication {
 		};
 	}
 	
-	@Bean
+	//@Bean
 	CommandLineRunner cppreference(CppReferenceService service) {
 		return args -> {
 			System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "32");
