@@ -29,6 +29,10 @@ dependencies {
 	implementation 'org.yaml:snakeyaml:1.33'
 	implementation ('com.github.javafaker:javafaker:1.0.2') { exclude group: 'org.yaml' }
 	implementation 'com.fasterxml.jackson.core:jackson-annotations'
+	implementation 'org.apache.cxf:cxf-rt-frontend-jaxws:3.5.9'
+	implementation 'org.apache.cxf:cxf-rt-security:3.5.9'
+	implementation 'org.apache.cxf:cxf-rt-transports-http:3.5.9'
+	implementation 'org.apache.cxf:cxf-rt-ws-security:3.5.9'
 
 }
 
