@@ -43,7 +43,7 @@ dependencies {
 
     implementation ('com.github.javafaker:javafaker:1.0.2') { exclude group: 'org.yaml' }
     implementation 'com.h2database:h2:2.2.224'
-    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
     implementation 'org.yaml:snakeyaml:1.33'
 
     // Use JUnit test framework
