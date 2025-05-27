@@ -23,11 +23,11 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.google.crypto.tink:apps-paymentmethodtoken:1.11.0'
-    implementation 'commons-codec:commons-codec:1.17.1'
-    implementation 'commons-io:commons-io:2.18.0'
-    implementation 'joda-time:joda-time:2.13.0'
-	implementation 'org.bouncycastle:bcprov-jdk18on:1.79'
+    implementation 'com.google.crypto.tink:apps-paymentmethodtoken:1.12.2'
+    implementation 'commons-codec:commons-codec:1.18.0'
+    implementation 'commons-io:commons-io:2.19.0'
+    implementation 'joda-time:joda-time:2.14.0'
+	implementation 'org.bouncycastle:bcprov-jdk18on:1.80'
     
 }
 
