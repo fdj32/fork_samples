@@ -39,7 +39,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config:4.2.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config:4.3.0'
 
     implementation ('com.github.javafaker:javafaker:1.0.2') { exclude group: 'org.yaml' }
     implementation 'com.h2database:h2:2.3.232'

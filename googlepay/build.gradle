@@ -27,7 +27,7 @@ dependencies {
     implementation 'commons-codec:commons-codec:1.18.0'
     implementation 'commons-io:commons-io:2.19.0'
     implementation 'joda-time:joda-time:2.14.0'
-	implementation 'org.bouncycastle:bcprov-jdk18on:1.80'
+	implementation 'org.bouncycastle:bcprov-jdk18on:1.81'
     
 }
 
